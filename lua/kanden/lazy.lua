@@ -59,6 +59,12 @@ local plugins = {
 
 	'hrsh7th/cmp-nvim-lsp',
 
+    -- setup for lua ls
+    {
+        'folke/neodev.nvim',
+        opts = {}
+    },
+
 	-- R
 
 	'R-nvim/R.nvim',
