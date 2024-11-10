@@ -35,20 +35,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Setup mason
-require('mason').setup()
+require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = { "r_language_server", "lua_ls" }
 })
-
--- R Language Server
--- require('lspconfig').r_language_server.setup{
--- cmd = { "R", "--no-echo", "-e", "languageserver::run()" },
--- filetypes = { "r", "rmd" },
--- log_level = { 2 },
---}
-
--- LUA Language Server
--- require('lspconfig').lua_ls.setup({})
+require("lspconfig").lua_ls.setup({})
+require("lspconfig").r_language_server.setup({})
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
