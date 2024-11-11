@@ -66,8 +66,7 @@ local plugins = {
     },
 
 	-- R
-
-	'R-nvim/R.nvim',
+    'R-nvim/R.nvim',
 
 	{
 		'R-nvim/cmp-r',
