@@ -24,11 +24,10 @@ local plugins = {
 
 	{
 		'nvim-telescope/telescope.nvim', version = '0.1.8',
-		-- or                            , branch = '0.1.x',
 		dependencies = { {'nvim-lua/plenary.nvim'} }
 	},
 
-	{ 
+	{
 		'rose-pine/neovim',
 		name = 'rose-pine'
 	},
