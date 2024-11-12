@@ -72,6 +72,15 @@ local plugins = {
 		'R-nvim/cmp-r',
 		dependencies = { {'hrsh7th/nvim-cmp'} },
 	},
+
+    -- Surround
+    {
+        'kylewchui/nvim-surround',
+        tag = '*',
+        config = function()
+            require('nvim-surround').setup({})
+        end
+    }
 }
 
 require("lazy").setup(plugins, {})
