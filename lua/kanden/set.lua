@@ -57,3 +57,8 @@ vim.keymap.set("n", ",st", function()
 	vim.wo.winfixheight = true
 	vim.cmd.term()
 end)
+
+-- netrw options
+vim.g.netrw_liststyle = 1
+vim.g.netrw_sort_by = "size"
+vim.g.netrw_sizestyle = "H"
