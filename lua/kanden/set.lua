@@ -1,6 +1,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.ignorecase = true -- ignore case as default search
+vim.opt.smartcase = true -- case sensitive search if input contains uppercase
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4

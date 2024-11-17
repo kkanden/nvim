@@ -49,7 +49,6 @@ local plugins = {
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",
-		name = "nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 
@@ -74,23 +73,18 @@ local plugins = {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
+			{
+				"L3MON4D3/LuaSnip",
+				build = (function()
+					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+						return
+					end
+					return "make install_jsregexp"
+				end)(),
+			},
 			"saadparwaiz1/cmp_luasnip",
-			-- Adds other completion capabilities.
-			--  nvim-cmp does not ship with all sources by default. They are split
-			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
-		},
-		sources = {
-			{
-				name = "lazydev",
-				-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-				group_index = 0,
-			},
-			{ name = "nvim_lsp" },
-			{ name = "luasnip" },
-			{ name = "path" },
-			{ name = "cmp-r" },
 		},
 	},
 
@@ -106,11 +100,6 @@ local plugins = {
 	{
 		"R-nvim/R.nvim",
 		branch = "win_glbenv",
-	},
-
-	{
-		"R-nvim/cmp-r",
-		dependencies = { { "hrsh7th/nvim-cmp" } },
 	},
 
 	-- Surround
