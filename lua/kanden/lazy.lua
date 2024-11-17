@@ -103,7 +103,10 @@ local plugins = {
 	},
 
 	-- R
-	"R-nvim/R.nvim",
+	{
+		"R-nvim/R.nvim",
+		branch = "win_glbenv",
+	},
 
 	{
 		"R-nvim/cmp-r",
@@ -132,6 +135,7 @@ local plugins = {
 	-- Status Line
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VimEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
