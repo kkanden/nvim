@@ -63,5 +63,5 @@ end)
 
 -- netrw options
 vim.g.netrw_liststyle = 1
-vim.g.netrw_sort_by = "size"
+vim.g.netrw_sort_by = "name"
 vim.g.netrw_sizestyle = "H"
