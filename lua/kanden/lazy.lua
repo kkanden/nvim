@@ -130,6 +130,9 @@ local plugins = {
 		},
 		opts = {},
 	},
+
+	-- Autoclose
+	"m4xshen/autoclose.nvim",
 }
 
 require("lazy").setup(plugins, {})
