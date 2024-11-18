@@ -15,4 +15,5 @@ require("r").setup({
 	},
 	auto_start = "on startup",
 	pipe_keymap = "<localleader>,",
+	min_editor_width = 0,
 })
