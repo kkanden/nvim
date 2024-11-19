@@ -65,3 +65,10 @@ end)
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "name"
 vim.g.netrw_sizestyle = "H"
+
+-- Show only WARN and ERROR diagnostics
+vim.diagnostic.config({
+	virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
+	signs = { severity = { min = vim.diagnostic.severity.WARN } },
+	underline = { severity = { min = vim.diagnostic.severity.WARN } },
+})
