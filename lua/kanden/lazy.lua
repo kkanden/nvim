@@ -133,6 +133,9 @@ local plugins = {
 
 	-- Autoclose
 	"m4xshen/autoclose.nvim",
+
+	-- Diagnostics on status line
+	"Isrothy/lualine-diagnostic-message",
 }
 
 require("lazy").setup(plugins, {})
