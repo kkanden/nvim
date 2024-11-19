@@ -128,7 +128,16 @@ local plugins = {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		opts = {},
+		opts = {
+			toggler = {
+				line = "<leader>c",
+				block = "<leader>c",
+			},
+			opleader = {
+				line = "<leader>c",
+				block = "<leader>c",
+			},
+		},
 	},
 
 	-- Autoclose
@@ -136,6 +145,12 @@ local plugins = {
 
 	-- Diagnostics on status line
 	"Isrothy/lualine-diagnostic-message",
+
+	-- Comment
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
 }
 
 require("lazy").setup(plugins, {})
