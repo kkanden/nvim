@@ -99,7 +99,6 @@ local plugins = {
 	-- R
 	{
 		"R-nvim/R.nvim",
-		branch = "win_glbenv",
 	},
 
 	-- Surround
