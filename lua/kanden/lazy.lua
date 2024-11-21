@@ -156,6 +156,12 @@ local plugins = {
 		"numToStr/Comment.nvim",
 		opts = {},
 	},
+
+	-- Context
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "VeryLazy",
+	},
 }
 
 require("lazy").setup(plugins, {})

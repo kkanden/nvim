@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"c",
 		"lua",
@@ -10,9 +10,8 @@ require('nvim-treesitter.configs').setup {
 		"r",
 		"rnoweb",
 		"yaml",
-		"latex"
+		"latex",
 	},
-
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -31,6 +30,6 @@ require('nvim-treesitter.configs').setup {
 		additional_vim_regex_highlighting = false,
 	},
 	indent = {
-		enable = true
-	}
-}
+		enable = true,
+	},
+})
