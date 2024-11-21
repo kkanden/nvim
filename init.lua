@@ -1,2 +1,1 @@
 require("kanden")
-print("Hello :)")
