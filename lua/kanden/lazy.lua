@@ -91,6 +91,7 @@ local plugins = {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"kdheepak/cmp-latex-symbols",
 		},
 	},
 
@@ -162,6 +163,8 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "VeryLazy",
 	},
+
+	-- LaTeX symbol completion
 }
 
 require("lazy").setup(plugins, {})

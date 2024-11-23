@@ -11,7 +11,7 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -66,9 +66,16 @@ vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "name"
 vim.g.netrw_sizestyle = "H"
 
--- Show only WARN and ERROR diagnostics
-vim.diagnostic.config({
-	virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
-	signs = { severity = { min = vim.diagnostic.severity.WARN } },
-	underline = { severity = { min = vim.diagnostic.severity.ERROR } },
+-- Show only WARN and ERROR diagnostics in R and Rmd
+local function set_r_diagnostics()
+	vim.diagnostic.config({
+		virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
+		signs = { severity = { min = vim.diagnostic.severity.WARN } },
+		underline = { severity = { min = vim.diagnostic.severity.ERROR } },
+	})
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "r", "rmd" },
+	callback = set_r_diagnostics,
 })

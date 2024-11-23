@@ -28,5 +28,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "cmp_r" },
+		{ name = "vimtex" },
+		{ name = "latex_symbols" },
 	},
 })

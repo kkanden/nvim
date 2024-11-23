@@ -20,3 +20,11 @@ vim.keymap.set("n", "<leader>/", function()
 		},
 	}))
 end, { desc = "[/] Fuzzily search in current buffer" })
+
+require("telescope").setup({
+	defaults = {
+		file_ignore_patterns = {
+			".lazy%-lock%.json",
+		},
+	},
+})

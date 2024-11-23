@@ -68,7 +68,9 @@ local servers = {
 }
 
 -- Setup mason
-require("mason").setup({})
+require("mason").setup({
+	PATH = "prepend",
+})
 
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
