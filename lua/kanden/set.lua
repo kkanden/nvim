@@ -53,8 +53,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
 -- Set PowerShell as terminal
-vim.opt.shell = '"C:/Program Files/PowerShell/7/pwsh.exe"'
-vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+-- vim.opt.shell = '"C:/Program Files/PowerShell/7/pwsh.exe"'
+-- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 
 -- Open a terminal at the bottom of the screen with a fixed height.
 vim.keymap.set("n", ",st", function()
