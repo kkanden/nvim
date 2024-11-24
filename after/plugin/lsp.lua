@@ -65,6 +65,7 @@ local servers = {
 	},
 	r_language_server = {},
 	pyright = {},
+	ltex = {},
 }
 
 -- Setup mason
@@ -75,6 +76,9 @@ require("mason").setup({
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
 	"stylua",
+	"black",
+	"mypy",
+	"ruff",
 })
 require("mason-tool-installer").setup({
 	ensure_installed = ensure_installed,

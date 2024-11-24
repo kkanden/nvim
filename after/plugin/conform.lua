@@ -34,7 +34,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		r = { "styler" },
 		rmd = { "styler" },
-		-- python = { "isort", "black" },
+		python = { "isort", "black" },
 		-- javascript = { "prettierd", "prettier", stop_after_first = true },
 	},
 })
