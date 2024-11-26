@@ -8,7 +8,7 @@ require("r").setup({
 				0,
 				"n",
 				"<localleader><F5>",
-				"<Cmd>lua require('r.send').cmd('shiny::runApp()')<CR>",
+				"<Cmd>wa<CR><Cmd>lua require('r.send').cmd('shiny::runApp()')<CR>",
 				{}
 			)
 		end,
