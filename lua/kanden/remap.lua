@@ -38,10 +38,17 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 --vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- start replace on word under cursos
+-- start replace on word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- movemnt between splits
+-- Easily exit terminal mode.
+local function exit_terminal()
+	vim.cmd("stopinsert")
+	vim.cmd("wincmd t")
+end
+vim.keymap.set("t", "<C-x>", exit_terminal)
+
+-- movement between splits
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")

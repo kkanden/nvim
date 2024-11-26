@@ -49,9 +49,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
--- Easily hit escape in terminal mode.
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-
 -- Set PowerShell as terminal
 -- vim.opt.shell = '"C:/Program Files/PowerShell/7/pwsh.exe"'
 -- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
