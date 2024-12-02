@@ -1,3 +1,3 @@
 require("kanden.remap")
-require("kanden.lazy")
 require("kanden.set")
+require("kanden.lazy")

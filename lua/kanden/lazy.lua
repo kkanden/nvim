@@ -164,7 +164,9 @@ local plugins = {
 		event = "VeryLazy",
 	},
 
-	-- LaTeX symbol completion
+	{
+		"norcalli/nvim-colorizer.lua",
+	},
 }
 
 require("lazy").setup(plugins, {})
