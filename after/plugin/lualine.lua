@@ -43,13 +43,13 @@ require("lualine").setup({
 				first_line_only = false,
 			},
 		},
-		lualine_x = { "progress" },
+		lualine_x = {},
 		lualine_y = {
 			{
 				"datetime",
 				style = "%H:%M:%S",
 			},
 		},
-		lualine_z = { "location" },
+		lualine_z = { "progress", "location" },
 	},
 })
