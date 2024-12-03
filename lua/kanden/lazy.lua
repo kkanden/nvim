@@ -166,6 +166,7 @@ local plugins = {
 
 	{
 		"norcalli/nvim-colorizer.lua",
+		opts = {},
 	},
 }
 
