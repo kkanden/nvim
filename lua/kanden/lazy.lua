@@ -168,6 +168,11 @@ local plugins = {
 		"norcalli/nvim-colorizer.lua",
 		opts = {},
 	},
+
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
 }
 
 require("lazy").setup(plugins, {})

@@ -81,5 +81,5 @@ end)
 vim.keymap.set("i", "<C-i>", "<C-o>I")
 
 -- `q` as alias for `"`
-vim.keymap.set("o", "iq", 'i"')
-vim.keymap.set("o", "aq", 'a"')
+vim.keymap.set({ "o", "v" }, "iq", 'i"')
+vim.keymap.set({ "o", "v" }, "aq", 'a"')

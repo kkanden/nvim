@@ -80,3 +80,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "r", "rmd" },
 	callback = set_r_diagnostics,
 })
+
+vim.opt.undodir = "$HOME/.vim/.undodir"
+vim.opt.undofile = true
