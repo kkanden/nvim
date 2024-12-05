@@ -43,6 +43,9 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- start replace on word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- start search for word under cursor
+vim.keymap.set("n", "<leader>h", "/<C-r><C-w>")
+
 -- Easily exit terminal mode.
 vim.keymap.set("t", "<C-x>", function()
 	vim.cmd("stopinsert")
