@@ -1,2 +1,4 @@
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-vim.g.undotree_DiffCommand = "FC" 
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.UndotreeToggle()
+	vim.cmd("wincmd t")
+end)
