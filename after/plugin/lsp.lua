@@ -96,3 +96,5 @@ require("mason-lspconfig").setup({
 		end,
 	},
 })
+
+vim.g.LanguageClient_serverCommands = { r = { "R", "--slave", "-e", "languageserver::run()" } }
