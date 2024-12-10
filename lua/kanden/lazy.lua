@@ -160,8 +160,9 @@ local plugins = {
 
 	-- Context
 	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "VeryLazy",
+		"SmiteshP/nvim-navic",
+		dependencies = "neovim/nvim-lspconfig",
+		opts = {},
 	},
 
 	{
@@ -172,6 +173,10 @@ local plugins = {
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
+
+	{
+		"andersevenrud/nvim_context_vt",
 	},
 }
 

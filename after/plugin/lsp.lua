@@ -47,6 +47,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- WARN: This is not Goto Definition, this is Goto Declaration.
 		--  For example, in C this would take you to the header.
 		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+		-- Enable navic context
 	end,
 })
 
@@ -92,6 +94,9 @@ require("mason-lspconfig").setup({
 			-- by the server configuration above. Useful when disabling
 			-- certain features of an LSP (for example, turning off formatting for ts_ls)
 			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			server.on_attach = function(client, bufnr)
+				require("nvim-navic").attach(client, bufnr)
+			end
 			require("lspconfig")[server_name].setup(server)
 		end,
 	},
