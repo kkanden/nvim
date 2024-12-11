@@ -1,16 +1,16 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -22,174 +22,169 @@ vim.g.maplocalleader = "\\"
 
 local plugins = {
 
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "0.1.8",
-		dependencies = { { "nvim-lua/plenary.nvim" } },
-	},
+    {
+        "nvim-telescope/telescope.nvim",
+        version = "0.1.8",
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+    },
 
-	-- Theme
-	-- {
-	-- 	"rose-pine/neovim",
-	-- 	name = "rose-pine",
-	-- },
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-	},
+    -- Theme
+    -- {
+    -- 	"rose-pine/neovim",
+    -- 	name = "rose-pine",
+    -- },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+    },
 
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+    },
 
-	"nvim-treesitter/playground",
+    "nvim-treesitter/playground",
 
-	"theprimeagen/harpoon",
+    "theprimeagen/harpoon",
 
-	"mbbill/undotree",
+    "mbbill/undotree",
 
-	"tpope/vim-fugitive",
+    "tpope/vim-fugitive",
 
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			{ "williamboman/mason.nvim", config = true },
+    -- LSP
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            { "williamboman/mason.nvim", config = true },
 
-			"williamboman/mason-lspconfig.nvim",
+            "williamboman/mason-lspconfig.nvim",
 
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim", opts = {} },
+            -- Useful status updates for LSP.
+            { "j-hui/fidget.nvim",       opts = {} },
 
-			"hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lsp",
 
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				},
-			},
-		},
-	},
+            {
+                "folke/lazydev.nvim",
+                ft = "lua", -- only load on lua files
+                opts = {
+                    library = {
+                        -- See the configuration section for more details
+                        -- Load luvit types when the `vim.uv` word is found
+                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                    },
+                },
+            },
+        },
+    },
 
-	-- Autoformat
-	{
-		"stevearc/conform.nvim",
-	},
+    -- Autocompletion
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            {
+                "L3MON4D3/LuaSnip",
+                build = (function()
+                    if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+                        return
+                    end
+                    return "make install_jsregexp"
+                end)(),
+            },
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "kdheepak/cmp-latex-symbols",
+        },
+    },
 
-	-- Autocompletion
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			{
-				"L3MON4D3/LuaSnip",
-				build = (function()
-					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-						return
-					end
-					return "make install_jsregexp"
-				end)(),
-			},
-			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"kdheepak/cmp-latex-symbols",
-		},
-	},
+    -- Highlight todo, notes, etc in comments
+    {
+        "folke/todo-comments.nvim",
+        event = "VimEnter",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = { signs = false },
+    },
 
-	-- Highlight todo, notes, etc in comments
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
+    -- R
+    {
+        "R-nvim/R.nvim",
+    },
 
-	-- R
-	{
-		"R-nvim/R.nvim",
-	},
+    -- Surround
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
+    },
 
-	-- Surround
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
+    -- Indent lines
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+    },
 
-	-- Indent lines
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {},
-	},
+    -- Status Line
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VimEnter",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {
+            toggler = {
+                line = "<leader>c",
+                block = "<leader>c",
+            },
+            opleader = {
+                line = "<leader>c",
+                block = "<leader>c",
+            },
+        },
+    },
 
-	-- Status Line
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VimEnter",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			toggler = {
-				line = "<leader>c",
-				block = "<leader>c",
-			},
-			opleader = {
-				line = "<leader>c",
-				block = "<leader>c",
-			},
-		},
-	},
+    -- Autoclose
+    "m4xshen/autoclose.nvim",
 
-	-- Autoclose
-	"m4xshen/autoclose.nvim",
+    -- Diagnostics on status line
+    "Isrothy/lualine-diagnostic-message",
 
-	-- Diagnostics on status line
-	"Isrothy/lualine-diagnostic-message",
+    -- Comment
+    {
+        "numToStr/Comment.nvim",
+        opts = {},
+    },
 
-	-- Comment
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
+    -- Context
+    {
+        "SmiteshP/nvim-navic",
+        dependencies = "neovim/nvim-lspconfig",
+        opts = {},
+    },
 
-	-- Context
-	{
-		"SmiteshP/nvim-navic",
-		dependencies = "neovim/nvim-lspconfig",
-		opts = {},
-	},
+    {
+        "norcalli/nvim-colorizer.lua",
+        opts = {},
+    },
 
-	{
-		"norcalli/nvim-colorizer.lua",
-		opts = {},
-	},
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    },
 
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-	},
-
-	{
-		"andersevenrud/nvim_context_vt",
-	},
+    {
+        "andersevenrud/nvim_context_vt",
+    },
 }
 
 require("lazy").setup(plugins, {})
