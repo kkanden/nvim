@@ -63,7 +63,6 @@ require("catppuccin").setup({
             HarpoonBorder = { bg = "#AE7FA7", fg = "#000000" },
             HarpoonWindow = { bg = "#AE7FA7", fg = "#000000" },
             HarpoonFloat = { bg = "#AE7FA7", fg = "#000000" },
-            NavicText = { bg = "none", fg = "#edd193" },
         }
     end,
 })
