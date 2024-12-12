@@ -46,9 +46,16 @@ local plugins = {
 
     "nvim-treesitter/playground",
 
-    "theprimeagen/harpoon",
+    {
+        "theprimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
-    "mbbill/undotree",
+    {
+        "mbbill/undotree",
+        event = "BufEnter"
+    },
 
     "tpope/vim-fugitive",
 
@@ -113,6 +120,7 @@ local plugins = {
     -- R
     {
         "R-nvim/R.nvim",
+        event = "BufRead *.R *.r *.Rmd *.rmd"
     },
 
     -- Surround
@@ -128,6 +136,7 @@ local plugins = {
     -- Indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
+        event = "BufEnter",
         main = "ibl",
         ---@module "ibl"
         ---@type ibl.config
@@ -154,20 +163,28 @@ local plugins = {
     },
 
     -- Autoclose
-    "m4xshen/autoclose.nvim",
+    {
+        "m4xshen/autoclose.nvim",
+        event = "InsertEnter"
+    },
 
     -- Diagnostics on status line
-    "Isrothy/lualine-diagnostic-message",
+    {
+        "Isrothy/lualine-diagnostic-message",
+        event = "BufEnter"
+    },
 
     -- Comment
     {
         "numToStr/Comment.nvim",
+        event = "InsertEnter",
         opts = {},
     },
 
     -- Context
     {
         "SmiteshP/nvim-navic",
+        event = "BufEnter",
         dependencies = "neovim/nvim-lspconfig",
         opts = {},
     },

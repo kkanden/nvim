@@ -1,19 +1,19 @@
-require("telescope").load_extension("harpoon")
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
+local harpoon = require("harpoon")
 
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+harpoon:setup()
 
-vim.keymap.set("n", "w1", function()
-	ui.nav_file(1)
-end)
-vim.keymap.set("n", "w2", function()
-	ui.nav_file(2)
-end)
-vim.keymap.set("n", "w3", function()
-	ui.nav_file(3)
-end)
-vim.keymap.set("n", "w4", function()
-	ui.nav_file(4)
-end)
+local toggle_opts = {
+    title = " Harpoon ",
+    border = "rounded",
+    title_pos = "center",
+    ui_width_ratio = 0.4,
+}
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts) end)
+vim.keymap.set("n", "<C-c>", function() harpoon.ui:close_menu() end)
+
+vim.keymap.set("n", "w1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "w2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "w3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "w4", function() harpoon:list():select(4) end)
