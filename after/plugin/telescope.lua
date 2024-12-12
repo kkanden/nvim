@@ -2,7 +2,7 @@ local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "Telescope git files" })
-vim.keymap.set("n", "<leader>ps", require("after.plugin.telescope_extra.live_multigrep").setup,
+vim.keymap.set("n", "<leader>ps", require("kanden.telescope_extra.live_multigrep").setup,
     { desc = "Telescope grep" })
 vim.keymap.set("n", "<leader>pb", builtin.buffers, { desc = "Telescope buffers" })
 
