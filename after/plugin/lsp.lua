@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 buffer = args.buf,
                 callback = function()
                     vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                    vim.cmd("w")
                 end,
             })
         end

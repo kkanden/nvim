@@ -47,9 +47,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>h", "/<C-r><C-w>")
 
 -- Easily exit terminal mode.
-vim.keymap.set("t", "<C-x>", function()
-	vim.cmd("stopinsert")
-	vim.cmd("wincmd t")
+vim.keymap.set({ "n", "t" }, "<C-x>", function()
+    vim.cmd("stopinsert")
+    vim.cmd("wincmd t")
 end)
 
 -- movement between splits
@@ -70,15 +70,15 @@ vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>")
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
 vim.keymap.set("i", "<C-a>", function()
-	local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
-	local col = #line -- get length of line
-	local char_under_cursor = line:sub(col, col) -- get last character
+    local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
+    local col = #line                            -- get length of line
+    local char_under_cursor = line:sub(col, col) -- get last character
 
-	if char_under_cursor == "," then
-		col = col - 1
-	end
+    if char_under_cursor == "," then
+        col = col - 1
+    end
 
-	vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], col }) -- put cursor in right poisition
+    vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], col }) -- put cursor in right poisition
 end)
 
 vim.keymap.set("i", "<C-i>", "<C-o>I")
