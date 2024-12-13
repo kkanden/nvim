@@ -86,3 +86,7 @@ vim.keymap.set("i", "<C-i>", "<C-o>I")
 -- `q` as alias for `"`
 vim.keymap.set({ "o", "v" }, "iq", 'i"')
 vim.keymap.set({ "o", "v" }, "aq", 'a"')
+
+-- "ignore case" on write and quit
+vim.cmd("command! W write")
+vim.cmd("command! Q quit")
