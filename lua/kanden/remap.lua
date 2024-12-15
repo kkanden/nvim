@@ -95,4 +95,4 @@ vim.cmd("command! W write")
 vim.cmd("command! Q quit")
 
 -- easy exit terminal mode and stay in terminal window
-vim.keymap.set("t", "<C-c>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set("t", "<C-n>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })
