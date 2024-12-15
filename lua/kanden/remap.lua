@@ -87,6 +87,12 @@ vim.keymap.set("i", "<C-i>", "<C-o>I")
 vim.keymap.set({ "o", "v" }, "iq", 'i"')
 vim.keymap.set({ "o", "v" }, "aq", 'a"')
 
+vim.keymap.set({ "o", "v" }, "is", "i'")
+vim.keymap.set({ "o", "v" }, "as", "a'")
+
 -- "ignore case" on write and quit
 vim.cmd("command! W write")
 vim.cmd("command! Q quit")
+
+-- easy exit terminal mode and stay in terminal window
+vim.keymap.set("t", "<C-c>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })

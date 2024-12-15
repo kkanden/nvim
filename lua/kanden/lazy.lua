@@ -202,6 +202,11 @@ local plugins = {
     {
         "andersevenrud/nvim_context_vt",
     },
+
+    {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+    }
 }
 
 require("lazy").setup(plugins, {})
