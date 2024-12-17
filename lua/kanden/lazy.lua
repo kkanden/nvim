@@ -123,6 +123,10 @@ local plugins = {
         event = "BufRead *.R *.r *.Rmd *.rmd"
     },
 
+    {
+        "R-nvim/cmp-r"
+    },
+
     -- Surround
     {
         "kylechui/nvim-surround",
@@ -206,6 +210,12 @@ local plugins = {
     {
         'akinsho/toggleterm.nvim',
         version = "*",
+    },
+
+    -- FZF Telescope
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make'
     }
 }
 
