@@ -16,7 +16,7 @@ vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/
 require("telescope").setup({
     defaults = {
         file_ignore_patterns = {
-            ".lazy%-lock%.json",
+            "lazy%-lock.json",
         },
     },
     pickers = {
