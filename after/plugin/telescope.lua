@@ -1,6 +1,8 @@
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>pf", function()
+    builtin.find_files({ hidden = true })
+end, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>ff", function()
     builtin.find_files({ cwd = "~" }) -- search files in the home directory
 end, { desc = "Telescope find files" })
@@ -20,6 +22,7 @@ require("telescope").setup({
     defaults = {
         file_ignore_patterns = {
             "lazy%-lock.json",
+            ".git"
         },
     },
     pickers = {
