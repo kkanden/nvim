@@ -216,7 +216,24 @@ local plugins = {
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make'
+    },
+
+    -- Smooth scrolling
+    {
+        "karb94/neoscroll.nvim",
+    },
+
+    -- Oil file explorer
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     }
+
 }
 
 require("lazy").setup(plugins, {})
