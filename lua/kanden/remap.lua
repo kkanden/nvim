@@ -65,7 +65,7 @@ vim.keymap.set("n", "<M-t>", "<C-W>+")
 vim.keymap.set("n", "<M-s>", "<C-W>-")
 
 -- hide hlsearch
-vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<C-x>", "<cmd>nohlsearch<CR>")
 
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
