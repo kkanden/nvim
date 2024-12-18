@@ -65,8 +65,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local servers = {
     lua_ls = {},
@@ -83,9 +82,9 @@ require("mason").setup({
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
     "stylua",
-    "black",
-    "mypy",
-    "ruff",
+    -- "black",
+    -- "mypy",
+    -- "ruff",
 })
 require("mason-tool-installer").setup({
     ensure_installed = ensure_installed,
@@ -98,7 +97,7 @@ require("mason-lspconfig").setup({
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            server.capabilities = require("blink.cmp").get_lsp_capabilities()
             server.on_attach = function(client, bufnr)
                 require("nvim-navic").attach(client, bufnr)
             end

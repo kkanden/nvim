@@ -78,4 +78,4 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- formatting options
-vim.opt.formatoptions:remove({ "r", "o" }) -- remove comment carry-on to new line
+vim.opt_local.formatoptions:remove({ "r", "o" }) -- remove comment carry-on to new line

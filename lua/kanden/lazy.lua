@@ -72,7 +72,8 @@ local plugins = {
             -- Useful status updates for LSP.
             { "j-hui/fidget.nvim",       opts = {} },
 
-            "hrsh7th/cmp-nvim-lsp",
+            -- "hrsh7th/cmp-nvim-lsp",
+            "saghen/blink.cmp",
 
             {
                 "folke/lazydev.nvim",
@@ -89,25 +90,55 @@ local plugins = {
     },
 
     -- Autocompletion
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     event = "InsertEnter",
+    --     dependencies = {
+    --         {
+    --             "L3MON4D3/LuaSnip",
+    --             build = (function()
+    --                 if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+    --                     return
+    --                 end
+    --                 return "make install_jsregexp"
+    --             end)(),
+    --         },
+    --         "saadparwaiz1/cmp_luasnip",
+    --         "hrsh7th/cmp-nvim-lsp",
+    --         "hrsh7th/cmp-path",
+    --         "kdheepak/cmp-latex-symbols",
+    --     },
+    -- },
+    --
     {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            {
-                "L3MON4D3/LuaSnip",
-                build = (function()
-                    if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-                        return
-                    end
-                    return "make install_jsregexp"
-                end)(),
-            },
-            "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "kdheepak/cmp-latex-symbols",
-        },
+        'saghen/blink.compat',
+        -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+        version = '*',
+        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+        lazy = true,
+        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+        opts = {},
     },
+    {
+        'saghen/blink.cmp',
+        -- use a release tag to download pre-built binaries
+        version = 'v0.*',
+        dependencies = {
+            { "R-nvim/cmp-r" }
+        },
+        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+        -- build = 'cargo build --release',
+        -- If you use nix, you can build from source using latest nightly rust with:
+        -- build = 'nix run .#build-plugin',
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        -- allows extending the providers array elsewhere in your config
+        -- without having to redefine it
+        opts_extend = { "sources.default" }
+    },
+
+
 
     -- Highlight todo, notes, etc in comments
     {
@@ -123,9 +154,6 @@ local plugins = {
         event = "BufRead *.R *.r *.Rmd *.rmd"
     },
 
-    {
-        "R-nvim/cmp-r"
-    },
 
     -- Surround
     {
