@@ -60,9 +60,9 @@ require("catppuccin").setup({
             TelescopeSelection = { fg = colors.text, bg = colors.base },
             TelescopeSelectionCaret = { fg = colors.rose, bg = colors.rose },
             TelescopeMatching = { fg = "#4DB6AC" },
-            HarpoonBorder = { bg = "#AE7FA7", fg = "#000000" },
-            HarpoonWindow = { bg = "#AE7FA7", fg = "#000000" },
-            HarpoonFloat = { bg = "#AE7FA7", fg = "#000000" },
+            FloatBorder = { bg = "#211924" },
+            FloatTitle = { bg = "#211924" }
+
         }
     end,
 })

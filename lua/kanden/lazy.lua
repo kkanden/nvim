@@ -235,11 +235,6 @@ local plugins = {
         "andersevenrud/nvim_context_vt",
     },
 
-    {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-    },
-
     -- FZF Telescope
     {
         'nvim-telescope/telescope-fzf-native.nvim',
