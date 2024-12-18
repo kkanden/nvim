@@ -1,6 +1,10 @@
 local harpoon = require("harpoon")
 
-harpoon:setup()
+harpoon:setup({
+    settings = {
+        save_on_toggle = true
+    }
+})
 
 local toggle_opts = {
     title = " Harpoon ",
