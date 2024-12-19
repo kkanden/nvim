@@ -49,10 +49,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end,
 })
 
--- Set PowerShell as terminal
--- vim.opt.shell = 'powershell'
--- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-
 -- netrw options
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "name"
@@ -78,4 +74,8 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- formatting options
-vim.opt_local.formatoptions:remove({ "r", "o" }) -- remove comment carry-on to new line
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } -- disable comment continuation on new line
+    end
+})
