@@ -231,10 +231,6 @@ local plugins = {
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     },
 
-    {
-        "andersevenrud/nvim_context_vt",
-    },
-
     -- FZF Telescope
     {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -255,8 +251,7 @@ local plugins = {
         -- Optional dependencies
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-    }
-
+    },
 }
 
 require("lazy").setup(plugins, {})
