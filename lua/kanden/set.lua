@@ -17,7 +17,7 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "auto"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
