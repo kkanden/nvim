@@ -47,7 +47,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>h", "/<C-r><C-w>")
 
 -- Easily exit terminal mode.
-vim.keymap.set({ "n", "t" }, "<C-x>", function()
+vim.keymap.set({ "n", "t" }, "<C-z>", function()
     vim.cmd("stopinsert")
     vim.cmd("wincmd t")
 end)
@@ -65,7 +65,7 @@ vim.keymap.set("n", "<M-t>", "<C-W>+")
 vim.keymap.set("n", "<M-s>", "<C-W>-")
 
 -- hide hlsearch
-vim.keymap.set("n", "<C-x>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<C-h>", "<cmd>nohlsearch<CR>")
 
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
