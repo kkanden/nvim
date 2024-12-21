@@ -4,9 +4,23 @@ require("blink.cmp").setup({
         ['<C-s>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
     },
+    completion = {
+        menu = {
+            draw = {
+                columns = {
+                    { "kind_icon",   "label", "label_description", gap = 1 },
+                    { "kind",        gap = 6 },
+                    { "source_name", gap = 1 }
+                }
+            }
+        },
+        documentation = {
+            auto_show = true
+        }
+    },
     sources = {
         completion = {
-            enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'cmp_r' }
+            enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'cmp_r' },
         },
         providers = {
             cmp_r = {
