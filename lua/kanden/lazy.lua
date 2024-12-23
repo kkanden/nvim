@@ -260,21 +260,7 @@ local plugins = {
     },
 
     {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        -- opts = {
-        --     presets = {
-        --         bottom_search = true
-        --     },
-        --     cmdline = {
-        --         view = "cmdline"
-        --     }
-        --
-        -- },
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-        }
+        'kevinhwang91/nvim-hlslens',
     }
 }
 

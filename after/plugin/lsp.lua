@@ -46,6 +46,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- or a suggestion from your LSP for this to activate.
         map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
+        -- Format code
+        map("<leader>f", function()
+            vim.lsp.buf.format({ timeout_ms = 10000 })
+        end, "[F]ormat Code")
+
         -- Opens a popup that displays documentation about the word under cursor
         map("K", vim.lsp.buf.hover, "Hover Documentation")
 

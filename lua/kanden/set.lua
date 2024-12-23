@@ -70,8 +70,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = "~/.vim/undodir"
+vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
 vim.opt.undofile = true
+
+
+
+
 
 -- formatting options
 vim.api.nvim_create_autocmd("BufEnter", {

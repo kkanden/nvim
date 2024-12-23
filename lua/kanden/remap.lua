@@ -33,8 +33,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- unbind default mappings
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
 --vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 --vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
@@ -65,7 +63,7 @@ vim.keymap.set("n", "<M-t>", "<C-W>+")
 vim.keymap.set("n", "<M-s>", "<C-W>-")
 
 -- hide hlsearch
-vim.keymap.set("n", "<C-h>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<C-g>", "<cmd>nohlsearch<CR>")
 
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
