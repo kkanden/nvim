@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = "~/.vim/undodir"
 vim.opt.undofile = true
 
 -- formatting options
