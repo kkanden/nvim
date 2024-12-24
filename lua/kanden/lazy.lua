@@ -261,6 +261,11 @@ local plugins = {
 
     {
         'kevinhwang91/nvim-hlslens',
+    },
+
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
     }
 }
 
