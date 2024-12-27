@@ -92,7 +92,7 @@ vim.keymap.set("t", "<C-n>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- easier quit in filetypes
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "help", "fugitive" },
+    pattern = { "help", "fugitive", "git" },
     callback = function()
         vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
     end

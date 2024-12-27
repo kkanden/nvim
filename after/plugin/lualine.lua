@@ -26,7 +26,6 @@ local rsttcolor = function()
 end
 
 require("lualine").setup({
-    extensions = { "fugitive" },
     options = {
         section_separators = { left = "", right = "" },
         component_separators = { left = "|", right = "|" },

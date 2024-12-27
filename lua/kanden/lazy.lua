@@ -258,7 +258,13 @@ local plugins = {
     {
         'stevearc/dressing.nvim',
         opts = {},
+    },
+
+    {
+        "lewis6991/gitsigns.nvim",
+        opts = {}
     }
+
 }
 
 require("lazy").setup(plugins, {})
