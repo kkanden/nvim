@@ -82,8 +82,18 @@ end)
 vim.keymap.set("i", "<C-i>", "<C-o>I")
 
 -- "ignore case" on write and quit
-vim.cmd("command! W write")
-vim.cmd("command! Q quit")
+vim.keymap.set("ca", "W", "w")
+vim.keymap.set("ca", "Wq", "wq")
+vim.keymap.set("ca", "Q", "q")
+vim.keymap.set("ca", "Qa", "qa")
 
 -- easy exit terminal mode and stay in terminal window
 vim.keymap.set("t", "<C-n>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- easier quit in filetypes
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "help", "fugitive" },
+    callback = function()
+        vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
+    end
+})

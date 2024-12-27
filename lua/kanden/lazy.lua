@@ -213,14 +213,6 @@ local plugins = {
         opts = {},
     },
 
-    -- Context
-    {
-        "SmiteshP/nvim-navic",
-        event = "BufEnter",
-        dependencies = "neovim/nvim-lspconfig",
-        opts = {},
-    },
-
     {
         "norcalli/nvim-colorizer.lua",
         opts = {},
