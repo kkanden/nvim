@@ -103,9 +103,6 @@ require("mason-lspconfig").setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = require("blink.cmp").get_lsp_capabilities()
-            server.on_attach = function(client, bufnr)
-                require("nvim-navic").attach(client, bufnr)
-            end
             require("lspconfig")[server_name].setup(server)
         end,
     },

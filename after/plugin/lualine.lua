@@ -26,6 +26,7 @@ local rsttcolor = function()
 end
 
 require("lualine").setup({
+    extensions = { "fugitive" },
     options = {
         section_separators = { left = "", right = "" },
         component_separators = { left = "|", right = "|" },
@@ -47,13 +48,6 @@ require("lualine").setup({
             },
         },
         lualine_c = {
-            {
-                "navic",
-                color_correction = "dynamic",
-                navic_opts = {
-                    highlight = true,
-                }
-            },
             {
                 "diagnostic-message",
                 --- If you want to custoimze the colors
