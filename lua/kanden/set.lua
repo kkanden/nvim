@@ -16,6 +16,10 @@ vim.opt.termguicolors = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- highlight current line number
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "auto"
 vim.opt.isfname:append("@-@")
@@ -72,10 +76,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
 vim.opt.undofile = true
-
-
-
-
 
 -- formatting options
 vim.api.nvim_create_autocmd("BufEnter", {
