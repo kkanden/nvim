@@ -49,6 +49,7 @@ local plugins = {
     {
         "theprimeagen/harpoon",
         branch = "harpoon2",
+        commit = "e76cb03",
         dependencies = { "nvim-lua/plenary.nvim" }
     },
 
