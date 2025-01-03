@@ -19,6 +19,8 @@ require("r").setup({
         end,
     },
     auto_start = "on startup",
+    R_args = { "--quiet", "--no-save" },
+    nvimpager = "split_h",
     assignment_keymap = "<C-s>",
     pipe_keymap = "<C-f>",
     min_editor_width = 0,
