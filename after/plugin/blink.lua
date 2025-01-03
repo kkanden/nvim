@@ -15,8 +15,11 @@ require("blink.cmp").setup({
             }
         },
         documentation = {
-            auto_show = true
+            auto_show = true,
         }
+    },
+    signature = {
+        enabled = true,
     },
     sources = {
         default = {
