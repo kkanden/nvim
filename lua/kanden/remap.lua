@@ -1,73 +1,81 @@
+---@param mode string|string[]
+---@param key string
+---@param command string|function
+---@param opts? table
+local map = function(mode, key, command, opts)
+    opts = opts or {}
+    vim.keymap.set(mode, key, command, opts)
+end
 vim.g.mapleader = " "
--- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- map("n", "<leader>pv", vim.cmd.Ex)
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- stick cursor at beginning of line when joining lines
-vim.keymap.set("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z")
 
 -- keep cursor centered when going up and down
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
 
 --keep cursor centered when term searching
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
+map("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
 -- copy after delete preserves the copied term
-vim.keymap.set("x", "<leader>p", [["_dP]])
+map("x", "<leader>p", [["_dP]])
 
 -- copy/paste to/from clipboard shortcut
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>cp", [["+p]])
+map({ "n", "v" }, "<leader>y", [["+y]])
+map({ "n", "v" }, "<leader>Y", [["+Y]])
+map({ "n", "v" }, "<leader>cp", [["+p]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
+map({ "n", "v" }, "<leader>d", '"_d')
 
 -- useful for visual block insert
-vim.keymap.set("i", "<C-c>", "<Esc>")
+map("i", "<C-c>", "<Esc>")
 
 -- unbind default mappings
-vim.keymap.set("n", "Q", "<nop>")
+map("n", "Q", "<nop>")
 
---vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
---vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
---vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
---vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+--map("n", "<C-k>", "<cmd>cnext<CR>zz")
+--map("n", "<C-j>", "<cmd>cprev<CR>zz")
+--map("n", "<leader>k", "<cmd>lnext<CR>zz")
+--map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- start replace on word under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- start search for word under cursor
-vim.keymap.set("n", "<leader>h", "/<C-r><C-w>")
+map("n", "<leader>h", "/<C-r><C-w>")
 
 -- Easily exit terminal mode.
-vim.keymap.set({ "n", "t" }, "<C-z>", function()
+map({ "n", "t" }, "<C-z>", function()
     vim.cmd("stopinsert")
     vim.cmd("wincmd t")
 end)
 
 -- movement between splits
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
+map("n", "<C-j>", "<C-w><C-j>")
+map("n", "<C-k>", "<C-w><C-k>")
+map("n", "<C-l>", "<C-w><C-l>")
+map("n", "<C-h>", "<C-w><C-h>")
 
 -- control size of splits
-vim.keymap.set({ "n", "t" }, "<M-,>", "<C-w>5<")
-vim.keymap.set({ "n", "t" }, "<M-.>", "<C-w>5>")
-vim.keymap.set({ "n", "t" }, "<M-t>", "<C-W>+")
-vim.keymap.set({ "n", "t" }, "<M-s>", "<C-W>-")
+map({ "n", "t" }, "<M-,>", "<C-w>5<")
+map({ "n", "t" }, "<M-.>", "<C-w>5>")
+map({ "n", "t" }, "<M-t>", "<C-W>+")
+map({ "n", "t" }, "<M-s>", "<C-W>-")
 
 -- hide hlsearch
-vim.keymap.set("n", "<C-g>", "<cmd>nohlsearch<CR>")
+map("n", "<C-g>", "<cmd>nohlsearch<CR>")
 
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
-vim.keymap.set("i", "<C-a>", function()
+map("i", "<C-a>", function()
     local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
     local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
@@ -79,21 +87,21 @@ vim.keymap.set("i", "<C-a>", function()
     vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], col }) -- put cursor in right poisition
 end)
 
-vim.keymap.set("i", "<C-i>", "<C-o>I")
+map("i", "<C-i>", "<C-o>I")
 
 -- "ignore case" on write and quit
-vim.keymap.set("ca", "W", "w")
-vim.keymap.set("ca", "Wq", "wq")
-vim.keymap.set("ca", "Q", "q")
-vim.keymap.set("ca", "Qa", "qa")
+map("ca", "W", "w")
+map("ca", "Wq", "wq")
+map("ca", "Q", "q")
+map("ca", "Qa", "qa")
 
 -- easy exit terminal mode and stay in terminal window
-vim.keymap.set("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- easier quit in filetypes
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help", "fugitive", "git" },
     callback = function()
-        vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
+        map("n", "q", "<Cmd>q<CR>", { buffer = true })
     end,
 })
