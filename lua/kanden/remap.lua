@@ -22,8 +22,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- copy/paste to/from clipboard shortcut
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set("n", "<leader>pp", [["+p]])
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>cp", [["+p]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 
@@ -57,10 +57,10 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
 -- control size of splits
-vim.keymap.set("n", "<M-,>", "<C-w>5<")
-vim.keymap.set("n", "<M-.>", "<C-w>5>")
-vim.keymap.set("n", "<M-t>", "<C-W>+")
-vim.keymap.set("n", "<M-s>", "<C-W>-")
+vim.keymap.set({ "n", "t" }, "<M-,>", "<C-w>5<")
+vim.keymap.set({ "n", "t" }, "<M-.>", "<C-w>5>")
+vim.keymap.set({ "n", "t" }, "<M-t>", "<C-W>+")
+vim.keymap.set({ "n", "t" }, "<M-s>", "<C-W>-")
 
 -- hide hlsearch
 vim.keymap.set("n", "<C-g>", "<cmd>nohlsearch<CR>")
@@ -69,7 +69,7 @@ vim.keymap.set("n", "<C-g>", "<cmd>nohlsearch<CR>")
 -- (if last character is comma, set cursor before the comma)
 vim.keymap.set("i", "<C-a>", function()
     local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
-    local col = #line                            -- get length of line
+    local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
 
     if char_under_cursor == "," then
@@ -88,12 +88,12 @@ vim.keymap.set("ca", "Q", "q")
 vim.keymap.set("ca", "Qa", "qa")
 
 -- easy exit terminal mode and stay in terminal window
-vim.keymap.set("t", "<C-n>", '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- easier quit in filetypes
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help", "fugitive", "git" },
     callback = function()
         vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
-    end
+    end,
 })
