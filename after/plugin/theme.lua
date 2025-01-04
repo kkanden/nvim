@@ -76,6 +76,8 @@ require("kanagawa").setup({
             },
         },
     },
+    commentStyle = { italic = false },
+    keywordStyle = { italic = false },
     ---@module kanagawa
     ---@param colors { theme: kanagawa.ThemeColors, palette: kanagawa.PaletteColors}
     overrides = function(colors)
