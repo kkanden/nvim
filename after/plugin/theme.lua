@@ -168,14 +168,14 @@ require("kanagawa").setup({
             CmpItemKindOperator = { fg = palette.springGreen },
             CmpItemKindSnippet = { fg = palette.fujiGray },
 
-            IblRed = { fg = palette.dragonRed },
-            IblYellow = { fg = palette.dragonYellow },
-            IblBlue = { fg = palette.dragonBlue },
-            IblOrange = { fg = palette.dragonOrange },
-            IblGreen = { fg = palette.dragonGreen },
-            -- IblViolet = { fg = palette.dragonViolet},
-            -- IblCyan = { fg = palette.dragonTeal },
-            IblAqua = { fg = palette.dragonAqua },
+            -- IblRed = { fg = palette.dragonRed },
+            -- IblYellow = { fg = palette.dragonYellow },
+            -- IblBlue = { fg = palette.dragonBlue },
+            -- IblOrange = { fg = palette.dragonOrange },
+            -- IblGreen = { fg = palette.dragonGreen },
+            -- -- IblViolet = { fg = palette.dragonViolet},
+            -- -- IblCyan = { fg = palette.dragonTeal },
+            -- IblAqua = { fg = palette.dragonAqua },
         }
     end,
 })
