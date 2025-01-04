@@ -274,6 +274,11 @@ local plugins = {
     {
         "sindrets/diffview.nvim",
         opts = {}
+    },
+
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" }
     }
 
 }
