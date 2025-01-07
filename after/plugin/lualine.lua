@@ -1,5 +1,4 @@
-local rstt =
-{
+local rstt = {
     { "-", "#aaaaaa" }, -- 1: ftplugin/* sourced, but nclientserver not started yet.
     { "S", "#757755" }, -- 2: nclientserver started, but not ready yet.
     { "S", "#117711" }, -- 3: nclientserver is ready.
@@ -74,7 +73,7 @@ require("lualine").setup({
         lualine_y = {
             { -- R nvimcom status
                 rstatus,
-                color = rsttcolor
+                color = rsttcolor,
             },
             "filetype",
         },

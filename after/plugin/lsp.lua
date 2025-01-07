@@ -5,9 +5,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- LSP KEYBINDS
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then
-            return
-        end
+        if not client then return end
 
         local map = function(keys, func, desc, mode)
             mode = mode or "n"
@@ -47,9 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
         -- Format code
-        map("<leader>f", function()
-            vim.lsp.buf.format({ timeout_ms = 10000 })
-        end, "[F]ormat Code")
+        map("<leader>f", function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, "[F]ormat Code")
 
         -- Opens a popup that displays documentation about the word under cursor
         map("K", vim.lsp.buf.hover, "Hover Documentation")

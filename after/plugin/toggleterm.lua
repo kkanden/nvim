@@ -1,8 +1,8 @@
 local state = {
     floating = {
         buf = -1,
-        win = -1
-    }
+        win = -1,
+    },
 }
 
 local function create_floating_windows(opts)
@@ -30,7 +30,7 @@ local function create_floating_windows(opts)
         style = "minimal",
         border = "rounded",
         title = " Terminal ",
-        title_pos = "center"
+        title_pos = "center",
     }
 
     local win = vim.api.nvim_open_win(buf, true, win_config)
@@ -52,7 +52,7 @@ local toggle_terminal = function()
         vim.api.nvim_win_hide(state.floating.win)
         vim.api.nvim_feedkeys("<C-c>", "n", false) -- exit input mode on exit
     end
-    vim.api.nvim_feedkeys("i", "n", false)         -- switch to input mode on open
+    vim.api.nvim_feedkeys("i", "n", false) -- switch to input mode on open
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})

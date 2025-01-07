@@ -12,9 +12,9 @@ local keymap = {
         neoscroll.ctrl_d({ duration = 1 })
         vim.fn.feedkeys("zz", "n")
     end,
-    ["zt"]    = function() neoscroll.zt({ half_win_duration = 10 }) end,
-    ["zz"]    = function() neoscroll.zz({ half_win_duration = 10 }) end,
-    ["zb"]    = function() neoscroll.zb({ half_win_duration = 10 }) end,
+    ["zt"] = function() neoscroll.zt({ half_win_duration = 10 }) end,
+    ["zz"] = function() neoscroll.zz({ half_win_duration = 10 }) end,
+    ["zb"] = function() neoscroll.zb({ half_win_duration = 10 }) end,
 }
 
 local modes = { "n", "v", "x" }

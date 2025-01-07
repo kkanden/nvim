@@ -2,7 +2,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.ignorecase = true -- ignore case as default search
-vim.opt.smartcase = true  -- case sensitive search if input contains uppercase
+vim.opt.smartcase = true -- case sensitive search if input contains uppercase
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -33,9 +33,7 @@ vim.opt.colorcolumn = "80"
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+    callback = function() vim.highlight.on_yank() end,
 })
 
 -- Terminal setup
@@ -81,5 +79,5 @@ vim.opt.undofile = true
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } -- disable comment continuation on new line
-    end
+    end,
 })

@@ -5,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
+            { out, "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -40,9 +40,8 @@ local plugins = {
     -- },
     {
         "rebelot/kanagawa.nvim",
-        priority = 1000
+        priority = 1000,
     },
-
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -55,12 +54,12 @@ local plugins = {
         "theprimeagen/harpoon",
         branch = "harpoon2",
         commit = "e76cb03",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 
     {
         "mbbill/undotree",
-        event = "BufEnter"
+        event = "BufEnter",
     },
 
     "tpope/vim-fugitive",
@@ -76,7 +75,7 @@ local plugins = {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
             -- Useful status updates for LSP.
-            { "j-hui/fidget.nvim",       opts = {} },
+            { "j-hui/fidget.nvim", opts = {} },
 
             -- "hrsh7th/cmp-nvim-lsp",
             "saghen/blink.cmp",
@@ -117,20 +116,20 @@ local plugins = {
     -- },
     --
     {
-        'saghen/blink.compat',
+        "saghen/blink.compat",
         -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
-        version = '*',
+        version = "*",
         -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
         lazy = true,
         -- make sure to set opts so that lazy.nvim calls blink.compat's setup
         opts = {},
     },
     {
-        'saghen/blink.cmp',
+        "saghen/blink.cmp",
         -- use a release tag to download pre-built binaries
-        version = 'v0.*',
+        version = "v0.*",
         dependencies = {
-            { "R-nvim/cmp-r" }
+            { "R-nvim/cmp-r" },
         },
         -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
         -- build = 'cargo build --release',
@@ -141,10 +140,8 @@ local plugins = {
         ---@type blink.cmp.Config
         -- allows extending the providers array elsewhere in your config
         -- without having to redefine it
-        opts_extend = { "sources.default" }
+        opts_extend = { "sources.default" },
     },
-
-
 
     -- Highlight todo, notes, etc in comments
     {
@@ -157,18 +154,15 @@ local plugins = {
     -- R
     {
         "R-nvim/R.nvim",
-        event = "BufRead *.R *.r *.Rmd *.rmd"
+        event = "BufRead *.R *.r *.Rmd *.rmd",
     },
-
 
     -- Surround
     {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({})
-        end,
+        config = function() require("nvim-surround").setup({}) end,
     },
 
     -- Indent lines
@@ -203,13 +197,13 @@ local plugins = {
     -- Autoclose
     {
         "m4xshen/autoclose.nvim",
-        event = "InsertEnter"
+        event = "InsertEnter",
     },
 
     -- Diagnostics on status line
     {
         "Isrothy/lualine-diagnostic-message",
-        event = "BufEnter"
+        event = "BufEnter",
     },
 
     -- Comment
@@ -231,8 +225,8 @@ local plugins = {
 
     -- FZF Telescope
     {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make'
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
     },
 
     -- Smooth scrolling
@@ -242,7 +236,7 @@ local plugins = {
 
     -- Oil file explorer
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
         ---@module 'oil'
         ---@type oil.SetupOpts
         opts = {},
@@ -252,35 +246,34 @@ local plugins = {
     },
 
     {
-        'echasnovski/mini.ai',
-        version = '*',
-        opts = {}
+        "echasnovski/mini.ai",
+        version = "*",
+        opts = {},
     },
 
     {
-        'kevinhwang91/nvim-hlslens',
+        "kevinhwang91/nvim-hlslens",
     },
 
     {
-        'stevearc/dressing.nvim',
+        "stevearc/dressing.nvim",
         opts = {},
     },
 
     {
         "lewis6991/gitsigns.nvim",
-        opts = {}
+        opts = {},
     },
 
     {
         "sindrets/diffview.nvim",
-        opts = {}
+        opts = {},
     },
 
     {
         "nvimtools/none-ls.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" }
-    }
-
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 }
 
 require("lazy").setup(plugins, {})

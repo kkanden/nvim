@@ -32,8 +32,8 @@ end
 harpoon:setup({
     settings = {
         save_on_toggle = true,
-        key = git_branch_marks
-    }
+        key = git_branch_marks,
+    },
 })
 
 local toggle_opts = {

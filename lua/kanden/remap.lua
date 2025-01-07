@@ -80,9 +80,7 @@ map("i", "<C-a>", function()
     local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
 
-    if char_under_cursor == "," then
-        col = col - 1
-    end
+    if char_under_cursor == "," then col = col - 1 end
 
     vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], col }) -- put cursor in right poisition
 end)
@@ -101,7 +99,5 @@ map("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- easier quit in filetypes
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help", "fugitive", "git" },
-    callback = function()
-        map("n", "q", "<Cmd>q<CR>", { buffer = true })
-    end,
+    callback = function() map("n", "q", "<Cmd>q<CR>", { buffer = true }) end,
 })
