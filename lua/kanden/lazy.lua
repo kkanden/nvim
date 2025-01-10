@@ -155,6 +155,7 @@ local plugins = {
     {
         "R-nvim/R.nvim",
         event = "BufRead *.R *.r *.Rmd *.rmd",
+        commit = "75146be",
     },
 
     -- Surround
