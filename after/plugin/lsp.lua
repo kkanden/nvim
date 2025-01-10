@@ -1,7 +1,7 @@
 -- This is where you enable features that only work
 -- if there is a language server active in the file
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+    group = vim.api.nvim_create_augroup("Lsp-Attach", { clear = true }),
     -- LSP KEYBINDS
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
         -- Format code
-        map("<leader>f", function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, "[F]ormat Code")
+        map("<leader>fm", function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, "[F]ormat Code")
 
         -- Opens a popup that displays documentation about the word under cursor
         map("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -53,6 +53,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+        -- Move to next/prev diagnostic
+        map(
+            "g]",
+            function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end,
+            "Go to next diagnostic"
+        )
+
+        map(
+            "g[",
+            function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end,
+            "Go to previous diagnostic"
+        )
 
         if client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -66,12 +79,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local servers = {
     lua_ls = {},
     r_language_server = {},
-    pyright = {},
+    pyright = {
+        settings = {
+            pyright = {
+                disableOrganizeImports = true,
+            },
+            python = {
+                analysis = {
+                    ignore = { "*" },
+                },
+            },
+        },
+    },
+    ruff = {},
     ltex = {},
 }
 
@@ -83,9 +106,9 @@ require("mason").setup({
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
     "stylua",
-    -- "black",
-    -- "mypy",
-    -- "ruff",
+    "mypy",
+    "ruff",
+    "black",
 })
 require("mason-tool-installer").setup({
     ensure_installed = ensure_installed,
