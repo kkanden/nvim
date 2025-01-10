@@ -1,38 +1,39 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
+local opt = vim.opt
+opt.number = true
+opt.relativenumber = true
 
-vim.opt.ignorecase = true -- ignore case as default search
-vim.opt.smartcase = true -- case sensitive search if input contains uppercase
+opt.ignorecase = true -- ignore case as default search
+opt.smartcase = true -- case sensitive search if input contains uppercase
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.smartindent = true
+opt.smartindent = true
 
-vim.opt.termguicolors = true
+opt.termguicolors = true
 
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+opt.hlsearch = true
+opt.incsearch = true
 
 -- highlight current line number
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "auto"
-vim.opt.isfname:append("@-@")
+opt.scrolloff = 8
+opt.signcolumn = "auto"
+opt.isfname:append("@-@")
 
-vim.opt.updatetime = 50
+opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+opt.colorcolumn = "80"
 
 -- Highlight when yanking (copying) text -- from kickstart
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
     callback = function() vim.highlight.on_yank() end,
 })
 
@@ -70,14 +71,14 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = set_r_diagnostics,
 })
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
+opt.undofile = true
 
 -- formatting options
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
-        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } -- disable comment continuation on new line
+        opt.formatoptions = opt.formatoptions - { "c", "r", "o" } -- disable comment continuation on new line
     end,
 })
