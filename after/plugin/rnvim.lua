@@ -5,17 +5,18 @@ require("r").setup({
             vim.api.nvim_buf_set_keymap(0, "n", "<localleader>gN", "<Cmd>lua require('r.rnw').previous_chunk()", {})
             vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
 
-            -- start shiny app
+            -- start shiny app (even if one is already running)
             vim.api.nvim_buf_set_keymap(
                 0,
                 "n",
                 "<localleader><F5>",
-                "<Cmd>wa<CR> <BAR> <Cmd>lua require('r.send').cmd('shiny::runApp()')<CR>",
+                table.concat({
+                    "<C-l>i<C-c><CR><C-z>",                                  -- quit current session and go back to main window
+                    "<Cmd>wa<CR><BAR>",                                      -- save all files
+                    "<Cmd>lua require('r.send').cmd('shiny::runApp()')<CR>", -- start shiny app
+                }),
                 {}
             )
-
-            -- restart shiny app if one is running
-            vim.api.nvim_buf_set_keymap(0, "n", "<localleader><F6>", "<C-w>li<C-c><C-z><localleader><F5>", {})
         end,
     },
     auto_start = "on startup",
