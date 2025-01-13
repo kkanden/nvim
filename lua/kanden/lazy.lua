@@ -5,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
+            { out,                            "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -75,7 +75,7 @@ local plugins = {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
             -- Useful status updates for LSP.
-            { "j-hui/fidget.nvim", opts = {} },
+            { "j-hui/fidget.nvim",       opts = {} },
 
             -- "hrsh7th/cmp-nvim-lsp",
             "saghen/blink.cmp",
@@ -155,7 +155,6 @@ local plugins = {
     {
         "R-nvim/R.nvim",
         event = "BufRead *.R *.r *.Rmd *.rmd",
-        commit = "75146be",
     },
 
     -- Surround
