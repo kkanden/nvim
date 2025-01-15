@@ -93,12 +93,12 @@ require("kanagawa").setup({
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
-            TelescopeBorder = { bg = "#AE7FA7", fg = "#000000" },
-            TelescopeNormal = { bg = "#AE7FA7", fg = "#000000" },
-            TelescopeTitle = { fg = "#000000" },
-            TelescopeSelection = { fg = colors.text, bg = colors.base },
-            TelescopeSelectionCaret = { fg = colors.rose, bg = colors.rose },
-            TelescopeMatching = { fg = "#4DB6AC" },
+            -- TelescopeBorder = { bg = "#AE7FA7", fg = "#000000" },
+            -- TelescopeNormal = { bg = "#AE7FA7", fg = "#000000" },
+            -- TelescopeTitle = { fg = "#000000" },
+            -- TelescopeSelection = { fg = colors.text, bg = colors.base },
+            -- TelescopeSelectionCaret = { fg = colors.rose, bg = colors.rose },
+            -- TelescopeMatching = { fg = "#4DB6AC" },
 
             -- dark cmp menu
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
