@@ -8,8 +8,8 @@ require("blink.cmp").setup({
         menu = {
             draw = {
                 columns = {
-                    { "kind_icon", "label", "label_description", gap = 1 },
-                    { "kind", gap = 6 },
+                    { "kind_icon",   "label", "label_description", gap = 1 },
+                    { "kind",        gap = 6 },
                     { "source_name", gap = 1 },
                 },
             },
