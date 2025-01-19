@@ -59,17 +59,6 @@ autocmd({ "VimResized" }, {
     callback = function() vim.cmd("tabdo wincmd =") end,
 })
 
--- Show diagnostic popup on cursor hover
-autocmd("CursorHold", {
-    group = augroup("diagnostic_float"),
-    callback = function()
-        vim.defer_fn(
-            function() vim.diagnostic.open_float(nil, { focusable = false }) end,
-            3000
-        )
-    end,
-})
-
 -- go to last loc when opening a buffer
 autocmd("BufReadPost", {
     group = augroup("last_loc"),
