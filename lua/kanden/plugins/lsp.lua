@@ -174,5 +174,5 @@ require("mason-lspconfig").setup({
     },
 })
 
-vim.g.LanguageClient_serverCommands =
-{ r = { "R", "--slave", "-e", "languageserver::run()" } }
+-- stylua: ignore
+vim.g.LanguageClient_serverCommands = { r = { "R", "--slave", "-e", "languageserver::run()" } }

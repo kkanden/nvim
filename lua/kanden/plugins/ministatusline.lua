@@ -49,7 +49,12 @@ local statusline = function()
     local git = MiniStatusline.section_git({ icon = "" })
     local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 10000 })
     local diagnostic = MiniStatusline.section_diagnostics({})
-    local progress_location = progress() .. " " .. component_separators .. " " .. location() .. " "
+    local progress_location = progress()
+        .. " "
+        .. component_separators
+        .. " "
+        .. location()
+        .. " "
 
     local git_filename = "%f%m%r"
     if #git > 0 then
