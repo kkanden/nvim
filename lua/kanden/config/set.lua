@@ -1,9 +1,13 @@
 local opt = vim.opt
+
 opt.number = true
 opt.relativenumber = true
 
 opt.ignorecase = true -- ignore case as default search
 opt.smartcase = true  -- case sensitive search if input contains uppercase
+
+-- global statusline
+opt.laststatus = 3
 
 opt.tabstop = 4
 opt.softtabstop = 4

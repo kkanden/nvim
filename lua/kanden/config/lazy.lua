@@ -1,11 +1,18 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local out = vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--branch=stable",
+        lazyrepo,
+        lazypath,
+    })
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
+            { out, "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -49,16 +56,17 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         lazy = false,
         version = "0.1.8",
-        dependencies = { { "nvim-lua/plenary.nvim" },
-
-        },
+        dependencies = { { "nvim-lua/plenary.nvim" } },
         config = req("telescope"),
     },
 
     {
         "nvim-telescope/telescope-fzf-native.nvim",
         lazy = false,
-        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+        },
         build = "make",
         config = req("fzf_telescope"),
     },
@@ -83,7 +91,7 @@ local plugins = {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
             -- Useful status updates for LSP.
-            { "j-hui/fidget.nvim",       opts = {} },
+            { "j-hui/fidget.nvim", opts = {} },
 
             "saghen/blink.cmp",
 
@@ -122,32 +130,21 @@ local plugins = {
 
     {
         "saghen/blink.cmp",
+        lazy = false,
         -- use a release tag to download pre-built binaries
         version = "v0.*",
         dependencies = {
             { "R-nvim/cmp-r" },
         },
-        ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
-        -- allows extending the providers array elsewhere in your config
-        -- without having to redefine it
         opts_extend = { "sources.default" },
         config = req("blink"),
     },
 
     -- Status Line
     {
-        "nvim-lualine/lualine.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-            -- Diagnostics on status line
-            {
-                "Isrothy/lualine-diagnostic-message",
-            },
-        },
-        opts = {},
-        config = req("lualine"),
+        "echasnovski/mini.statusline",
+        version = "*",
+        config = req("ministatusline"),
     },
 
     -- R
@@ -195,7 +192,7 @@ local plugins = {
     -- Indent lines
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufEnter",
+        event = "BufReadPost",
         main = "ibl",
         config = req("indent"),
     },
@@ -222,6 +219,7 @@ local plugins = {
     -- Smooth scrolling
     {
         "karb94/neoscroll.nvim",
+        event = "BufReadPost",
         config = req("neoscroll"),
     },
 
@@ -250,6 +248,7 @@ local plugins = {
 
     {
         "sindrets/diffview.nvim",
+        cmd = "DiffviewOpen",
         opts = {},
     },
 }
