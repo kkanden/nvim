@@ -128,15 +128,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local servers = {
-    lua_ls = {
-        settings = {
-            Lua = {
-                formatting = {
-                    enable = false,
-                },
-            },
-        },
-    },
+    lua_ls = {},
     r_language_server = {},
     pyright = {
         settings = {
@@ -183,4 +175,4 @@ require("mason-lspconfig").setup({
 })
 
 vim.g.LanguageClient_serverCommands =
-    { r = { "R", "--slave", "-e", "languageserver::run()" } }
+{ r = { "R", "--slave", "-e", "languageserver::run()" } }
