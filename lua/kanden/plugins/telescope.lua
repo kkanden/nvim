@@ -17,7 +17,12 @@ map(
     { desc = "Telescope neovim config files" }
 )
 
-map("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
+map(
+    "n",
+    "<leader>/",
+    builtin.current_buffer_fuzzy_find,
+    { desc = "[/] Fuzzily search in current buffer" }
+)
 
 require("telescope").setup({
     defaults = {

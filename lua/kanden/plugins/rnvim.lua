@@ -3,8 +3,20 @@ local buf_map = vim.api.nvim_buf_set_keymap
 require("r").setup({
     hook = {
         on_filetype = function()
-            buf_map(0, "n", "<localleader>gn", "<Cmd>lua require('r.rnw').next_chunk()", {})
-            buf_map(0, "n", "<localleader>gN", "<Cmd>lua require('r.rnw').previous_chunk()", {})
+            buf_map(
+                0,
+                "n",
+                "<localleader>gn",
+                "<Cmd>lua require('r.rnw').next_chunk()",
+                {}
+            )
+            buf_map(
+                0,
+                "n",
+                "<localleader>gN",
+                "<Cmd>lua require('r.rnw').previous_chunk()",
+                {}
+            )
             buf_map(0, "v", "<Enter>", "<Plug>RSendSelection", {})
 
             -- start shiny app (even if one is already running)
@@ -13,8 +25,8 @@ require("r").setup({
                 "n",
                 "<localleader><F5>",
                 table.concat({
-                    "<C-l>i<C-c><CR><C-z>",                                  -- quit current session and go back to main window
-                    "<Cmd>wa<CR><BAR>",                                      -- save all files
+                    "<C-l>i<C-c><CR><C-z>", -- quit current session and go back to main window
+                    "<Cmd>wa<CR><BAR>", -- save all files
                     "<Cmd>lua require('r.send').cmd('shiny::runApp()')<CR>", -- start shiny app
                 }),
                 {}

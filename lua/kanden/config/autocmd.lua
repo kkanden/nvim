@@ -12,7 +12,9 @@ autocmd("TextYankPost", {
 autocmd("FileType", {
     group = augroup("close_with_q"),
     pattern = { "help", "fugitive", "git", "gitcommit", "checkhealth" },
-    callback = function() vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true }) end,
+    callback = function()
+        vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
+    end,
 })
 
 -- Set local settings for terminal buffers
@@ -34,7 +36,9 @@ autocmd("FileType", {
     pattern = { "r", "rmd" },
     callback = function()
         vim.diagnostic.config({
-            virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
+            virtual_text = {
+                severity = { min = vim.diagnostic.severity.ERROR },
+            },
             signs = { severity = { min = vim.diagnostic.severity.WARN } },
             underline = { severity = { min = vim.diagnostic.severity.ERROR } },
         })
@@ -52,9 +56,7 @@ autocmd("BufEnter", {
 -- resize splits if window got resized
 autocmd({ "VimResized" }, {
     group = augroup("resize_splits"),
-    callback = function()
-        vim.cmd("tabdo wincmd =")
-    end,
+    callback = function() vim.cmd("tabdo wincmd =") end,
 })
 
 -- Show diagnostic popup on cursor hover

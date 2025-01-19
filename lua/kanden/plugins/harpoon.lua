@@ -45,7 +45,11 @@ local toggle_opts = {
 }
 
 map("n", "<leader>a", function() harpoon:list():add() end)
-map("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts) end)
+map(
+    "n",
+    "<C-e>",
+    function() harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts) end
+)
 map("n", "<C-c>", function() harpoon.ui:close_menu() end)
 
 map("n", "w1", function() harpoon:list():select(1) end)

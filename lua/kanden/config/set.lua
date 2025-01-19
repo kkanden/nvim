@@ -4,7 +4,7 @@ opt.number = true
 opt.relativenumber = true
 
 opt.ignorecase = true -- ignore case as default search
-opt.smartcase = true  -- case sensitive search if input contains uppercase
+opt.smartcase = true -- case sensitive search if input contains uppercase
 
 -- global statusline
 opt.laststatus = 3

@@ -73,7 +73,7 @@ map("n", "<C-g>", "<cmd>nohlsearch<CR>")
 -- (if last character is comma, set cursor before the comma)
 map("i", "<C-a>", function()
     local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
-    local col = #line                            -- get length of line
+    local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
 
     if char_under_cursor == "," then col = col - 1 end

@@ -54,7 +54,7 @@ local toggle_terminal = function()
         vim.api.nvim_win_hide(state.floating.win)
         vim.api.nvim_feedkeys("<C-c>", "n", false) -- exit input mode on exit
     end
-    vim.api.nvim_feedkeys("i", "n", false)         -- switch to input mode on open
+    vim.api.nvim_feedkeys("i", "n", false) -- switch to input mode on open
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
