@@ -49,6 +49,7 @@ local statusline = function()
     local git = MiniStatusline.section_git({ icon = "" })
     local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 10000 })
     local diagnostic = MiniStatusline.section_diagnostics({})
+    local progress_location = progress() .. " " .. component_separators .. " " .. location() .. " "
 
     local git_filename = "%f%m%r"
     if #git > 0 then
@@ -70,36 +71,20 @@ local statusline = function()
     )
     vim.api.nvim_set_hl(0, "SeparatorB", { fg = "#252535", bg = "#2a2a37" })
 
+    -- stylua: ignore start
     local statusline_string = table.concat({
-        "%#",
-        mode_hl,
-        "# ",
-        mode:upper(),
-        "%#SeparatorA#",
-        section_separators["left"], -- MODE
-        "%#MiniStatuslineDevinfo# ",
-        git_filename,
-        " %#SeparatorB#",
-        section_separators["left"], -- GIT | FILENAME
-        "%#MiniStatuslineFileName#",
-        diagnostic, -- MIDDLE SECTION, DIAGNOSTICS
-        "%<%=", -- FLUSH LEFT
-        "%#SeparatorB#",
-        section_separators["right"],
-        "%#MiniStatuslineDevinfo#",
-        fileinfo, -- FILETYPE
-        " %#SeparatorA#",
-        section_separators["right"],
-        "%#",
-        mode_hl,
-        "#",
-        progress(),
-        " ",
-        component_separators,
-        " ",
-        location(),
-        " ", -- PROGRESS | LOCATION
+        "%#", mode_hl, "# ", mode:upper(), "%#SeparatorA#",          -- MODE
+        section_separators["left"],
+        "%#MiniStatuslineDevinfo# ", git_filename, " %#SeparatorB#", -- GIT | FILENAME
+        section_separators["left"],
+        "%#MiniStatuslineFileName#", diagnostic,                     -- MIDDLE SECTION, DIAGNOSTICS
+        "%<%=",                                                      -- FLUSH LEFT
+        "%#SeparatorB#", section_separators["right"],
+        "%#MiniStatuslineDevinfo#", fileinfo,                        -- FILETYPE
+        " %#SeparatorA#", section_separators["right"],
+        "%#", mode_hl, "#", progress_location,                       -- PROGRESS | LOCATION
     })
+    -- stylua: ignore end
 
     return statusline_string
 end
