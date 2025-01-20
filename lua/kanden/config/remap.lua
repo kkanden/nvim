@@ -86,6 +86,7 @@ map("i", "<C-i>", "<C-o>I")
 -- "ignore case" on write and quit
 map("ca", "W", "w")
 map("ca", "Wq", "wq")
+map("ca", "Wqa", "wq")
 map("ca", "Q", "q")
 map("ca", "Qa", "qa")
 
