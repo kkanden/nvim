@@ -103,33 +103,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end,
             "Go to previous diagnostic"
         )
-
-        -- Format code
-        map("<leader>fm", function()
-            require("conform").format({
-                bufnr = args.buf,
-                id = client.id,
-                timeout_ms = 10000,
-                lsp_format = "fallback",
-            })
-            vim.cmd("w")
-        end, "[F]ormat Code")
-
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup("autoformat"),
-                buffer = args.buf,
-                callback = function()
-                    require("conform").format({
-                        bufnr = args.buf,
-                        id = client.id,
-                        timeout_ms = 2000,
-                        lsp_format = "fallback",
-                    })
-                    vim.cmd("w")
-                end,
-            })
-        end
     end,
 })
 
