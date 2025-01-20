@@ -82,7 +82,7 @@ local plugins = {
     -- LSP
     {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             { "williamboman/mason.nvim", config = true },
 
@@ -110,11 +110,12 @@ local plugins = {
         config = req("lsp"),
     },
 
+    -- Formatting tools
     {
-        "nvimtools/none-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = req("nullls"),
+        "stevearc/conform.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+        config = req("conform"),
     },
 
     -- Autocompletion
