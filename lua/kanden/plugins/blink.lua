@@ -27,14 +27,6 @@ require("blink.cmp").setup({
             "path",
             "snippets",
             "buffer",
-            --     'cmp_r'
         },
-        -- providers = {
-        --     cmp_r = {
-        --         name = "cmp_r",
-        --         module = 'blink.compat.source',
-        --     }
-        -- }
-        -- cmdline = {},
     },
 })
