@@ -120,16 +120,6 @@ local plugins = {
 
     -- Autocompletion
     {
-        "saghen/blink.compat",
-        -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
-        version = "*",
-        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
-        lazy = true,
-        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
-        opts = {},
-    },
-
-    {
         "saghen/blink.cmp",
         lazy = false,
         -- use a release tag to download pre-built binaries
@@ -141,11 +131,14 @@ local plugins = {
         config = req("blink"),
     },
 
-    -- Status Line
     {
-        "echasnovski/mini.statusline",
+        "saghen/blink.compat",
+        -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
         version = "*",
-        config = req("ministatusline"),
+        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+        lazy = true,
+        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+        opts = {},
     },
 
     -- R
@@ -155,6 +148,14 @@ local plugins = {
         config = req("rnvim"),
     },
 
+    -- Status Line
+    {
+        "echasnovski/mini.statusline",
+        version = "*",
+        config = req("ministatusline"),
+    },
+
+    -- Harpoon
     {
         "theprimeagen/harpoon",
         lazy = false,
@@ -164,11 +165,13 @@ local plugins = {
         config = req("harpoon"),
     },
 
+    -- Undotree
     {
         "mbbill/undotree",
         config = req("undotree"),
     },
 
+    -- FuGITive
     {
         "tpope/vim-fugitive",
         config = req("fugitive"),
@@ -212,6 +215,7 @@ local plugins = {
         opts = {},
     },
 
+    -- Colors color names
     {
         "norcalli/nvim-colorizer.lua",
         config = req("colorizer"),
@@ -224,12 +228,14 @@ local plugins = {
         config = req("neoscroll"),
     },
 
+    -- Extra a,i motions
     {
         "echasnovski/mini.ai",
         version = "*",
         opts = {},
     },
 
+    -- Search count
     {
         "kevinhwang91/nvim-hlslens",
         config = req("hlslens"),
@@ -241,12 +247,14 @@ local plugins = {
         opts = {},
     },
 
+    -- Git info in sidebar
     {
         "lewis6991/gitsigns.nvim",
         event = "BufReadPost",
         opts = {},
     },
 
+    -- Git merge tool
     {
         "sindrets/diffview.nvim",
         cmd = "DiffviewOpen",
