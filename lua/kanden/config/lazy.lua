@@ -141,6 +141,14 @@ local plugins = {
         opts = {},
     },
 
+    -- Rust
+    {
+        "saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        tag = "stable",
+        config = req("crates"),
+    },
+
     -- R
     {
         "R-nvim/R.nvim",
