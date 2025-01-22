@@ -84,9 +84,16 @@ require("kanagawa").setup({
         local theme = colors.theme
         local palette = colors.palette
         return {
+            -- transparent background
             Normal = { bg = "none" },
+
+            -- restore background color for other windows
             NormalFloat = { bg = palette.sumiInk3 },
+            FloatBorder = { bg = palette.sumiInk3 },
+            FloatTitle = { bg = palette.sumiInk3 },
             TelescopeNormal = { bg = palette.sumiInk3 },
+
+            -- split separator color
             WinSeparator = { fg = palette.fujiGray },
 
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
