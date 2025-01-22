@@ -92,3 +92,10 @@ map("ca", "Qa", "qa")
 
 -- easy exit terminal mode and stay in terminal window
 map("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- show diagnostic popup
+map(
+    "n",
+    "L",
+    function() vim.diagnostic.open_float(nil, { focusable = true }) end
+)
