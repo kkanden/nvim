@@ -78,7 +78,6 @@ local plugins = {
         build = ":TSUpdate",
         config = req("treesitter"),
     },
-
     -- LSP
     {
         "neovim/nvim-lspconfig",
@@ -91,7 +90,16 @@ local plugins = {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
             -- Useful status updates for LSP.
-            { "j-hui/fidget.nvim", opts = {} },
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    notification = {
+                        window = {
+                            winblend = 0,
+                        },
+                    },
+                },
+            },
 
             "saghen/blink.cmp",
 
@@ -102,7 +110,10 @@ local plugins = {
                     library = {
                         -- See the configuration section for more details
                         -- Load luvit types when the `vim.uv` word is found
-                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                        {
+                            path = "${3rd}/luv/library",
+                            words = { "vim%.uv" },
+                        },
                     },
                 },
             },
