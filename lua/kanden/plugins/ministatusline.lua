@@ -24,7 +24,7 @@ local rsttcolor = function()
     return { fg = rstt[vim.g.R_Nvim_status][2] }
 end
 
-local function progress()
+local progress = function()
     local cur = vim.fn.line(".")
     local total = vim.fn.line("$")
     if cur == 1 then
@@ -36,10 +36,27 @@ local function progress()
     end
 end
 
-local function location()
+local location = function()
     local line = vim.fn.line(".")
     local col = vim.fn.charcol(".")
     return string.format("%d:%d", line, col)
+end
+
+local file = function(max_length)
+    max_length = max_length or 70
+    local rest = "%m%r"
+    local path = ""
+    if vim.fn.expand("%:~:.") == "" or vim.bo.buftype ~= "" then
+        path = "%t" .. rest
+    else
+        path = vim.fn.expand("%:~:.") .. rest
+    end
+
+    if #path > max_length then
+        return vim.fn.pathshorten(path, 2)
+    else
+        return path
+    end
 end
 
 local statusline = function()
@@ -56,7 +73,7 @@ local statusline = function()
         .. location()
         .. " "
 
-    local git_filename = "%f%m%r"
+    local git_filename = file()
     if #git > 0 then
         git_filename = git .. " " .. component_separators .. " " .. git_filename
     end
@@ -84,7 +101,6 @@ local statusline = function()
         section_separators["left"],
         "%#MiniStatuslineFileName#", diagnostic,                     -- MIDDLE SECTION, DIAGNOSTICS
         "%<%=",                                                      -- FLUSH LEFT
-        "%#SeparatorB#", section_separators["right"],
         "%#MiniStatuslineDevinfo#", fileinfo,                        -- FILETYPE
         " %#SeparatorA#", section_separators["right"],
         "%#", mode_hl, "#", progress_location,                       -- PROGRESS | LOCATION
