@@ -6,7 +6,7 @@ require("conform").setup({
         python = { "isort", "black" },
         rust = { "rustfmt" },
     },
-    format_on_save = function(bufnr)
+    format_after_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
@@ -18,6 +18,7 @@ map("n", "<leader>fm", function(bufnr)
     require("conform").format({
         bufnr = bufnr,
         timeout_ms = 10000,
+        async = true,
         lsp_format = "fallback",
     })
     vim.cmd("w")
