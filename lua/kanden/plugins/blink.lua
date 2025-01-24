@@ -36,6 +36,15 @@ require("blink.cmp").setup({
                 -- make lazydev completions top priority (see `:h blink.cmp`)
                 score_offset = 100,
             },
+            path = {
+                name = "path",
+                module = "blink.cmp.sources.path",
+                opts = {
+                    get_cwd = function(context)
+                        return vim.fn.getcwd():format(context.bufnr)
+                    end,
+                },
+            },
         },
     },
 })
