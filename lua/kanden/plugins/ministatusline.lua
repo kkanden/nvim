@@ -47,7 +47,7 @@ local file = function(max_length)
     local rest = "%m%r"
     local path = ""
     if vim.fn.expand("%:~:.") == "" or vim.bo.buftype ~= "" then
-        path = "%t" .. rest
+        path = "%f" .. rest
     else
         path = vim.fn.expand("%:~:.") .. rest
     end
