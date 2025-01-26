@@ -40,4 +40,7 @@ require("r").setup({
     pipe_keymap = "<C-l>",
     min_editor_width = 0,
     rconsole_width = math.floor(vim.o.columns * 0.3),
+    pdfviewer = "chrome",
+    open_html = "open and focus",
+    open_pdf = "open and focus",
 })
