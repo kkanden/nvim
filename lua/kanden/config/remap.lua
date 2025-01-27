@@ -3,11 +3,6 @@ local map = require("kanden.lib.nvim_api").map
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- map("n", "<leader>pv", vim.cmd.Ex)
-
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
-
 -- stick cursor at beginning of line when joining lines
 map("n", "J", "mzJ`z")
 

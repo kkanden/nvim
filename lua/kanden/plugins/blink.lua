@@ -28,6 +28,7 @@ require("blink.cmp").setup({
             "snippets",
             "buffer",
             "lazydev",
+            "dadbod",
         },
         providers = {
             lazydev = {
@@ -35,6 +36,10 @@ require("blink.cmp").setup({
                 module = "lazydev.integrations.blink",
                 -- make lazydev completions top priority (see `:h blink.cmp`)
                 score_offset = 100,
+            },
+            dadbod = {
+                name = "Dadbod",
+                module = "vim_dadbod_completion.blink",
             },
             path = {
                 name = "path",

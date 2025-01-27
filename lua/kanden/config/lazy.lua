@@ -254,6 +254,13 @@ local plugins = {
         opts = {},
     },
 
+    -- Move selected text
+    {
+        "echasnovski/mini.move",
+        version = "*",
+        config = req("minimove"),
+    },
+
     -- Search count
     {
         "kevinhwang91/nvim-hlslens",
@@ -278,6 +285,26 @@ local plugins = {
         "sindrets/diffview.nvim",
         cmd = "DiffviewOpen",
         opts = {},
+    },
+
+    -- SQL
+    {
+
+        "kristijanhusak/vim-dadbod-ui",
+        dependencies = {
+            { "tpope/vim-dadbod", lazy = true },
+            {
+                "kristijanhusak/vim-dadbod-completion",
+                ft = { "sql", "mysql", "plsql" },
+                lazy = true,
+            },
+        },
+        cmd = {
+            "DBUI",
+            "DBUIToggle",
+            "DBUIAddConnection",
+            "DBUIFindBuffer",
+        },
     },
 }
 
