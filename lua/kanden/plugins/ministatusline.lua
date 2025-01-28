@@ -95,15 +95,16 @@ local statusline = function()
 
     -- stylua: ignore start
     local statusline_string = table.concat({
-        "%#", mode_hl, "# ", mode:upper(), "%#SeparatorA#",          -- MODE
-        section_separators["left"],
-        "%#MiniStatuslineDevinfo# ", git_filename, " %#SeparatorB#", -- GIT | FILENAME
-        section_separators["left"],
-        "%#MiniStatuslineFileName#", diagnostic,                     -- MIDDLE SECTION, DIAGNOSTICS
-        "%<%=",                                                      -- FLUSH LEFT
-        "%#MiniStatuslineDevinfo#", fileinfo,                        -- FILETYPE
+        "%#", mode_hl, "# ", mode:upper(),                -- MODE
+        "%#SeparatorA#", section_separators["left"],
+        "%#MiniStatuslineDevinfo# ", git_filename,        -- GIT | FILENAME
+        " %#SeparatorB#", section_separators["left"],
+        "%#MiniStatuslineFileName#", diagnostic,          -- MIDDLE SECTION, DIAGNOSTICS
+        "%<%=",                                           -- FLUSH LEFT
+        " %#SeparatorB#",  section_separators["right"],
+        "%#MiniStatuslineDevinfo#", fileinfo,             -- FILETYPE
         " %#SeparatorA#", section_separators["right"],
-        "%#", mode_hl, "#", progress_location,                       -- PROGRESS | LOCATION
+        "%#", mode_hl, "#", progress_location,            -- PROGRESS | LOCATION
     })
     -- stylua: ignore end
 
