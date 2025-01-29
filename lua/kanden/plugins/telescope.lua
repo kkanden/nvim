@@ -1,5 +1,6 @@
 local map = require("kanden.lib.nvim_api").map
 local builtin = require("telescope.builtin")
+local actions = require("telescope.actions")
 
 map("n", "<leader>pf", builtin.find_files, { desc = "Telescope find files" })
 map("n", "<leader>ff", function()
@@ -30,6 +31,13 @@ require("telescope").setup({
             "lazy%-lock.json",
             ".git",
         },
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.cycle_history_next,
+                ["<C-k>"] = actions.cycle_history_prev,
+            },
+        },
+        history = true,
     },
     pickers = {
         buffers = {
