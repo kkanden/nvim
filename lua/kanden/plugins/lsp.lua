@@ -120,6 +120,8 @@ local servers = {
             },
         },
     },
+    jsonls = {},
+    yamlls = {},
 }
 
 -- Setup mason

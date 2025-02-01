@@ -5,6 +5,10 @@ require("conform").setup({
         lua = { "stylua" },
         python = { "isort", "black" },
         rust = { "rustfmt" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        yml = { "prettier" },
+        toml = { "prettier" },
     },
     formatters = {
         isort = {
