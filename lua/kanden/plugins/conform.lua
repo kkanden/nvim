@@ -6,6 +6,14 @@ require("conform").setup({
         python = { "isort", "black" },
         rust = { "rustfmt" },
     },
+    formatters = {
+        isort = {
+            command = "isort",
+            args = {
+                "-",
+            },
+        },
+    },
     format_after_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return

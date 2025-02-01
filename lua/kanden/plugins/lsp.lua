@@ -109,19 +109,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local servers = {
     lua_ls = {},
     r_language_server = {},
-    pyright = {
-        settings = {
-            pyright = {
-                disableOrganizeImports = true,
-            },
-            python = {
-                analysis = {
-                    ignore = { "*" },
-                },
-            },
-        },
-    },
-    ruff = {},
+    pyright = {},
     ltex = {},
     rust_analyzer = {
         filetypes = { "rust" },
