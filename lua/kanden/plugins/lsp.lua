@@ -84,25 +84,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         -- Move to next/prev diagnostic
-        map(
-            "g]",
-            function()
-                vim.diagnostic.goto_next({
-                    severity = vim.diagnostic.severity.ERROR,
-                })
-            end,
-            "Go to next diagnostic"
-        )
+        map("g]", function()
+            local min_severity = vim.bo.filetype == "r"
+                    and vim.diagnostic.severity.ERROR
+                or vim.diagnostic.severity.WARN
+            vim.diagnostic.goto_next({
+                severity = min_severity,
+            })
+        end, "Go to next diagnostic")
 
-        map(
-            "g[",
-            function()
-                vim.diagnostic.goto_prev({
-                    severity = vim.diagnostic.severity.ERROR,
-                })
-            end,
-            "Go to previous diagnostic"
-        )
+        map("g[", function()
+            local min_severity = vim.bo.filetype == "r"
+                    and vim.diagnostic.severity.ERROR
+                or vim.diagnostic.severity.WARN
+            vim.diagnostic.goto_prev({
+                severity = min_severity,
+            })
+        end, "Go to previous diagnostic")
     end,
 })
 
