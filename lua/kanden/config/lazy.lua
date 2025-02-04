@@ -35,7 +35,7 @@ local plugins = {
     -- Theme
     {
         "rebelot/kanagawa.nvim",
-        priority = 1000,
+        priority = 1002,
         lazy = false,
         config = req("theme"),
     },
@@ -43,6 +43,7 @@ local plugins = {
     -- Oil file explorer
     {
         "stevearc/oil.nvim",
+        priority = 1001,
         ---@module 'oil'
         ---@type oil.SetupOpts
         -- Optional dependencies
@@ -51,24 +52,11 @@ local plugins = {
         config = req("oil"),
     },
 
-    -- Telescope
+    -- snacks
     {
-        "nvim-telescope/telescope.nvim",
-        lazy = false,
-        version = "0.1.8",
-        dependencies = { { "nvim-lua/plenary.nvim" } },
-        config = req("telescope"),
-    },
-
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim",
-        },
-        build = "make",
-        config = req("fzf_telescope"),
+        "folke/snacks.nvim",
+        priority = 1000,
+        config = req("snacks"),
     },
 
     -- Treesitter

@@ -3,6 +3,7 @@ require("autoclose").setup({
         disabled_filetypes = {
             "text",
             "TelescopePrompt",
+            "snacks_picker_input",
         },
     },
     keys = {
