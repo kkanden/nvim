@@ -4,6 +4,7 @@ require("conform").setup({
     formatters_by_ft = {
         lua = { "stylua" },
         python = { "isort", "black" },
+        r = { "air" },
         rust = { "rustfmt" },
         json = { "prettier" },
         yaml = { "prettier" },
@@ -16,6 +17,11 @@ require("conform").setup({
             args = {
                 "-",
             },
+        },
+        air = {
+            command = "air",
+            args = { "format", "$FILENAME" },
+            stdin = false,
         },
     },
     format_after_save = function(bufnr)
