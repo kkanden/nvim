@@ -39,7 +39,7 @@ end
 local location = function()
     local line = vim.fn.line(".")
     local col = vim.fn.charcol(".")
-    return string.format("%d:%d", line, col)
+    return string.format("%3d:%2d", line, col)
 end
 
 local file = function(max_length)
