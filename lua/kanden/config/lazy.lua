@@ -52,6 +52,12 @@ local plugins = {
         config = req("oil"),
     },
 
+    {
+        "rcarriga/nvim-notify",
+        priority = 1001,
+        config = req("notify"),
+    },
+
     -- snacks
     {
         "folke/snacks.nvim",
