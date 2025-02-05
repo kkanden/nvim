@@ -17,23 +17,33 @@ require("oil").setup({
 
 map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 map("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+local path_sep_replace = ":gs?\\?/?"
 map(
     "n",
     "yP",
-    function() require("oil.actions").yank_entry.callback() end,
+    function()
+        require("oil.actions").yank_entry.callback({ modify = path_sep_replace })
+    end,
     { desc = "Copy absolute file path in Oil" }
 )
 map(
     "n",
     "yp",
-    function() require("oil.actions").yank_entry.callback({ modify = ":." }) end,
+    function()
+        require("oil.actions").yank_entry.callback({
+            modify = ":." .. path_sep_replace,
+        })
+    end,
     { desc = "Copy relative file path in Oil" }
 )
 map("n", "<leader>yP", function()
-    require("oil.actions").yank_entry.callback()
+    require("oil.actions").yank_entry.callback({ modify = path_sep_replace })
     vim.fn.setreg("+", vim.fn.getreg(vim.v.register))
 end, { desc = "Copy absolute file path in Oil to system register" })
 map("n", "<leader>yp", function()
-    require("oil.actions").yank_entry.callback({ modify = ":." })
+    require("oil.actions").yank_entry.callback({
+        modify = ":." .. path_sep_replace,
+    })
     vim.fn.setreg("+", vim.fn.getreg(vim.v.register))
 end, { desc = "Copy relative file path in Oil to system register" })
