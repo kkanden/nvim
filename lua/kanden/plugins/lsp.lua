@@ -107,14 +107,24 @@ require("mason").setup({
 })
 
 local ensure_installed = vim.tbl_keys(servers or {})
-vim.list_extend(ensure_installed, {
-    "stylua",
-    "mypy",
-    "black",
-})
+
 require("mason-tool-installer").setup({
     ensure_installed = ensure_installed,
 })
+
+-- check if formatters are installed
+local formatters = { "stylua", "air", "prettier", "isort", "black", "rustfmt" }
+for _, formatter in pairs(formatters) do
+    if vim.fn.executable(formatter) == 0 then
+        vim.notify(
+            string.format(
+                "`%s` not executable. Consider installing it.",
+                formatter
+            ),
+            "error"
+        )
+    end
+end
 
 require("mason-lspconfig").setup({
     handlers = {
