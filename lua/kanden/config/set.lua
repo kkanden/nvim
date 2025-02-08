@@ -47,3 +47,20 @@ opt.undofile = true
 vim.diagnostic.config({
     severity_sort = true,
 })
+
+-- WSL clipboard
+if vim.fn.has("wsl") == 1 then
+    vim.g.clipboard = {
+        name = "win32yank",
+        copy = {
+            ["+"] = "win32yank -i",
+            ["*"] = "win32yank -i",
+        },
+        paste = {
+
+            ["+"] = "win32yank -o",
+            ["*"] = "win32yank -o",
+        },
+        cache_enabled = 0,
+    }
+end
