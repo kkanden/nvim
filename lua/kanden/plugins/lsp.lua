@@ -99,6 +99,7 @@ local servers = {
     },
     jsonls = {},
     yamlls = {},
+    nil_ls = {},
 }
 
 -- Setup mason

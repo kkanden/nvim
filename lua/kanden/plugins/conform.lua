@@ -10,6 +10,7 @@ require("conform").setup({
         yaml = { "prettier" },
         yml = { "prettier" },
         toml = { "prettier" },
+        nix = { "alejandra" },
     },
     formatters = {
         isort = {
