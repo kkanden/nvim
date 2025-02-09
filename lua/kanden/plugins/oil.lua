@@ -17,6 +17,12 @@ require("oil").setup({
 
 map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 map("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+map(
+    "n",
+    "<localleader>h",
+    function() require("oil").open("~") end,
+    { desc = "Open home directory" }
+)
 
 local path_sep_replace = ":gs?\\?/?"
 map(
