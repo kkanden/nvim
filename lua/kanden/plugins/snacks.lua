@@ -34,8 +34,4 @@ require("snacks").setup({
             history_bonus = true,
         },
     },
-    layout = {},
-    debug = {
-        scores = true,
-    },
 })
