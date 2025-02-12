@@ -59,11 +59,22 @@ local file = function(max_length)
     end
 end
 
+local lsp_fun = function()
+    local lsp_client = vim.lsp.get_clients({ bufnr = 0 })
+    local lsps = ""
+    for i, lsp in ipairs(lsp_client) do
+        if i ~= 1 or i ~= #lsp_client then lsps = lsps .. ", " end
+        lsps = lsps .. lsp["name"]
+    end
+    return lsps
+end
+
 local statusline = function()
     local section_separators = { left = "", right = "" }
     local component_separators = "|"
     local mode, mode_hl = MiniStatusline.section_mode({})
     local git = MiniStatusline.section_git({ icon = "" })
+    local lsp = lsp_fun()
     local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 10000 })
     local diagnostic = MiniStatusline.section_diagnostics({})
     local progress_location = progress()
@@ -76,6 +87,11 @@ local statusline = function()
     local git_filename = file()
     if #git > 0 then
         git_filename = git .. " " .. component_separators .. " " .. git_filename
+    end
+
+    local lsp_fileinfo = fileinfo
+    if #lsp > 0 then
+        lsp_fileinfo = lsp .. " " .. component_separators .. " " .. fileinfo
     end
 
     local mode_hl_props = vim.api.nvim_get_hl(0, { name = mode_hl })
@@ -102,7 +118,7 @@ local statusline = function()
         "%#MiniStatuslineFileName#", diagnostic,          -- MIDDLE SECTION, DIAGNOSTICS
         "%<%=",                                           -- FLUSH LEFT
         " %#SeparatorB#",  section_separators["right"],
-        "%#MiniStatuslineDevinfo#", fileinfo,             -- FILETYPE
+        "%#MiniStatuslineDevinfo#", lsp_fileinfo,             -- FILETYPE
         " %#SeparatorA#", section_separators["right"],
         "%#", mode_hl, "#", progress_location,            -- PROGRESS | LOCATION
     })
