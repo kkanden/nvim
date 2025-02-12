@@ -1,16 +1,36 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
+local merge_table = require("kanden.lib").merge_tables
 local picker = Snacks.picker
 
-map("n", "<leader>pf", picker.files, { desc = "Snacks picker: find files" })
+local opts = {
+    hidden = true,
+    exclude = {
+        ".git/",
+    },
+}
+
+map(
+    "n",
+    "<leader>pf",
+    function() picker.files(opts) end,
+    { desc = "Snacks picker: find files" }
+)
 map("n", "<leader>ff", function()
-    picker.files({ cwd = "~" }) -- search files in the home directory
+    picker.files(merge_table(opts, { cwd = "~" })) -- search files in the home directory
 end, { desc = "Snack picker: find files" })
-map("n", "<leader>ps", picker.grep, { desc = "Snacks picker: grep" })
+map(
+    "n",
+    "<leader>ps",
+    function() picker.grep(opts) end,
+    { desc = "Snacks picker: grep" }
+)
 map("n", "<leader>pb", picker.buffers, { desc = "Snacks picker: buffers" })
 map(
     "n",
     "<leader>pn",
-    function() picker.files({ cwd = vim.fn.stdpath("config") }) end,
+    function()
+        picker.files(merge_table(opts, { cwd = vim.fn.stdpath("config") }))
+    end,
     { desc = "Snacks picker: neovim config files" }
 )
 map(
