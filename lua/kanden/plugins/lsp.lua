@@ -100,6 +100,7 @@ local servers = {
     jsonls = {},
     yamlls = {},
     nil_ls = {},
+    cssls = {},
 }
 
 -- Setup mason
@@ -108,24 +109,18 @@ require("mason").setup({
 })
 
 local ensure_installed = vim.tbl_keys(servers or {})
-
+-- don't install nil_ls on windows
+if vim.fn.has("win32") == 1 then
+    for i, v in ipairs(ensure_installed) do
+        if v == "nil_ls" then
+            table.remove(ensure_installed, i)
+            break
+        end
+    end
+end
 require("mason-tool-installer").setup({
     ensure_installed = ensure_installed,
 })
-
--- check if formatters are installed
-local formatters = { "stylua", "air", "prettier", "isort", "black", "rustfmt" }
-for _, formatter in pairs(formatters) do
-    if vim.fn.executable(formatter) == 0 then
-        vim.notify(
-            string.format(
-                "`%s` not executable. Consider installing it.",
-                formatter
-            ),
-            "error"
-        )
-    end
-end
 
 require("mason-lspconfig").setup({
     handlers = {
