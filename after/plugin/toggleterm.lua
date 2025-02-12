@@ -44,7 +44,7 @@ local toggle_terminal = function()
     if not vim.api.nvim_win_is_valid(state.floating.win) then
         state.floating = create_floating_windows({ buf = state.floating.buf })
         if vim.bo[state.floating.buf].buftype ~= "terminal" then
-            if package.config:sub(1, 1) == "\\" then -- if on windows, run powershell
+            if vim.fn.has("win32") == 1 then -- if on windows, run powershell
                 vim.cmd.terminal("powershell -NoLogo")
             else
                 vim.cmd.terminal()
