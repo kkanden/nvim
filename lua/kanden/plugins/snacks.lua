@@ -33,5 +33,12 @@ require("snacks").setup({
             frecency = true,
             history_bonus = true,
         },
+        win = {
+            input = {
+                keys = {
+                    ["<C-b>"] = { "confirm", mode = { "n", "i" } },
+                },
+            },
+        },
     },
 })
