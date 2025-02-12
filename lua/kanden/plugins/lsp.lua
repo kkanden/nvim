@@ -1,5 +1,5 @@
-local augroup = require("kanden.lib.nvim_api").augroup
-local map = require("kanden.lib.nvim_api").map
+local augroup = require("kanden.lib").augroup
+local map = require("kanden.lib").map
 local picker = Snacks.picker
 
 -- This is where you enable features that only work

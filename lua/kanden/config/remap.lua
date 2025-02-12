@@ -1,4 +1,4 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"

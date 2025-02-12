@@ -1,4 +1,4 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
 
 require("conform").setup({
     formatters_by_ft = {

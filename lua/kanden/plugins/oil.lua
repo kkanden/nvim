@@ -1,4 +1,4 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
 require("oil").setup({
     skip_confirm_for_simple_edits = true,
     columns = {

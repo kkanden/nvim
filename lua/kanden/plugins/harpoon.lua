@@ -1,4 +1,4 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
 local harpoon = require("harpoon")
 local job = require("plenary.job")
 

@@ -1,4 +1,4 @@
-local augroup = require("kanden.lib.nvim_api").augroup
+local augroup = require("kanden.lib").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight when yanking (copying) text -- from kickstart

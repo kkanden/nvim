@@ -1,4 +1,4 @@
-local map = require("kanden.lib.nvim_api").map
+local map = require("kanden.lib").map
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
