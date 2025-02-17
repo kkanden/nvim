@@ -40,19 +40,13 @@ harpoon:setup({
         key = git_branch_marks,
     },
     default = {
-        -- modified original code to make relative paths consistent
-        get_root_dir = function() return vim.fn.getcwd() end,
-
         ---@param config HarpoonPartialConfigItem
         ---@param name? any
         ---@return HarpoonListItem
         create_list_item = function(config, name)
-            name = normalize_path(
-                vim.api
-                    .nvim_buf_get_name(vim.api.nvim_get_current_buf())
-                    :gsub("/", "\\"),
-                config.get_root_dir()
-            )
+            local file_name =
+                vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+            name = vim.fn.fnamemodify(file_name, ":.")
 
             local bufnr = vim.fn.bufnr(name, false)
 
