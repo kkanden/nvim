@@ -36,8 +36,6 @@ require("r").setup({
     auto_start = "on startup",
     R_args = { "--quiet", "--no-save" },
     nvimpager = "split_h",
-    assignment_keymap = "<C-s>",
-    pipe_keymap = "<C-l>",
     min_editor_width = 0,
     rconsole_width = math.floor(vim.o.columns * 0.3),
     pdfviewer = "chrome",
