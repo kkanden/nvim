@@ -129,21 +129,8 @@ local plugins = {
         lazy = false,
         -- use a release tag to download pre-built binaries
         version = "v0.*",
-        dependencies = {
-            { "R-nvim/cmp-r" },
-        },
         opts_extend = { "sources.default" },
         config = req("blink"),
-    },
-
-    {
-        "saghen/blink.compat",
-        -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
-        version = "*",
-        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
-        lazy = true,
-        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
-        opts = {},
     },
 
     -- Rust
