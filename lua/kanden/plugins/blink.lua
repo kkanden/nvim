@@ -31,10 +31,14 @@ require("blink.cmp").setup({
             "dadbod",
         },
         providers = {
+            snippets = {
+                name = "snippets",
+                module = "blink.cmp.sources.snippets",
+                score_offset = 1000,
+            },
             lazydev = {
                 name = "LazyDev",
                 module = "lazydev.integrations.blink",
-                -- make lazydev completions top priority (see `:h blink.cmp`)
                 score_offset = 100,
             },
             dadbod = {
@@ -48,6 +52,7 @@ require("blink.cmp").setup({
                     get_cwd = function(context)
                         return vim.fn.getcwd():format(context.bufnr)
                     end,
+                    show_hidden_files_by_default = true,
                 },
             },
         },
