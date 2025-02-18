@@ -151,6 +151,7 @@ local plugins = {
         "R-nvim/R.nvim",
         ft = { "r", "rmd" },
         config = req("rnvim"),
+        commit = "260f5f2bf22be4b850ffdfc4e2d84419c02401e6",
     },
 
     -- Status Line

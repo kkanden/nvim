@@ -1,6 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "R.nvim": { "branch": "main", "commit": "48c0cafdad3baddc350dea9d68f3bc3d1db3065a" },
+  "R.nvim": { "branch": "main", "commit": "260f5f2bf22be4b850ffdfc4e2d84419c02401e6" },
   "autoclose.nvim": { "branch": "main", "commit": "b2077aa2c83df7ebc19b2a20a3a0654b24ae9c8f" },
   "blink.cmp": { "branch": "main", "commit": "18b352d12b35bca148427b607098df14b75a218f" },
   "conform.nvim": { "branch": "master", "commit": "a6f5bdb78caa305496357d17e962bbc4c0b392e2" },
