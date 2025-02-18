@@ -72,6 +72,11 @@ local plugins = {
         build = ":TSUpdate",
         config = req("treesitter"),
     },
+
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+
     -- LSP
     {
         "neovim/nvim-lspconfig",
