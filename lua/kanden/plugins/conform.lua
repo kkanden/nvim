@@ -22,7 +22,6 @@ require("conform").setup({
         air = {
             command = "air",
             args = { "format", "$FILENAME" },
-            stdin = false,
         },
     },
     format_after_save = function(bufnr)
