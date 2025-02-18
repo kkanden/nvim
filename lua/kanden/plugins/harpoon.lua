@@ -71,15 +71,46 @@ local toggle_opts = {
     ui_width_ratio = 0.4,
 }
 
-map("n", "<leader>a", function() harpoon:list():add() end)
+map(
+    "n",
+    "<leader>a",
+    function() harpoon:list():add() end,
+    { desc = "Harpoon: add file" }
+)
 map(
     "n",
     "<C-e>",
-    function() harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts) end
+    function() harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts) end,
+    { desc = "Harpoon: toggle window" }
 )
-map("n", "<C-c>", function() harpoon.ui:close_menu() end)
+map(
+    "n",
+    "<C-c>",
+    function() harpoon.ui:close_menu() end,
+    { desc = "Harpoon: close window" }
+)
 
-map("n", "w1", function() harpoon:list():select(1) end)
-map("n", "w2", function() harpoon:list():select(2) end)
-map("n", "w3", function() harpoon:list():select(3) end)
-map("n", "w4", function() harpoon:list():select(4) end)
+map(
+    "n",
+    "w1",
+    function() harpoon:list():select(1) end,
+    { desc = "Harpoon: select file 1" }
+)
+map(
+    "n",
+    "w2",
+    function() harpoon:list():select(2) end,
+    { desc = "Harpoon: select file 2" }
+)
+map(
+    "n",
+    "w3",
+    function() harpoon:list():select(3) end,
+    { desc = "Harpoon: select file 3" }
+)
+map(
+    "n",
+    "w4",
+    function() harpoon:list():select(4) end,
+    { desc = "Harpoon: select file 4" }
+)
