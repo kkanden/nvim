@@ -1,71 +1,3 @@
--- Rose Pine Theme
--- vim.opt.laststatus = 2 -- Or 3 for global statusline
--- vim.opt.statusline = " %F %m %= %l:%c ♥ "
---
--- require("rose-pine").setup({
--- 	variant = "main",
---
--- 	styles = {
--- 		italic = false,
--- 	},
---
--- highlight_groups = {
--- 	StatusLine = { fg = "love", bg = "love", blend = 10 },
--- 	StatusLineNC = {fg = "subtle", bg = "surface" },
--- 	CurSearch = { fg = "base", bg = "leaf", inherit = false },
--- 	Search = { fg = "text", bg = "leaf", blend = 20, inherit = false},
--- 	TelescopeBorder = { bg = "#AE7FA7", fg = "#000000" },
--- 	TelescopeNormal = { bg = "#AE7FA7", fg = "#000000" },
--- 	TelescopeTitle = { fg = "#000000" },
--- 	TelescopeSelection = { fg = "text", bg = "base" },
--- 	TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
--- 	TelescopeMatching = { fg = "#4DB6AC" }
--- },
--- })
---
-
--- Catppuccin Theme
--- require("catppuccin").setup({
---     no_italic = true,
---     styles = {
---         comments = {},
---         conditionals = {},
---     },
---     integrations = {
---         ts_rainbow = true,
---         harpoon = true,
---     },
---     color_overrides = {
---         mocha = {
---             text = "#F4CDE9",
---             subtext1 = "#DEBAD4",
---             subtext0 = "#C8A6BE",
---             overlay2 = "#B293A8",
---             overlay1 = "#9C7F92",
---             overlay0 = "#866C7D",
---             surface2 = "#705867",
---             surface1 = "#5A4551",
---             surface0 = "#44313B",
---
---             base = "#352939",
---             mantle = "#211924",
---             crust = "#1a1016",
---         },
---     },
---     custom_highlights = function(colors)
---         return {
--- TelescopeBorder = { bg = "#AE7FA7", fg = "#000000" },
--- TelescopeNormal = { bg = "#AE7FA7", fg = "#000000" },
--- TelescopeTitle = { fg = "#000000" },
--- TelescopeSelection = { fg = colors.text, bg = colors.base },
--- TelescopeSelectionCaret = { fg = colors.rose, bg = colors.rose },
--- TelescopeMatching = { fg = "#4DB6AC" },
--- FloatBorder = { bg = "#211924" },
--- FloatTitle = { bg = "#211924" }
---
---         }
---     end,
--- })
 require("kanagawa").setup({
     colors = {
         theme = {
@@ -104,8 +36,8 @@ require("kanagawa").setup({
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
             -- dark cmp menu
-            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
-            PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+            Pmenu = { fg = theme.ui.shade0, bg = "none" },
+            PmenuSel = { fg = "none", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
 
@@ -116,32 +48,31 @@ require("kanagawa").setup({
             AlphaShortcut = { fg = palette.oniViolet },
             AlphaFooter = { fg = palette.fujiGray },
 
-            CmpItemKindKeyword = { fg = palette.lightBlue },
+            -- Cmp
+            BlinkCmpMenu = { bg = "none" },
+            BlinkCmpMenuBorder = { bg = "none" },
 
-            CmpItemKindVariable = { fg = palette.oniViolet },
-            CmpItemKindConstant = { fg = palette.lotusViolet4 },
-            CmpItemKindReference = { fg = palette.oniViolet },
-            CmpItemKindCopilot = { fg = palette.dragonTeal },
-
-            CmpItemKindFunction = { fg = palette.springBlue },
-            CmpItemKindMethod = { fg = palette.crystalBlue },
-            CmpItemKindConstructor = {},
-
-            CmpItemKindClass = { fg = palette.surimiOrange },
-            CmpItemKindInterface = { fg = palette.surimiOrange },
-            CmpItemKindStruct = { fg = palette.surimiOrange },
-            CmpItemKindEvent = { fg = palette.surimiOrange },
-            CmpItemKindEnum = { fg = palette.surimiOrange },
-            CmpItemKindUnit = { fg = palette.surimiOrange },
-
-            CmpItemKindModule = { fg = palette.autumnYellow },
-
-            CmpItemKindProperty = { fg = palette.springGreen },
-            CmpItemKindField = { fg = palette.springGreen },
-            CmpItemKindTypeParameter = { fg = palette.springGreen },
-            CmpItemKindEnumMember = { fg = palette.lotusGreen },
-            CmpItemKindOperator = { fg = palette.springGreen },
-            CmpItemKindSnippet = { fg = palette.fujiGray },
+            BlinkCmpItemKindKeyword = { fg = palette.lightBlue },
+            BlinkCmpItemKindVariable = { fg = palette.oniViolet },
+            BlinkCmpItemKindConstant = { fg = palette.lotusViolet4 },
+            BlinkCmpItemKindReference = { fg = palette.oniViolet },
+            BlinkCmpItemKindCopilot = { fg = palette.dragonTeal },
+            BlinkCmpItemKindFunction = { fg = palette.springBlue },
+            BlinkCmpItemKindMethod = { fg = palette.crystalBlue },
+            BlinkCmpItemKindConstructor = {},
+            BlinkCmpItemKindClass = { fg = palette.surimiOrange },
+            BlinkCmpItemKindInterface = { fg = palette.surimiOrange },
+            BlinkCmpItemKindStruct = { fg = palette.surimiOrange },
+            BlinkCmpItemKindEvent = { fg = palette.surimiOrange },
+            BlinkCmpItemKindEnum = { fg = palette.surimiOrange },
+            BlinkCmpItemKindUnit = { fg = palette.surimiOrange },
+            BlinkCmpItemKindModule = { fg = palette.autumnYellow },
+            BlinkCmpItemKindProperty = { fg = palette.springGreen },
+            BlinkCmpItemKindField = { fg = palette.springGreen },
+            BlinkCmpItemKindTypeParameter = { fg = palette.springGreen },
+            BlinkCmpItemKindEnumMember = { fg = palette.lotusGreen },
+            BlinkCmpItemKindOperator = { fg = palette.springGreen },
+            BlinkCmpItemKindSnippet = { fg = palette.fujiGray },
         }
     end,
 })
