@@ -1,39 +1,7 @@
-local rstt = {
-    { "-", "#aaaaaa" }, -- 1: ftplugin/* sourced, but nclientserver not started yet.
-    { "S", "#757755" }, -- 2: nclientserver started, but not ready yet.
-    { "S", "#117711" }, -- 3: nclientserver is ready.
-    { "S", "#ff8833" }, -- 4: nclientserver started the TCP server
-    { "S", "#3388ff" }, -- 5: TCP server is ready
-    { "R", "#ff8833" }, -- 6: R started, but nvimcom was not loaded yet.
-    { "R", "#3388ff" }, -- 7: nvimcom is loaded.
-}
-
-local rstatus = function()
-    if not vim.g.R_Nvim_status or vim.g.R_Nvim_status == 0 then
-        -- No R file type (R, Quarto, Rmd, Rhelp) opened yet
-        return ""
-    end
-    return rstt[vim.g.R_Nvim_status][1]
-end
-
-local rsttcolor = function()
-    if not vim.g.R_Nvim_status or vim.g.R_Nvim_status == 0 then
-        -- No R file type (R, Quarto, Rmd, Rhelp) opened yet
-        return { fg = "#000000" }
-    end
-    return { fg = rstt[vim.g.R_Nvim_status][2] }
-end
-
 local progress = function()
     local cur = vim.fn.line(".")
     local total = vim.fn.line("$")
-    if cur == 1 then
-        return "Top"
-    elseif cur == total then
-        return "Bot"
-    else
-        return string.format("%2d%%%%", math.floor(cur / total * 100))
-    end
+    return string.format("%3d%%%%", math.floor(cur / total * 100))
 end
 
 local location = function()
@@ -63,8 +31,8 @@ local lsp_fun = function()
     local lsp_client = vim.lsp.get_clients({ bufnr = 0 })
     local lsps = ""
     for i, lsp in ipairs(lsp_client) do
-        if i ~= 1 or i ~= #lsp_client then lsps = lsps .. ", " end
         lsps = lsps .. lsp["name"]
+        if i ~= #lsp_client then lsps = lsps .. ", " end
     end
     return lsps
 end
