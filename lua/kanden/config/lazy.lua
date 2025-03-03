@@ -320,6 +320,13 @@ local plugins = {
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
+
+    -- jupytext
+    {
+        "goerz/jupytext.nvim",
+        version = "0.2.0",
+        opts = {}, -- see Options
+    },
 }
 
 require("lazy").setup(plugins, {})
