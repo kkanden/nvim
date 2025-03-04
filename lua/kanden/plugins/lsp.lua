@@ -84,7 +84,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local servers = {
     lua_ls = {},
     r_language_server = {},
-    basedpyright = {},
+    basedpyright = {
+        settings = {
+            basedpyright = {
+                analysis = {
+                    diagnosticSeverityOverrides = vim.json.decode(
+                        table.concat(
+                            vim.fn.readfile(
+                                vim.fn.stdpath("config")
+                                    .. "/assets/pyrightconfig.json"
+                            )
+                        )
+                    ),
+                },
+            },
+        },
+    },
     ltex = {},
     rust_analyzer = {
         filetypes = { "rust" },
