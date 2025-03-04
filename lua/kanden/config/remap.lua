@@ -71,7 +71,7 @@ map("n", "<C-g>", "<cmd>nohlsearch<CR>", { desc = "Hide search highlight" })
 
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
-map("i", "<C-a>", function()
+map({ "i", "n" }, "<C-a>", function()
     local line = vim.api.nvim_get_current_line() -- get cursor position (row, col)
     local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
