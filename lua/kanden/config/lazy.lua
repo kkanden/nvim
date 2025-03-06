@@ -297,7 +297,10 @@ local plugins = {
     -- Leap
     {
         "ggandor/leap.nvim",
-        config = function() require("leap").create_default_mappings() end,
+        config = function()
+            vim.keymap.set("n", "s", "<Plug>(leap)", {})
+            vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+        end,
     },
 
     -- tmux
