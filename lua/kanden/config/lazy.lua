@@ -330,6 +330,14 @@ local plugins = {
         version = "0.2.0",
         opts = {}, -- see Options
     },
+
+    {
+        "jmbuhr/otter.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {},
+    },
 }
 
 require("lazy").setup(plugins, {})
