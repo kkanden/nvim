@@ -28,6 +28,17 @@ require("blink.cmp").setup({
             border = "rounded",
         },
     },
+    cmdline = {
+        enabled = true,
+        completion = {
+            menu = {
+                auto_show = true,
+            },
+        },
+        keymap = {
+            ["<C-b>"] = { "select_and_accept" },
+        },
+    },
     sources = {
         default = {
             "lsp",
