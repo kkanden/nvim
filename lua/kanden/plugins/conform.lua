@@ -11,6 +11,7 @@ require("conform").setup({
         yml = { "prettier" },
         toml = { "prettier" },
         nix = { "alejandra" },
+        markdown = { "injected" },
     },
     formatters = {
         isort = {
