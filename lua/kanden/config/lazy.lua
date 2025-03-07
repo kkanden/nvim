@@ -337,6 +337,7 @@ local plugins = {
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {},
+        config = req("otter"),
     },
 }
 
