@@ -10,7 +10,7 @@ require("nvim-treesitter.configs").setup({
         "r",
         "rnoweb",
         "yaml",
-        -- "latex",
+        "latex",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
