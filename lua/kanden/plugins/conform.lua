@@ -12,6 +12,8 @@ require("conform").setup({
         toml = { "prettier" },
         nix = { "alejandra" },
         markdown = { "prettier", "injected" },
+        tex = { "tex-fmt" },
+        plaintex = { "tex-fmt" },
     },
     formatters = {
         isort = {
