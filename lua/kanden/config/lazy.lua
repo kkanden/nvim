@@ -339,6 +339,29 @@ local plugins = {
         opts = {},
         config = req("otter"),
     },
+
+    -- Markdown
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "rmd" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "echasnovski/mini.icons",
+        },
+        config = req("render-markdown"),
+    },
+
+    {
+        "iamcco/markdown-preview.nvim",
+        ft = { "markdown" },
+        cmd = {
+            "MarkdownPreviewToggle",
+            "MarkdownPreview",
+            "MarkdownPreviewStop",
+        },
+        build = "cd app && npm install",
+        config = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    },
 }
 
 require("lazy").setup(plugins, {})

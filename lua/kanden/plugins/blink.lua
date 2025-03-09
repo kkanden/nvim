@@ -47,6 +47,7 @@ require("blink.cmp").setup({
             "buffer",
             "lazydev",
             "dadbod",
+            "markdown",
         },
         providers = {
             snippets = {
@@ -70,6 +71,11 @@ require("blink.cmp").setup({
                     get_cwd = function(_) return vim.fn.getcwd() end,
                     show_hidden_files_by_default = true,
                 },
+            },
+            markdown = {
+                name = "RenderMarkdown",
+                module = "render-markdown.integ.blink",
+                fallbacks = { "lsp" },
             },
         },
     },
