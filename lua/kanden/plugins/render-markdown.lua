@@ -18,6 +18,12 @@ vim.api.nvim_create_autocmd("FileType", {
     group = augroup("markdown-toggle"),
     pattern = fts,
     callback = function()
-        map("n", "<leader>mt", "<Cmd>RenderMarkdown toggle<CR>")
+        vim.api.nvim_buf_set_keymap(
+            0,
+            "n",
+            "<leader>mt",
+            "<Cmd>RenderMarkdown toggle<CR>",
+            {}
+        )
     end,
 })
