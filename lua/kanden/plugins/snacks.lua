@@ -57,6 +57,8 @@ require("snacks").setup({
             input = {
                 keys = {
                     ["<C-b>"] = { "confirm", mode = { "n", "i" } },
+                    ["<C-k>"] = { "history_back", mode = { "n", "i" } },
+                    ["<C-j>"] = { "history_forward", mode = { "n", "i" } },
                 },
             },
         },
