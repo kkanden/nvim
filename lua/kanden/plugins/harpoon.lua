@@ -92,25 +92,25 @@ map(
 
 map(
     "n",
-    "w1",
+    "<Tab>1",
     function() harpoon:list():select(1) end,
     { desc = "Harpoon: select file 1" }
 )
 map(
     "n",
-    "w2",
+    "<Tab>2",
     function() harpoon:list():select(2) end,
     { desc = "Harpoon: select file 2" }
 )
 map(
     "n",
-    "w3",
+    "<Tab>3",
     function() harpoon:list():select(3) end,
     { desc = "Harpoon: select file 3" }
 )
 map(
     "n",
-    "w4",
+    "<Tab>4",
     function() harpoon:list():select(4) end,
     { desc = "Harpoon: select file 4" }
 )
