@@ -202,9 +202,10 @@ local plugins = {
     -- Surround
     {
         "kylechui/nvim-surround",
-        event = "InsertEnter",
+        event = "VeryLazy",
         version = "*",
         opts = {},
+        config = req("surround"),
     },
 
     -- Indent lines
