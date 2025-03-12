@@ -134,7 +134,6 @@ local plugins = {
     {
         "stevearc/conform.nvim",
         event = { "BufReadPost", "BufNewFile" },
-        opts = {},
         config = req("conform"),
     },
 
@@ -175,7 +174,7 @@ local plugins = {
         "theprimeagen/harpoon",
         lazy = false,
         branch = "harpoon2",
-        commit = "e76cb03",
+        commit = "e76cb03", -- latest doesn't really work for me, this is good enough
         dependencies = { "nvim-lua/plenary.nvim" },
         config = req("harpoon"),
     },
