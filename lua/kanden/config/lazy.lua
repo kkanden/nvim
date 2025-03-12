@@ -246,7 +246,7 @@ local plugins = {
     {
         "echasnovski/mini.ai",
         version = "*",
-        opts = {},
+        config = req("miniai"),
     },
 
     -- Move selected text
