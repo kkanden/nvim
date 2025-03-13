@@ -40,7 +40,7 @@ vim.g.netrw_sizestyle = "H"
 
 opt.swapfile = false
 opt.backup = false
-opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
+opt.undodir = vim.fn.stdpath("data") .. "/undo"
 opt.undofile = true
 
 -- diagnostics
