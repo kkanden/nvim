@@ -1,4 +1,5 @@
-require("kanagawa").setup({
+local kanagawa = require("kanagawa")
+kanagawa.setup({
     colors = {
         theme = {
             all = {
@@ -10,15 +11,11 @@ require("kanagawa").setup({
     },
     commentStyle = { italic = false },
     keywordStyle = { italic = false },
-    ---@module kanagawa
-    ---@param colors { theme: kanagawa.ThemeColors, palette: kanagawa.PaletteColors}
+    ---@type fun(colors: KanagawaColorsSpec): table<string, table>
     overrides = function(colors)
         local theme = colors.theme
         local palette = colors.palette
         return {
-            -- transparent background
-            Normal = { bg = "none" },
-
             -- restore background color for other windows
             NormalFloat = { bg = palette.sumiInk3 },
             FloatBorder = { bg = palette.sumiInk3 },
@@ -75,6 +72,16 @@ require("kanagawa").setup({
             BlinkCmpItemKindSnippet = { fg = palette.fujiGray },
         }
     end,
+    undercurl = true,
+    functionStyle = {},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = true,
+    dimInactive = false,
+    terminalColors = true,
+    background = { dark = "wave", light = "lotus" },
+    theme = "dragon",
+    compile = false,
 })
 
 vim.cmd("colorscheme kanagawa")
