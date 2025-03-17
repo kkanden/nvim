@@ -1,5 +1,9 @@
 local ls = require("luasnip")
+
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_lua").lazy_load({
+    paths = { vim.fn.stdpath("config") .. "/snippets" },
+})
 
 vim.keymap.set({ "i", "s" }, "<Tab>", function()
     if ls.expand_or_jumpable() then ls.expand_or_jump() end
