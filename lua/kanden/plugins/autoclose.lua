@@ -5,17 +5,15 @@ require("autoclose").setup({
             "TelescopePrompt",
             "snacks_picker_input",
         },
+        disable_when_touch = true,
     },
     keys = {
-        ["$"] = {
-            escape = true,
-            close = true,
-            pair = "$$",
-            enabled_filetypes = {
+        ["'"] = {
+            disabled_filetypes = {
+                "markdown",
                 "rmd",
-                "latex",
+                "gitcommit",
                 "plaintex",
-                "context",
             },
         },
     },
