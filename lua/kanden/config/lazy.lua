@@ -104,11 +104,17 @@ local plugins = {
                 "saghen/blink.cmp",
                 version = "*",
                 dependencies = {
-                    "L3MON4D3/LuaSnip",
-                    version = "v2.*",
-                    config = req("luasnip"),
-                    build = "make install_jsregexp",
-                    dependencies = { "rafamadriz/friendly-snippets" },
+                    -- community sources
+                    "Kaiser-Yang/blink-cmp-git",
+                    "disrupted/blink-cmp-conventional-commits",
+                    "mikavilpas/blink-ripgrep.nvim",
+                    {
+                        "L3MON4D3/LuaSnip",
+                        version = "v2.*",
+                        config = req("luasnip"),
+                        build = "make install_jsregexp",
+                        dependencies = { "rafamadriz/friendly-snippets" },
+                    },
                 },
             },
 

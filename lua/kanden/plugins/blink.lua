@@ -52,6 +52,9 @@ require("blink.cmp").setup({
             "lazydev",
             "dadbod",
             "markdown",
+            "git",
+            "conventional_commits",
+            "ripgrep",
         },
         providers = {
             snippets = {
@@ -123,6 +126,33 @@ require("blink.cmp").setup({
                 name = "RenderMarkdown",
                 module = "render-markdown.integ.blink",
                 fallbacks = { "lsp" },
+            },
+            git = {
+                module = "blink-cmp-git",
+                name = "git",
+                enabled = function() return vim.bo.filetype == "gitcommit" end,
+                opts = {
+                    commit = {
+                        -- insert commit message instead of sha
+                        get_insert_text = function(item)
+                            if
+                                type(item) == "table" and item.commit.message
+                            then
+                                return item.commit.message
+                            end
+                            return item:match("\n\n%s*([^\n]*)")
+                        end,
+                    },
+                },
+            },
+            conventional_commits = {
+                name = "conv commit",
+                module = "blink-cmp-conventional-commits",
+                enabled = function() return vim.bo.filetype == "gitcommit" end,
+            },
+            ripgrep = {
+                name = "rg",
+                module = "blink-ripgrep",
             },
         },
     },
