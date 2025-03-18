@@ -29,9 +29,20 @@ end
 ---@param status integer
 ---@param buf integer
 local insert_command_output = function(output, status, buf)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {}) -- clear buffer
     vim.api.nvim_buf_set_lines(buf, 0, #output, false, output)
-    if status ~= 0 then
-        vim.api.nvim_buf_add_highlight(buf, 0, "Error", 0, 0, 1000)
+    vim.api.nvim_buf_set_lines(
+        buf,
+        -1,
+        -1,
+        false,
+        { ("Process exited with status code %d."):format(status) }
+    )
+    if status ~= 0 then -- color the output red on error
+        for i = 1, #output do
+            -- stylua: ignore
+            vim.api.nvim_buf_add_highlight(buf, 0, "Error", i - 1, 0, #output[i])
+        end
     end
 end
 
@@ -80,13 +91,6 @@ local run_python = function()
     local stderr_tbl = stderr ~= "" and vim.split(stderr, "\n") or {}
     local output = vim.tbl_extend("keep", stdout_tbl, stderr_tbl)
     insert_command_output(output, status, state.output.buf)
-    vim.api.nvim_buf_set_lines(
-        state.output.buf,
-        -1,
-        -1,
-        false,
-        { ("Process exited with status code %d."):format(status) }
-    )
 end
 
 vim.api.nvim_create_user_command("RunPython", run_python, {})
