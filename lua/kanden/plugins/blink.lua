@@ -1,4 +1,42 @@
-local trigger_text = ";"
+local trigger = function(trigger_text)
+    return function()
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
+        return before_cursor:match(trigger_text) ~= nil
+    end
+end
+
+local transform_trigger = function(trigger_text)
+    return function(_, items)
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
+        local trigger_pos =
+            before_cursor:find(trigger_text .. "[^" .. trigger_text .. "]*$")
+        if trigger_pos then
+            for _, item in ipairs(items) do
+                if not item.trigger_text_modified then
+                    ---@diagnostic disable-next-line: inject-field
+                    item.trigger_text_modified = true
+                    item.textEdit = {
+                        newText = item.insertText or item.label,
+                        range = {
+                            start = {
+                                line = vim.fn.line(".") - 1,
+                                character = trigger_pos - 1,
+                            },
+                            ["end"] = {
+                                line = vim.fn.line(".") - 1,
+                                character = col,
+                            },
+                        },
+                    }
+                end
+            end
+        end
+        return items
+    end
+end
+
 require("blink.cmp").setup({
     keymap = {
         ["<C-b>"] = { "select_and_accept" },
@@ -63,48 +101,13 @@ require("blink.cmp").setup({
                 score_offset = 1000,
                 -- from linkarzu@github
                 -- show snippets after typing `trigger_text`
-                should_show_items = function()
-                    local col = vim.api.nvim_win_get_cursor(0)[2]
-                    local before_cursor =
-                        vim.api.nvim_get_current_line():sub(1, col)
-                    -- NOTE: remember that `trigger_text` is modified at the top of the file
-                    return before_cursor:match(trigger_text .. "%w*$") ~= nil
-                end,
+                should_show_items = trigger(";"),
                 -- After accepting the completion, delete the trigger_text characters
                 -- from the final inserted text
                 -- Modified transform_items function based on suggestion by `synic` so
                 -- that the luasnip source is not reloaded after each transformation
                 -- https://github.com/linkarzu/dotfiles-latest/discussions/7#discussion-7849902
-                transform_items = function(_, items)
-                    local col = vim.api.nvim_win_get_cursor(0)[2]
-                    local before_cursor =
-                        vim.api.nvim_get_current_line():sub(1, col)
-                    local trigger_pos = before_cursor:find(
-                        trigger_text .. "[^" .. trigger_text .. "]*$"
-                    )
-                    if trigger_pos then
-                        for _, item in ipairs(items) do
-                            if not item.trigger_text_modified then
-                                ---@diagnostic disable-next-line: inject-field
-                                item.trigger_text_modified = true
-                                item.textEdit = {
-                                    newText = item.insertText or item.label,
-                                    range = {
-                                        start = {
-                                            line = vim.fn.line(".") - 1,
-                                            character = trigger_pos - 1,
-                                        },
-                                        ["end"] = {
-                                            line = vim.fn.line(".") - 1,
-                                            character = col,
-                                        },
-                                    },
-                                }
-                            end
-                        end
-                    end
-                    return items
-                end,
+                transform_items = transform_trigger(";"),
             },
             lazydev = {
                 name = "LazyDev",
@@ -148,6 +151,8 @@ require("blink.cmp").setup({
             conventional_commits = {
                 name = "conv commit",
                 module = "blink-cmp-conventional-commits",
+                should_show_items = trigger("-"),
+                transform_items = transform_trigger("-"),
                 enabled = function() return vim.bo.filetype == "gitcommit" end,
                 score_offset = function()
                     return vim.bo.filetype == "gitcommit" and 1000 or 0
