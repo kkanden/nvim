@@ -110,6 +110,7 @@ local plugins = {
                     "mikavilpas/blink-ripgrep.nvim",
                     {
                         "L3MON4D3/LuaSnip",
+                        lazy = true,
                         version = "v2.*",
                         config = req("luasnip"),
                         build = "make install_jsregexp",
@@ -348,6 +349,7 @@ local plugins = {
 
     {
         "jmbuhr/otter.nvim",
+        ft = { "markdown", "rmd", "quarto" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -360,7 +362,7 @@ local plugins = {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "rmd" },
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+            -- "nvim-treesitter/nvim-treesitter",
             "echasnovski/mini.icons",
         },
         config = req("render-markdown"),
