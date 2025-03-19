@@ -149,10 +149,14 @@ require("blink.cmp").setup({
                 name = "conv commit",
                 module = "blink-cmp-conventional-commits",
                 enabled = function() return vim.bo.filetype == "gitcommit" end,
+                score_offset = function()
+                    return vim.bo.filetype == "gitcommit" and 1000 or 0
+                end,
             },
             ripgrep = {
                 name = "rg",
                 module = "blink-ripgrep",
+                score_offset = -10000,
             },
         },
     },
