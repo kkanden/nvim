@@ -1,5 +1,6 @@
 local kanagawa = require("kanagawa")
 kanagawa.setup({
+    compile = true,
     colors = {
         theme = {
             all = {
@@ -81,7 +82,6 @@ kanagawa.setup({
     terminalColors = true,
     background = { dark = "wave", light = "lotus" },
     theme = "dragon",
-    compile = false,
 })
 
 vim.cmd("colorscheme kanagawa")
