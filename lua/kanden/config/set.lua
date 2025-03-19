@@ -64,3 +64,6 @@ if vim.fn.has("wsl") == 1 then
         cache_enabled = 0,
     }
 end
+
+-- go to previous/next line with h,l when cursor reaches end/beginning of line
+opt.whichwrap:append("hl")
