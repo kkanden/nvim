@@ -33,6 +33,7 @@ require("r").setup({
             )
         end,
     },
+    auto_quit = false,
     auto_start = "on startup",
     R_args = { "--quiet", "--no-save" },
     nvimpager = "split_h",
