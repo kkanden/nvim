@@ -379,6 +379,12 @@ local plugins = {
         build = "cd app && npm install",
         config = function() vim.g.mkdp_filetypes = { "markdown" } end,
     },
+
+    -- Keep cursor centered
+    {
+        "arnamak/stay-centered.nvim",
+        config = req("stay-centered"),
+    },
 }
 
 require("lazy").setup(plugins, {})
