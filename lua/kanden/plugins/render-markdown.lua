@@ -3,6 +3,8 @@ local augroup = require("kanden.lib").augroup
 
 local fts = { "markdown", "rmd" }
 require("render-markdown").setup({
+    enabled = false, -- don't autostart
+    render_modes = true, -- render in all modes, inc. insert, reduces dizziness
     file_types = fts,
     completions = {
         lsp = {
