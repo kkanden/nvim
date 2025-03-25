@@ -310,13 +310,20 @@ local plugins = {
         },
     },
 
-    -- Leap
     {
-        "ggandor/leap.nvim",
-        config = function()
-            vim.keymap.set("n", "s", "<Plug>(leap)", {})
-            vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-        end,
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {
+            jump = {
+                autojump = true,
+            },
+        },
+        -- stylua: ignore
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "remote flash" },
+        },
     },
 
     -- tmux
