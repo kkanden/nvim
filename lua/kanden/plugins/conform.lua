@@ -23,6 +23,10 @@ require("conform").setup({
                 "-",
             },
         },
+        black = {
+            command = "black",
+            append_args = { "--preview" },
+        },
     },
     format_after_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
