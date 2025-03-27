@@ -377,7 +377,7 @@ local plugins = {
 
     {
         "iamcco/markdown-preview.nvim",
-        ft = { "markdown" },
+        ft = { "rmd", "markdown" },
         cmd = {
             "MarkdownPreviewToggle",
             "MarkdownPreview",
