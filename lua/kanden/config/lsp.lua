@@ -28,38 +28,43 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        -- map("<leader>D", picker.lsp_type_definitions, "Type [D]efinition")
+        map("gD", picker.lsp_type_definitions, "Type [D]efinition")
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        -- map("<leader>ds", picker.lsp_symbols, "[D]ocument [S]ymbols")
+        map("gds", picker.lsp_symbols, "[D]ocument [S]ymbols")
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        -- map("<leader>ws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+        map("gws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
 
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
-        map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+        map("gD", picker.diagnostics_buffer, "Diagnostics")
 
         -- Move to next/prev diagnostic
-        map("g]", function()
-            local min_severity = vim.bo.filetype == "r"
-                    and vim.diagnostic.severity.ERROR
-                or vim.diagnostic.severity.WARN
-            vim.diagnostic.goto_next({
-                severity = min_severity,
-            })
-        end, "Go to next diagnostic")
+        local min_severity = vim.bo.filetype == "r"
+                and vim.diagnostic.severity.ERROR
+            or vim.diagnostic.severity.WARN
+        map(
+            "g]",
+            function()
+                vim.diagnostic.jump({
+                    severity = min_severity,
+                    count = 1,
+                })
+            end,
+            "Go to next diagnostic"
+        )
 
-        map("g[", function()
-            local min_severity = vim.bo.filetype == "r"
-                    and vim.diagnostic.severity.ERROR
-                or vim.diagnostic.severity.WARN
-            vim.diagnostic.goto_prev({
-                severity = min_severity,
-            })
-        end, "Go to previous diagnostic")
+        map(
+            "g[",
+            function()
+                vim.diagnostic.jump({
+                    severity = min_severity,
+                    count = -1,
+                })
+            end,
+            "Go to previous diagnostic"
+        )
     end,
 })
 
@@ -67,9 +72,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
     if type ~= "file" then goto continue end
     name = vim.fs.basename(name):gsub(".lua", "")
-    if (name == "nil_ls" and vim.fn.has("win32") == 1) or name == "init" then
-        goto continue
-    end -- skip nil if on windows
     vim.lsp.enable(name)
     ::continue::
 end
