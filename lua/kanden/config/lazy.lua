@@ -245,9 +245,9 @@ local plugins = {
     },
     -- Smooth scrolling
     {
-        "karb94/neoscroll.nvim",
-        event = "BufReadPost",
-        config = req("neoscroll"),
+        "declancm/cinnamon.nvim",
+        version = "*", -- use latest release
+        config = req("cinnamon"),
     },
 
     -- Extra a,i motions

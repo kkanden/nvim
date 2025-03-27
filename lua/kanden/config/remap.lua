@@ -6,14 +6,6 @@ vim.g.maplocalleader = "\\"
 -- stick cursor at beginning of line when joining lines
 map("n", "J", "mzJ`z", { desc = "Stick cursor when joining lines" })
 
--- keep cursor centered when going up and down
-map("n", "<C-d>", "<C-d>zz", { desc = "Centered cursor" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Centered cursor" })
-
---keep cursor centered when term searching
-map("n", "n", "nzzzv", { desc = "Centered cursor while searching" })
-map("n", "N", "Nzzzv", { desc = "Centered cursor while searching" })
-
 map("n", "<leader>zig", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 
 -- copy after delete preserves the copied term
