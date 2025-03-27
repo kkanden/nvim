@@ -79,62 +79,62 @@ local plugins = {
 
     -- LSP
     {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPost", "BufNewFile" },
-        dependencies = {
-            { "williamboman/mason.nvim", config = true },
+        "williamboman/mason.nvim",
+        opts = {
+            PATH = "append",
+        },
+    },
 
-            "williamboman/mason-lspconfig.nvim",
+    {
 
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = req("mason"),
+    },
 
-            -- Useful status updates for LSP.
-            {
-                "j-hui/fidget.nvim",
-                opts = {
-                    notification = {
-                        window = {
-                            winblend = 0,
-                        },
-                    },
-                },
-            },
-
-            {
-                "saghen/blink.cmp",
-                version = "*",
-                dependencies = {
-                    -- community sources
-                    "Kaiser-Yang/blink-cmp-git",
-                    "disrupted/blink-cmp-conventional-commits",
-                    "mikavilpas/blink-ripgrep.nvim",
-                    {
-                        "L3MON4D3/LuaSnip",
-                        lazy = true,
-                        version = "v2.*",
-                        config = req("luasnip"),
-                        build = "make install_jsregexp",
-                        dependencies = { "rafamadriz/friendly-snippets" },
-                    },
-                },
-            },
-
-            {
-                "folke/lazydev.nvim",
-                ft = "lua", -- only load on lua files
-                opts = {
-                    library = {
-                        -- See the configuration section for more details
-                        -- Load luvit types when the `vim.uv` word is found
-                        {
-                            path = "${3rd}/luv/library",
-                            words = { "vim%.uv" },
-                        },
-                    },
+    -- Useful status updates for LSP.
+    {
+        "j-hui/fidget.nvim",
+        opts = {
+            notification = {
+                window = {
+                    winblend = 0,
                 },
             },
         },
-        config = req("lsp"),
+    },
+
+    {
+        "saghen/blink.cmp",
+        version = "*",
+        dependencies = {
+            -- community sources
+            "Kaiser-Yang/blink-cmp-git",
+            "disrupted/blink-cmp-conventional-commits",
+            "mikavilpas/blink-ripgrep.nvim",
+            {
+                "L3MON4D3/LuaSnip",
+                lazy = true,
+                version = "v2.*",
+                config = req("luasnip"),
+                build = "make install_jsregexp",
+                dependencies = { "rafamadriz/friendly-snippets" },
+            },
+        },
+    },
+
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                {
+                    path = "${3rd}/luv/library",
+                    words = { "vim%.uv" },
+                },
+            },
+        },
     },
 
     -- Formatting tools

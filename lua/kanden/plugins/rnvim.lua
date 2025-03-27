@@ -36,7 +36,7 @@ require("r").setup({
     auto_quit = false,
     auto_start = "on startup",
     R_args = { "--quiet", "--no-save" },
-    R_app = "radian",
+    -- R_app = "radian",
     nvimpager = "split_h",
     min_editor_width = 0,
     rconsole_width = math.floor(vim.o.columns * 0.3),
