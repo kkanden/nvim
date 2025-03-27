@@ -46,6 +46,7 @@ opt.undofile = true
 -- diagnostics
 vim.diagnostic.config({
     severity_sort = true,
+    virtual_text = true,
 })
 
 -- WSL clipboard

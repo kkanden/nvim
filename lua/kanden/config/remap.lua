@@ -92,3 +92,13 @@ map(
     function() vim.diagnostic.open_float(nil, { focusable = true }) end,
     { desc = "Show diagnostic float" }
 )
+
+-- toggle diagnostic virtual lines/text
+map("n", "gK", function()
+    local new_text = not vim.diagnostic.config().virtual_text
+    local new_lines = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({
+        virtual_text = new_text,
+        virtual_lines = new_lines,
+    })
+end, { desc = "Toggle virtual text/lines" })
