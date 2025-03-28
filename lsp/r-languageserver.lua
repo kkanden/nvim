@@ -1,5 +1,5 @@
 return {
-    cmd = { "air", "language-server" },
+    cmd = { "r-languageserver" },
     filetypes = { "r", "rmd" },
     root_markers = { ".git/" },
 }
