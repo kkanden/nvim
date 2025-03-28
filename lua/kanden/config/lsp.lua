@@ -9,42 +9,42 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-        local map = function(keys, func, desc, mode)
+        local map_lsp = function(keys, func, desc, mode)
             mode = mode or "n"
             map(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
         end
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
-        map("gd", picker.lsp_definitions, "[G]oto [D]efinition")
+        map_lsp("gd", picker.lsp_definitions, "[G]oto [D]efinition")
 
         -- Find references for the word under your cursor.
-        map("grr", picker.lsp_references, "[G]oto [R]eferences")
+        map_lsp("grr", picker.lsp_references, "[G]oto [R]eferences")
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
-        map("gri", picker.lsp_implementations, "[G]oto [I]mplementation")
+        map_lsp("gri", picker.lsp_implementations, "[G]oto [I]mplementation")
 
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
-        map("gD", picker.lsp_type_definitions, "Type [D]efinition")
+        map_lsp("gD", picker.lsp_type_definitions, "Type [D]efinition")
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map("gds", picker.lsp_symbols, "[D]ocument [S]ymbols")
+        map_lsp("gds", picker.lsp_symbols, "[D]ocument [S]ymbols")
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map("gws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+        map_lsp("gws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
 
-        map("gD", picker.diagnostics_buffer, "Diagnostics")
+        map_lsp("gD", picker.diagnostics_buffer, "Diagnostics")
 
         -- Move to next/prev diagnostic
         local min_severity = vim.bo.filetype == "r"
                 and vim.diagnostic.severity.ERROR
             or vim.diagnostic.severity.WARN
-        map(
+        map_lsp(
             "g]",
             function()
                 vim.diagnostic.jump({
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "Go to next diagnostic"
         )
 
-        map(
+        map_lsp(
             "g[",
             function()
                 vim.diagnostic.jump({
@@ -69,9 +69,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Enable LSP's
-for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
-    if type ~= "file" then goto continue end
-    name = vim.fs.basename(name):gsub(".lua", "")
-    vim.lsp.enable(name)
-    ::continue::
+local load_lsps = function()
+    for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
+        if type ~= "file" then goto continue end
+        name = vim.fs.basename(name):gsub(".lua", "")
+        vim.lsp.enable(name)
+        ::continue::
+    end
 end
+
+load_lsps()
+
+vim.api.nvim_create_user_command("LspRestart", function()
+    vim.lsp.stop_client(vim.lsp.get_clients())
+    vim.wait(500)
+    load_lsps()
+    vim.cmd("wa")
+    vim.cmd("edit")
+    vim.api.nvim_feedkeys("zz", "n", false)
+end, {})
+
+map("n", "<leader>zig", "<Cmd>LspRestart<CR>", { desc = "Restart LSP" })

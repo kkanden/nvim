@@ -6,8 +6,6 @@ vim.g.maplocalleader = "\\"
 -- stick cursor at beginning of line when joining lines
 map("n", "J", "mzJ`z", { desc = "Stick cursor when joining lines" })
 
-map("n", "<leader>zig", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
-
 -- copy after delete preserves the copied term
 map(
     "x",
