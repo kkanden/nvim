@@ -10,7 +10,7 @@ require("conform").setup({
         yaml = { "prettier" },
         yml = { "prettier" },
         toml = { "prettier" },
-        nix = { "alejandra" },
+        nix = { "nixfmt" },
         markdown = { "prettier", "injected" },
         rmd = { "prettier" },
         tex = { "tex-fmt" },
