@@ -68,6 +68,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+-- Global LSP configuration
+vim.lsp.config("*", {
+    root_markers = { ".git" },
+})
+
 -- Enable LSP's
 local load_lsps = function()
     for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
