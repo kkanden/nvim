@@ -12,7 +12,7 @@ require("conform").setup({
         toml = { "prettier" },
         nix = { "nixfmt" },
         markdown = { "prettier", "injected" },
-        rmd = { "prettier" },
+        rmd = { "prettier", "injected" },
         tex = { "tex-fmt" },
         plaintex = { "tex-fmt" },
     },
