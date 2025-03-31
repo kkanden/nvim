@@ -1,5 +1,5 @@
 return {
-    cmd = { "r-languageserver" },
+    cmd = { "R", "--slave", "-e", "languageserver::run()" },
     filetypes = { "r", "rmd" },
     root_markers = { ".Rprofile" },
 }
