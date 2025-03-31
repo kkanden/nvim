@@ -383,8 +383,11 @@ local plugins = {
             "MarkdownPreview",
             "MarkdownPreviewStop",
         },
-        build = "cd app && npm install",
-        config = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_command_for_global = 1
+            vim.g.mkdp_filetypes = { "markdown", "rmd" }
+        end,
     },
 
     -- Keep cursor centered
