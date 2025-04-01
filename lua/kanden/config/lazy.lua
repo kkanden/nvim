@@ -86,40 +86,8 @@ local plugins = {
     },
 
     {
-
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         config = req("mason"),
-    },
-
-    -- Useful status updates for LSP.
-    {
-        "j-hui/fidget.nvim",
-        opts = {
-            notification = {
-                window = {
-                    winblend = 0,
-                },
-            },
-        },
-    },
-
-    {
-        "saghen/blink.cmp",
-        version = "*",
-        dependencies = {
-            -- community sources
-            "Kaiser-Yang/blink-cmp-git",
-            "disrupted/blink-cmp-conventional-commits",
-            "mikavilpas/blink-ripgrep.nvim",
-            {
-                "L3MON4D3/LuaSnip",
-                lazy = true,
-                version = "v2.*",
-                config = req("luasnip"),
-                build = "make install_jsregexp",
-                dependencies = { "rafamadriz/friendly-snippets" },
-            },
-        },
     },
 
     {
@@ -137,21 +105,44 @@ local plugins = {
         },
     },
 
-    -- Formatting tools
+    -- Useful status updates for LSP.
     {
-        "stevearc/conform.nvim",
-        event = { "BufReadPost", "BufNewFile" },
-        config = req("conform"),
+        "j-hui/fidget.nvim",
+        opts = {
+            notification = {
+                window = {
+                    winblend = 0,
+                },
+            },
+        },
     },
 
     -- Autocompletion
     {
         "saghen/blink.cmp",
-        lazy = false,
-        -- use a release tag to download pre-built binaries
-        version = "v0.*",
-        opts_extend = { "sources.default" },
+        version = "*",
+        dependencies = {
+            -- community sources
+            "Kaiser-Yang/blink-cmp-git",
+            "disrupted/blink-cmp-conventional-commits",
+            "mikavilpas/blink-ripgrep.nvim",
+            {
+                "L3MON4D3/LuaSnip",
+                lazy = true,
+                version = "v2.*",
+                config = req("luasnip"),
+                build = "make install_jsregexp",
+                dependencies = { "rafamadriz/friendly-snippets" },
+            },
+        },
         config = req("blink"),
+    },
+
+    -- Formatting tools
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        config = req("conform"),
     },
 
     -- Rust
