@@ -1,3 +1,5 @@
+-- from linkarzu@github
+-- show source after typing `trigger_text`
 local trigger = function(trigger_text)
     return function()
         local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -6,6 +8,11 @@ local trigger = function(trigger_text)
     end
 end
 
+-- After accepting the completion, delete the trigger_text characters
+-- from the final inserted text
+-- Modified transform_items function based on suggestion by `synic` so
+-- that the luasnip source is not reloaded after each transformation
+-- https://github.com/linkarzu/dotfiles-latest/discussions/7#discussion-7849902
 local transform_trigger = function(trigger_text)
     return function(_, items)
         local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -90,23 +97,24 @@ require("blink.cmp").setup({
             "lazydev",
             "dadbod",
             "markdown",
-            -- "git",
             "conventional_commits",
             "ripgrep",
         },
         providers = {
+            lsp = {
+                name = "LSP",
+                module = "blink.cmp.sources.lsp",
+                score_offset = 10e3 - 1,
+            },
+            buffer = {
+                module = "blink.cmp.sources.buffer",
+                score_offset = -10e3,
+            },
             snippets = {
                 name = "snippets",
                 module = "blink.cmp.sources.snippets",
-                score_offset = 1000,
-                -- from linkarzu@github
-                -- show snippets after typing `trigger_text`
+                score_offset = 10e3,
                 should_show_items = trigger(";"),
-                -- After accepting the completion, delete the trigger_text characters
-                -- from the final inserted text
-                -- Modified transform_items function based on suggestion by `synic` so
-                -- that the luasnip source is not reloaded after each transformation
-                -- https://github.com/linkarzu/dotfiles-latest/discussions/7#discussion-7849902
                 transform_items = transform_trigger(";"),
             },
             lazydev = {
@@ -130,24 +138,6 @@ require("blink.cmp").setup({
                 module = "render-markdown.integ.blink",
                 fallbacks = { "lsp" },
             },
-            -- git = {
-            --     module = "blink-cmp-git",
-            --     name = "git",
-            --     enabled = function() return vim.bo.filetype == "gitcommit" end,
-            --     opts = {
-            --         commit = {
-            --             -- insert commit message instead of sha
-            --             get_insert_text = function(item)
-            --                 if
-            --                     type(item) == "table" and item.commit.message
-            --                 then
-            --                     return item.commit.message
-            --                 end
-            --                 return item:match("\n\n%s*([^\n]*)")
-            --             end,
-            --         },
-            --     },
-            -- },
             conventional_commits = {
                 name = "conv commit",
                 module = "blink-cmp-conventional-commits",
@@ -161,7 +151,8 @@ require("blink.cmp").setup({
             ripgrep = {
                 name = "rg",
                 module = "blink-ripgrep",
-                score_offset = -10000,
+                fallbacks = { "buffer" },
+                score_offset = -10e4,
             },
         },
     },
