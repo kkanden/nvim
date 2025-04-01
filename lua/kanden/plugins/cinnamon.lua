@@ -6,7 +6,7 @@ cinnamon.setup({
     },
     options = {
         max_delta = {
-            time = 250,
+            time = 100,
         },
     },
 })

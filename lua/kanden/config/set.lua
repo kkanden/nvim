@@ -25,7 +25,9 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
-opt.scrolloff = 8
+-- keep cursor centered as much as possible
+opt.scrolloff = 999
+
 opt.signcolumn = "auto"
 opt.isfname:append("@-@")
 

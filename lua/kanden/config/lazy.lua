@@ -380,12 +380,6 @@ local plugins = {
             vim.g.mkdp_filetypes = { "markdown", "rmd" }
         end,
     },
-
-    -- Keep cursor centered
-    {
-        "arnamak/stay-centered.nvim",
-        config = req("stay-centered"),
-    },
 }
 
 require("lazy").setup(plugins, {})

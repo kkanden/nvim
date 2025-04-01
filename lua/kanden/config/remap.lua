@@ -6,6 +6,18 @@ vim.g.maplocalleader = "\\"
 -- stick cursor at beginning of line when joining lines
 map("n", "J", "mzJ`z", { desc = "Stick cursor when joining lines" })
 
+-- stay centered
+local keys = {
+    "<C-d>",
+    "<C-u>",
+    "n",
+    "N",
+}
+
+for _, key in ipairs(keys) do
+    map("n", key, key .. "zzzv", {})
+end
+
 -- copy after delete preserves the copied term
 map(
     "x",
