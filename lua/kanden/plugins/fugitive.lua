@@ -1,3 +1,17 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-vim.keymap.set("n", "<leader>gp", ":Git pull<CR>")
-vim.keymap.set("n", "<leader>gd", ":Git diff<CR>")
+return {
+    "tpope/vim-fugitive",
+    keys = {
+        {
+            "<leader>gs",
+            vim.cmd.Git,
+        },
+        {
+            "<leader>gp",
+            ":Git pull<CR>",
+        },
+        {
+            "<leader>gd",
+            ":Git diff<CR>",
+        },
+    },
+}

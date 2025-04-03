@@ -1,8 +1,13 @@
-require("ibl").setup({
-    indent = {
-        char = "▏",
+return {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPost",
+    main = "ibl",
+    opts = {
+        indent = {
+            char = "▏",
+        },
+        scope = {
+            enabled = false,
+        },
     },
-    scope = {
-        enabled = false,
-    },
-})
+}

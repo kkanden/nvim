@@ -95,8 +95,14 @@ local statusline = function()
     return statusline_string
 end
 
-require("mini.statusline").setup({
-    content = {
-        active = statusline,
+return {
+    {
+        "echasnovski/mini.statusline",
+        version = "*",
+        opts = {
+            content = {
+                active = statusline,
+            },
+        },
     },
-})
+}

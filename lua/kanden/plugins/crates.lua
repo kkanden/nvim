@@ -1,16 +1,22 @@
-require("crates").setup({
-    completion = {
-        cmp = {
-            enabled = true,
+return {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    tag = "stable",
+    opts = {
+
+        completion = {
+            cmp = {
+                enabled = true,
+            },
+            crates = {
+                enabled = true,
+            },
         },
-        crates = {
+        lsp = {
             enabled = true,
+            actions = true,
+            completion = true,
+            hover = true,
         },
     },
-    lsp = {
-        enabled = true,
-        actions = true,
-        completion = true,
-        hover = true,
-    },
-})
+}
