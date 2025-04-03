@@ -1,18 +1,6 @@
 local augroup = require("kanden.lib").augroup
 local map = require("kanden.lib").map
-local merge_table = require("kanden.lib").merge_tables
-
----Run OS command
----@param cmd string[]
----@param opts? any
----@return string?
----@return integer
----@return string?
-local get_os_command_output = function(cmd, opts)
-    opts = opts or {}
-    local obj = vim.system(cmd, opts):wait()
-    return obj.stdout, obj.code, obj.stderr
-end
+local system_output = require("kanden.lib").system_output
 
 ---Returns terminal command output `stdout, status, stderr`
 ---@param filename string
@@ -20,7 +8,7 @@ end
 ---@return integer
 ---@return string?
 local get_python_output = function(filename)
-    local stdout, status, stderr = get_os_command_output({ "python", filename })
+    local stdout, status, stderr = system_output({ "python", filename })
     return stdout, status, stderr
 end
 
@@ -99,7 +87,7 @@ vim.api.nvim_create_autocmd("FileType", {
     group = augroup("python_run"),
     pattern = { "python" },
     callback = function()
-        vim.keymap.set("n", "<localleader><F5>", function()
+        map("n", "<localleader><F5>", function()
             vim.cmd("w")
             run_python()
             vim.cmd("wincmd t")

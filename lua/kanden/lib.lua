@@ -16,19 +16,16 @@ M.map = function(mode, key, command, opts)
     vim.keymap.set(mode, key, command, opts)
 end
 
----Merge two tables, similar to string concatenation
----@param t1 table
----@param t2 table
----@return table
-M.merge_tables = function(t1, t2)
-    local result = {}
-    for k, v in pairs(t1) do
-        result[k] = v
-    end
-    for k, v in pairs(t2) do
-        result[k] = v
-    end
-    return result
+---Run OS command
+---@param cmd string[]
+---@param opts? any
+---@return string?
+---@return integer
+---@return string?
+M.system_output = function(cmd, opts)
+    opts = opts or {}
+    local obj = vim.system(cmd, opts):wait()
+    return obj.stdout, obj.code, obj.stderr
 end
 
 return M

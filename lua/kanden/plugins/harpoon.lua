@@ -1,28 +1,15 @@
-local job = require("plenary.job")
-
-local function get_os_command_output(cmd, cwd)
-    if type(cmd) ~= "table" then return {} end
-    local command = table.remove(cmd, 1)
-    local stderr = {}
-    local stdout, ret = job:new({
-        command = command,
-        args = cmd,
-        cwd = cwd,
-        on_stderr = function(_, data) table.insert(stderr, data) end,
-    }):sync()
-    return stdout, ret, stderr
-end
+local system_output = require("kanden.lib").system_output
 
 local function git_branch_marks()
-    local branch = get_os_command_output({
+    local stdout, code, stderr = system_output({
         "git",
         "rev-parse",
         "--abbrev-ref",
         "HEAD",
-    })[1]
+    })
 
-    if branch then
-        return vim.fn.getcwd() .. "-" .. branch
+    if code ~= 1 then
+        return vim.fn.getcwd() .. "-" .. stdout
     else
         return vim.fn.getcwd()
     end
