@@ -44,7 +44,6 @@ local transform_trigger = function(trigger_text)
     end
 end
 
-
 return {
     "saghen/blink.cmp",
     version = "*",
@@ -68,30 +67,20 @@ return {
                 local ls = require("luasnip")
                 local map = require("kanden.lib").map
 
-                map(
-                    { "i", "s" },
-                    "<Tab>",
-                    function()
-                        if ls.expand_or_jumpable() then ls.expand_or_jump() end
-                    end,
-                    {silent = true}
-                )
+                map({ "i", "s" }, "<Tab>", function()
+                    if ls.expand_or_jumpable() then ls.expand_or_jump() end
+                end, { silent = true })
 
                 map(
                     { "i", "s" },
                     "<S-Tab>",
                     function() ls.jump(-1) end,
-                    {silent = true}
+                    { silent = true }
                 )
 
-                map(
-                    { "i", "s" },
-                    "<C-s>",
-                    function()
-                        if ls.choice_active() then ls.change_choice(1) end
-                    end,
-                    {silent = true}
-                )
+                map({ "i", "s" }, "<C-s>", function()
+                    if ls.choice_active() then ls.change_choice(1) end
+                end, { silent = true })
             end,
         },
     },

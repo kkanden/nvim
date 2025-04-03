@@ -47,9 +47,7 @@ return {
         },
         {
             "<leader>pb",
-            function()
-            Snacks.picker.buffers()
-        end,
+            function() Snacks.picker.buffers() end,
             desc = "Snacks picker: buffers",
         },
         {
@@ -63,23 +61,17 @@ return {
         },
         {
             "<leader>/",
-            function()
-                Snacks.picker.lines()
-            end,
+            function() Snacks.picker.lines() end,
             desc = "[/] Fuzzily search in current buffer",
         },
         {
             "<leader>pk",
-            function()
-                Snacks.picker.keymaps()
-            end,
+            function() Snacks.picker.keymaps() end,
             desc = "Snacks picker: browser keymaps",
         },
         {
             "<leader>ph",
-            function()
-            Snacks.picker.help()
-        end,
+            function() Snacks.picker.help() end,
             desc = "Snacks picker: browser help",
         },
     },

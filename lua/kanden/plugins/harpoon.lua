@@ -42,80 +42,80 @@ return {
     commit = "e76cb03", -- latest doesn't really work for me, this is good enough
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
+        settings = {
+            save_on_toggle = true,
+            key = git_branch_marks,
+        },
+        default = {
+            ---@param config HarpoonPartialConfigItem
+            ---@param name? any
+            ---@return HarpoonListItem
+            create_list_item = function(config, name)
+                local file_name =
+                    vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+                name = vim.fn.fnamemodify(file_name, ":.")
 
-            settings = {
-                save_on_toggle = true,
-                key = git_branch_marks,
-            },
-            default = {
-                ---@param config HarpoonPartialConfigItem
-                ---@param name? any
-                ---@return HarpoonListItem
-                create_list_item = function(config, name)
-                    local file_name = vim.api.nvim_buf_get_name(
-                        vim.api.nvim_get_current_buf()
-                    )
-                    name = vim.fn.fnamemodify(file_name, ":.")
+                local bufnr = vim.fn.bufnr(name, false)
 
-                    local bufnr = vim.fn.bufnr(name, false)
+                local pos = { 1, 0 }
+                if bufnr ~= -1 then pos = vim.api.nvim_win_get_cursor(0) end
 
-                    local pos = { 1, 0 }
-                    if bufnr ~= -1 then pos = vim.api.nvim_win_get_cursor(0) end
-
-                    return {
-                        value = name,
-                        context = {
-                            row = pos[1],
-                            col = pos[2],
-                        },
-                    }
-                end,
-            },
+                return {
+                    value = name,
+                    context = {
+                        row = pos[1],
+                        col = pos[2],
+                    },
+                }
+            end,
+        },
     },
     keys = {
         {
             "<leader>a",
             function() require("harpoon"):list():add() end,
-            desc = "Harpoon: add file"
+            desc = "Harpoon: add file",
         },
 
         {
             "<C-e>",
             function()
-                require("harpoon").ui:toggle_quick_menu(require("harpoon"):list(), toggle_opts)
+                require("harpoon").ui:toggle_quick_menu(
+                    require("harpoon"):list(),
+                    toggle_opts
+                )
             end,
-            desc = "Harpoon: toggle window"
+            desc = "Harpoon: toggle window",
         },
 
         {
             "<C-c>",
             function() require("harpoon").ui:close_menu() end,
-            desc = "Harpoon: close window"
+            desc = "Harpoon: close window",
         },
 
         {
             "<Tab>1",
             function() require("harpoon"):list():select(1) end,
-            desc = "Harpoon: select file 1"
+            desc = "Harpoon: select file 1",
         },
 
         {
             "<Tab>2",
             function() require("harpoon"):list():select(2) end,
-            desc = "Harpoon: select file 2"
+            desc = "Harpoon: select file 2",
         },
 
         {
             "<Tab>3",
             function() require("harpoon"):list():select(3) end,
-            desc = "Harpoon: select file 3"
+            desc = "Harpoon: select file 3",
         },
 
         {
             "<Tab>4",
             function() require("harpoon"):list():select(4) end,
-            { desc = "Harpoon: select file 4" }
-        }
-
-    }
+            { desc = "Harpoon: select file 4" },
+        },
+    },
 }
