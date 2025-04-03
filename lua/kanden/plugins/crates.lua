@@ -3,7 +3,6 @@ return {
     event = { "BufRead Cargo.toml" },
     tag = "stable",
     opts = {
-
         completion = {
             cmp = {
                 enabled = true,

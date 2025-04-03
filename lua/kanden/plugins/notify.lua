@@ -1,6 +1,6 @@
 return {
     "rcarriga/nvim-notify",
-    priority = 100,
+    priority = 10e2,
     opts = {
         timeout = 3000,
         max_width = math.floor(vim.o.columns * 0.3),
@@ -16,5 +16,5 @@ return {
             WARN = "",
         },
     },
-    config = function() vim.notify = require("notify") end,
+    init = function() vim.notify = require("notify") end,
 }

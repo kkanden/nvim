@@ -28,13 +28,6 @@ local function git_branch_marks()
     end
 end
 
-local toggle_opts = {
-    title = " Harpoon ",
-    border = "rounded",
-    title_pos = "center",
-    ui_width_ratio = 0.4,
-}
-
 return {
     "theprimeagen/harpoon",
     lazy = false,
@@ -70,52 +63,59 @@ return {
             end,
         },
     },
-    keys = {
-        {
-            "<leader>a",
-            function() require("harpoon"):list():add() end,
-            desc = "Harpoon: add file",
-        },
+    keys = function()
+        local harpoon = require("harpoon")
+        local toggle_opts = {
+            title = " Harpoon ",
+            border = "rounded",
+            title_pos = "center",
+            ui_width_ratio = 0.4,
+        }
 
-        {
-            "<C-e>",
-            function()
-                require("harpoon").ui:toggle_quick_menu(
-                    require("harpoon"):list(),
-                    toggle_opts
-                )
-            end,
-            desc = "Harpoon: toggle window",
-        },
+        return {
+            {
+                "<leader>a",
+                function() harpoon:list():add() end,
+                desc = "Harpoon: add file",
+            },
 
-        {
-            "<C-c>",
-            function() require("harpoon").ui:close_menu() end,
-            desc = "Harpoon: close window",
-        },
+            {
+                "<C-e>",
+                function()
+                    harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts)
+                end,
+                desc = "Harpoon: toggle window",
+            },
 
-        {
-            "<Tab>1",
-            function() require("harpoon"):list():select(1) end,
-            desc = "Harpoon: select file 1",
-        },
+            {
+                "<C-c>",
+                function() harpoon.ui:close_menu() end,
+                desc = "Harpoon: close window",
+            },
 
-        {
-            "<Tab>2",
-            function() require("harpoon"):list():select(2) end,
-            desc = "Harpoon: select file 2",
-        },
+            {
+                "<Tab>1",
+                function() harpoon:list():select(1) end,
+                desc = "Harpoon: select file 1",
+            },
 
-        {
-            "<Tab>3",
-            function() require("harpoon"):list():select(3) end,
-            desc = "Harpoon: select file 3",
-        },
+            {
+                "<Tab>2",
+                function() harpoon:list():select(2) end,
+                desc = "Harpoon: select file 2",
+            },
 
-        {
-            "<Tab>4",
-            function() require("harpoon"):list():select(4) end,
-            { desc = "Harpoon: select file 4" },
-        },
-    },
+            {
+                "<Tab>3",
+                function() harpoon:list():select(3) end,
+                desc = "Harpoon: select file 3",
+            },
+
+            {
+                "<Tab>4",
+                function() harpoon:list():select(4) end,
+                { desc = "Harpoon: select file 4" },
+            },
+        }
+    end,
 }

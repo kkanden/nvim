@@ -12,7 +12,6 @@ return {
             "echasnovski/mini.icons",
         },
         opts = {
-
             enabled = false, -- don't autostart
             render_modes = true, -- render in all modes, inc. insert, reduces dizziness
             file_types = fts,

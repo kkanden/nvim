@@ -1,3 +1,5 @@
+local loaded_langs = {}
+
 return {
     "jmbuhr/otter.nvim",
     ft = { "markdown", "rmd", "quarto" },
@@ -7,7 +9,6 @@ return {
     opts = {},
     config = function()
         local augroup = require("kanden.lib").augroup
-        local loaded_langs = {}
 
         vim.api.nvim_create_autocmd("InsertEnter", {
             group = augroup("otter-autostart"),

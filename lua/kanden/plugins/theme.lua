@@ -1,6 +1,6 @@
 return {
     "rebelot/kanagawa.nvim",
-    priority = 10e3,
+    priority = 10e4,
     lazy = false,
     init = function() vim.cmd("colorscheme kanagawa") end,
     opts = {

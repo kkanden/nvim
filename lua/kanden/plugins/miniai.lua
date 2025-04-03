@@ -1,24 +1,25 @@
 return {
     "echasnovski/mini.ai",
     version = "*",
-    config = function()
-        require("mini.ai").setup({
+    opts = function()
+        local gen_spec = require("mini.ai").gen_spec
+        return {
             custom_textobjects = {
                 -- Tweak function call to detect : (eg. `data.table::setDT()` in R)
-                f = require("mini.ai").gen_spec.function_call({
+                f = gen_spec.function_call({
                     name_pattern = "[%w_%.:]",
                 }),
 
                 -- Function definition (needs treesitter queries with these captures)
-                F = require("mini.ai").gen_spec.treesitter({
+                F = gen_spec.treesitter({
                     a = "@function.outer",
                     i = "@function.inner",
                 }),
-                c = require("mini.ai").gen_spec.treesitter({
+                c = gen_spec.treesitter({
                     a = "@conditional.outer",
                     i = "@conditional.inner",
                 }),
             },
-        })
+        }
     end,
 }
