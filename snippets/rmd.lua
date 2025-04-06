@@ -1,13 +1,13 @@
-local fig = s("fig", {
-    t({ "<figure>", '  <img src="' }),
+local graphic = s("graphic", {
+    t({ '```{r, fig.cap="' }),
     i(1, ""),
-    t({ '" width="' }),
+    t({ '", out.width="' }),
     i(2, ""),
-    t({ '" height="' }),
+    t({ '", out.height="' }),
     i(3, ""),
-    t({ '">', "  <figcaption>" }),
+    t({ '"}', 'knitr::include_graphics("' }),
     i(4, ""),
-    t({ "</figcaption>", "</figure>" }),
+    t({ '")', "```" }),
 })
 
-return { fig }
+return { graphic }

@@ -59,12 +59,14 @@ return {
             dependencies = { "rafamadriz/friendly-snippets" },
             build = "make install_jsregexp",
             config = function()
+                local ls = require("luasnip")
+
                 require("luasnip.loaders.from_vscode").lazy_load()
                 require("luasnip.loaders.from_lua").lazy_load({
                     paths = { vim.fn.stdpath("config") .. "/snippets" },
                 })
+                ls.filetype_extend("rmd", { "markdown" })
 
-                local ls = require("luasnip")
                 local map = require("kanden.lib").map
 
                 map({ "i", "s" }, "<Tab>", function()
