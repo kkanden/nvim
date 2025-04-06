@@ -8,9 +8,11 @@ return {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = fts,
         dependencies = {
-            -- "nvim-treesitter/nvim-treesitter",
+            "nvim-treesitter/nvim-treesitter",
             "echasnovski/mini.icons",
         },
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
         opts = {
             enabled = false, -- don't autostart
             render_modes = true, -- render in all modes, inc. insert, reduces dizziness
@@ -24,7 +26,7 @@ return {
                 enabled = true,
             },
         },
-        config = function()
+        init = function()
             vim.api.nvim_create_autocmd("FileType", {
                 group = augroup("markdown-toggle"),
                 pattern = fts,
@@ -48,7 +50,7 @@ return {
             "MarkdownPreview",
             "MarkdownPreviewStop",
         },
-        build = "cd app && yarn install",
+        build = "cd app && npm install",
         init = function()
             vim.g.mkdp_command_for_global = 1
             vim.g.mkdp_filetypes = fts
