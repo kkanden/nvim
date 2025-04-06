@@ -5,6 +5,9 @@ return {
     init = function() vim.cmd("colorscheme kanagawa") end,
     opts = {
         compile = true,
+        background = {
+            dark = "wave",
+        },
         colors = {
             theme = {
                 all = {
@@ -16,6 +19,13 @@ return {
         },
         commentStyle = { italic = false },
         keywordStyle = { italic = false },
+        undercurl = true,
+        functionStyle = {},
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = true,
+        dimInactive = false,
+        terminalColors = true,
         ---@type fun(colors: KanagawaColorsSpec): table<string, table>
         overrides = function(colors)
             local theme = colors.theme
@@ -77,14 +87,5 @@ return {
                 BlinkCmpItemKindSnippet = { fg = palette.fujiGray },
             }
         end,
-        undercurl = true,
-        functionStyle = {},
-        statementStyle = { bold = true },
-        typeStyle = {},
-        transparent = true,
-        dimInactive = false,
-        terminalColors = true,
-        background = { dark = "wave", light = "lotus" },
-        theme = "dragon",
     },
 }
