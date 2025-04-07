@@ -4,3 +4,5 @@ require("kanden.config.autocmd")
 require("kanden.config.usercmd")
 require("kanden.config.lazy")
 require("kanden.config.lsp")
+
+vim.cmd("colorscheme gruvbox")

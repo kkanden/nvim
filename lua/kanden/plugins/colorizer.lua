@@ -9,8 +9,12 @@ return {
             },
             -- add theme color names
             names_custom = function()
-                local colors = require("kanagawa.colors").setup()
-                return colors.palette
+                local kanagawa =
+                    require("kanagawa.colors").setup({ theme = "wave" }).palette
+
+                local gruvbox = require("gruvbox").palette
+
+                return vim.tbl_extend("keep", kanagawa, gruvbox)
             end,
             css = true,
             tailwind = true,
