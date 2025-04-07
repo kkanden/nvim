@@ -24,7 +24,6 @@ return {
                     gruvbox[key] = value[1]:lower() ~= "none" and value[1]
                         or nil
                 end
-                vim.print(gruvbox)
 
                 return vim.tbl_extend("force", kanagawa, gruvbox)
             end,
