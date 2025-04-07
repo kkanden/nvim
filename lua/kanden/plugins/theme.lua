@@ -103,6 +103,8 @@ return {
             g.gruvbox_material_enable_bold = 1
             g.gruvbox_material_float_style = "dim"
 
+            g.gruvbox_material_diagnostic_virtual_text = "colored"
+
             local configuration = vim.fn["gruvbox_material#get_configuration"]()
             local palette = vim.fn["gruvbox_material#get_palette"](
                 configuration.background,
