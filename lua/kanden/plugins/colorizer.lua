@@ -12,9 +12,21 @@ return {
                 local kanagawa =
                     require("kanagawa.colors").setup({ theme = "wave" }).palette
 
-                local gruvbox = require("gruvbox").palette
+                local configuration =
+                    vim.fn["gruvbox_material#get_configuration"]()
+                local gruvbox = vim.fn["gruvbox_material#get_palette"](
+                    configuration.background,
+                    configuration.foreground,
+                    configuration.colors_override
+                )
 
-                return vim.tbl_extend("keep", kanagawa, gruvbox)
+                for key, value in pairs(gruvbox) do
+                    gruvbox[key] = value[1]:lower() ~= "none" and value[1]
+                        or nil
+                end
+                vim.print(gruvbox)
+
+                return vim.tbl_extend("force", kanagawa, gruvbox)
             end,
             css = true,
             tailwind = true,

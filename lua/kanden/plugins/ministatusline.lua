@@ -1,16 +1,32 @@
-local progress = function()
+local default_separator = "|"
+local section_separators = { left = "", right = "" }
+
+---@param separator string?
+---@param components string[]
+---@return string
+local combine = function(components, separator)
+    separator = separator or default_separator
+    local combined = components[1]
+
+    for i = 2, #components do
+        combined = combined .. " " .. separator .. " " .. components[i]
+    end
+
+    return combined
+end
+
+local progress_location = function()
     local cur = vim.fn.line(".")
     local total = vim.fn.line("$")
-    return string.format("%3d%%%%", math.floor(cur / total * 100))
-end
+    local progress = string.format("%3d%%%%", math.floor(cur / total * 100))
 
-local location = function()
     local line = vim.fn.line(".")
     local col = vim.fn.charcol(".")
-    return string.format("%3d:%2d", line, col)
+    local location = string.format("%3d:%2d", line, col)
+    return combine({ progress, location })
 end
 
-local file = function(max_length)
+local git_file = function(max_length)
     max_length = max_length or 70
     local rest = "%m%r"
     local path = ""
@@ -20,11 +36,12 @@ local file = function(max_length)
         path = vim.fn.expand("%:~:.") .. rest
     end
 
-    if #path > max_length then
-        return vim.fn.pathshorten(path, 2)
-    else
-        return path
-    end
+    if #path > max_length then path = vim.fn.pathshorten(path, 2) end
+
+    local git = MiniStatusline.section_git({ icon = "" })
+
+    if #git > 0 then path = combine({ git, path }) end
+    return path
 end
 
 local lsp_fun = function()
@@ -37,30 +54,20 @@ local lsp_fun = function()
     return lsps
 end
 
-local statusline = function()
-    local section_separators = { left = "", right = "" }
-    local component_separators = "|"
-    local mode, mode_hl = MiniStatusline.section_mode({})
-    local git = MiniStatusline.section_git({ icon = "" })
+local lsp_fileinfo_fun = function()
+    local lsp_file
     local lsp = lsp_fun()
     local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 10000 })
+    if #lsp > 0 then lsp_file = combine({ lsp, fileinfo }) end
+    return lsp_file or fileinfo
+end
+
+local statusline = function()
+    local mode, mode_hl = MiniStatusline.section_mode({})
     local diagnostic = MiniStatusline.section_diagnostics({})
-    local progress_location = progress()
-        .. " "
-        .. component_separators
-        .. " "
-        .. location()
-        .. " "
-
-    local git_filename = file()
-    if #git > 0 then
-        git_filename = git .. " " .. component_separators .. " " .. git_filename
-    end
-
-    local lsp_fileinfo = fileinfo
-    if #lsp > 0 then
-        lsp_fileinfo = lsp .. " " .. component_separators .. " " .. fileinfo
-    end
+    local prog_loc = progress_location()
+    local git_filename = git_file()
+    local lsp_fileinfo = lsp_fileinfo_fun()
 
     local mode_hl_props = vim.api.nvim_get_hl(0, { name = mode_hl })
 
@@ -86,9 +93,9 @@ local statusline = function()
         "%#MiniStatuslineFileName#", diagnostic,          -- MIDDLE SECTION, DIAGNOSTICS
         "%<%=",                                           -- FLUSH LEFT
         " %#SeparatorB#",  section_separators["right"],
-        "%#MiniStatuslineDevinfo#", lsp_fileinfo,             -- FILETYPE
+        "%#MiniStatuslineDevinfo#", lsp_fileinfo,             -- LSP | FILETYPE
         " %#SeparatorA#", section_separators["right"],
-        "%#", mode_hl, "#", progress_location,            -- PROGRESS | LOCATION
+        "%#", mode_hl, "#", prog_loc,            -- PROGRESS | LOCATION
     })
     -- stylua: ignore end
 
@@ -98,6 +105,7 @@ end
 return {
     {
         "echasnovski/mini.statusline",
+        enabled = false,
         version = "*",
         opts = {
             content = {

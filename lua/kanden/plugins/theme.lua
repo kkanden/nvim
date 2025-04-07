@@ -90,18 +90,72 @@ return {
         },
     },
     {
-        "ellisonleao/gruvbox.nvim",
+        "sainnhe/gruvbox-material",
         priority = 10e4,
         lazy = false,
-        opts = {
-            italic = {
-                strings = false,
-                emphais = false,
-                comments = false,
-                folds = false,
-            },
-            inverse = false,
-            contrast = "soft",
-        },
+        config = function()
+            local g = vim.g
+
+            vim.o.background = "dark"
+            g.gruvbox_material_background = "soft"
+            g.gruvbox_material_foreground = "mix"
+            g.gruvbox_material_disable_italic_comment = 1
+            g.gruvbox_material_enable_bold = 1
+            g.gruvbox_material_float_style = "dim"
+
+            local configuration = vim.fn["gruvbox_material#get_configuration"]()
+            local palette = vim.fn["gruvbox_material#get_palette"](
+                configuration.background,
+                configuration.foreground,
+                configuration.colors_override
+            )
+
+            for key, value in pairs(palette) do
+                palette[key] = value[1]
+            end
+            local override = function()
+                local overrides = {
+                    WinSeparator = { fg = palette.fg1 },
+
+                    Pmenu = { bg = palette.bg2 },
+                    PmenuSel = { fg = "NONE", bg = palette.bg4 },
+
+                    BlinkCmpItemKindKeyword = { fg = palette.blue },
+                    BlinkCmpItemKindVariable = { fg = palette.purple },
+                    BlinkCmpItemKindConstant = { fg = palette.purple },
+                    BlinkCmpItemKindReference = { fg = palette.purple },
+                    BlinkCmpItemKindCopilot = {
+                        fg = palette.bg_visual_green,
+                    },
+                    BlinkCmpItemKindFunction = { fg = palette.blue },
+                    BlinkCmpItemKindMethod = { fg = palette.blue },
+                    BlinkCmpItemKindConstructor = {},
+                    BlinkCmpItemKindClass = { fg = palette.orange },
+                    BlinkCmpItemKindInterface = { fg = palette.orange },
+                    BlinkCmpItemKindStruct = { fg = palette.orange },
+                    BlinkCmpItemKindEvent = { fg = palette.orange },
+                    BlinkCmpItemKindEnum = { fg = palette.orange },
+                    BlinkCmpItemKindUnit = { fg = palette.orange },
+                    BlinkCmpItemKindModule = { fg = palette.yellow },
+                    BlinkCmpItemKindProperty = { fg = palette.aqua },
+                    BlinkCmpItemKindField = { fg = palette.aqua },
+                    BlinkCmpItemKindTypeParameter = { fg = palette.aqua },
+                    BlinkCmpItemKindEnumMember = { fg = palette.green },
+                    BlinkCmpItemKindOperator = { fg = palette.aqua },
+                    BlinkCmpItemKindSnippet = { fg = palette.grey2 },
+                }
+
+                for hl, spec in pairs(overrides) do
+                    local current = vim.api.nvim_get_hl(0, { name = hl })
+                    spec = vim.tbl_extend("keep", spec, current)
+                    vim.api.nvim_set_hl(0, hl, spec)
+                end
+            end
+
+            vim.api.nvim_create_autocmd("ColorScheme", {
+                pattern = "gruvbox-material",
+                callback = override,
+            })
+        end,
     },
 }
