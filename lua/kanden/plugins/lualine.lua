@@ -32,7 +32,14 @@ return {
             },
             sections = {
                 lualine_a = { "mode" },
-                lualine_b = { "branch", "filename" },
+                lualine_b = {
+                    "branch",
+                    {
+                        "filename",
+                        path = 1,
+                        symbols = { readonly = "[RO]" },
+                    },
+                },
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {
