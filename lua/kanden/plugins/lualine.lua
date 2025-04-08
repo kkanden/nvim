@@ -41,7 +41,10 @@ return {
                         icon = false,
                         symbols = { done = "", separator = ", " },
                     },
-                    "filetype",
+                    {
+                        "filetype",
+                        colored = false,
+                    },
                 },
                 lualine_z = { "progress", "location" },
             },
