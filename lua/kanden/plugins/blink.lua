@@ -108,7 +108,6 @@ return {
                 "buffer",
                 "lazydev",
                 "dadbod",
-                "markdown",
                 "conventional_commits",
                 "ripgrep",
             },
@@ -132,6 +131,7 @@ return {
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
+                    score_offset = 10e3,
                 },
                 dadbod = {
                     name = "Dadbod",
@@ -144,11 +144,6 @@ return {
                         get_cwd = function(_) return vim.fn.getcwd() end,
                         show_hidden_files_by_default = true,
                     },
-                },
-                markdown = {
-                    name = "RenderMarkdown",
-                    module = "render-markdown.integ.blink",
-                    fallbacks = { "lsp" },
                 },
                 conventional_commits = {
                     name = "conv commit",
