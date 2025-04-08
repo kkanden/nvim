@@ -122,6 +122,8 @@ return {
                     Pmenu = { bg = palette.bg2 },
                     PmenuSel = { fg = "NONE", bg = palette.bg4 },
 
+                    GitSignsChange = { fg = palette.yellow, link = "" },
+
                     BlinkCmpItemKindKeyword = { fg = palette.blue },
                     BlinkCmpItemKindVariable = { fg = palette.purple },
                     BlinkCmpItemKindConstant = { fg = palette.purple },
