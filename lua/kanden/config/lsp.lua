@@ -103,7 +103,7 @@ local load_lsps = function()
     for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
         if type ~= "file" then goto continue end
         name = vim.fs.basename(name):gsub(".lua", "")
-        if name == "nixd" and vim.fn.has("win32") then goto continue end
+        if name == "nixd" and vim.fn.has("win32") == 1 then goto continue end
         vim.lsp.enable(name)
         ::continue::
     end
