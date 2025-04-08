@@ -2,6 +2,7 @@ local map = require("kanden.lib").map
 
 return {
     "stevearc/conform.nvim",
+    ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
             lua = { "stylua" },
@@ -28,6 +29,11 @@ return {
             black = {
                 command = "black",
                 append_args = { "--preview" },
+            },
+            injected = {
+                options = {
+                    ignore_erros = true,
+                },
             },
         },
         format_after_save = function(bufnr)
