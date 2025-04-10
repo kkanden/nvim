@@ -28,4 +28,16 @@ M.system_output = function(cmd, opts)
     return obj.stdout, obj.code, obj.stderr
 end
 
+M.user_cmd_complete = function(completions)
+    return function(arg_lead, cmd_line, cursor_pos)
+        local matches = {}
+        for _, asset in ipairs(completions) do
+            if asset:lower():find(arg_lead:lower(), 1, true) then
+                table.insert(matches, asset)
+            end
+        end
+        return matches
+    end
+end
+
 return M
