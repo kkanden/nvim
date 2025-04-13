@@ -30,10 +30,10 @@ autocmd("TermOpen", {
     end,
 })
 
--- Show only WARN and ERROR diagnostics in R and Rmd
+-- Show only WARN and ERROR diagnostics in R
 autocmd("FileType", {
     group = augroup("r_diagnostics"),
-    pattern = { "r", "rmd" },
+    pattern = { "r" },
     callback = function()
         vim.diagnostic.config({
             virtual_text = {

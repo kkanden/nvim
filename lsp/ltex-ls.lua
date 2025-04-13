@@ -18,4 +18,11 @@ return {
         "mail",
         "text",
     },
+    settings = {
+        ltex = {
+            enabled = true,
+            language = "en-US",
+            completionEnabled = true,
+        },
+    },
 }
