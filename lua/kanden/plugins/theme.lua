@@ -99,6 +99,7 @@ return {
             vim.o.background = "dark"
             g.gruvbox_material_background = "soft"
             g.gruvbox_material_foreground = "mix"
+            g.gruvbox_material_transparent_background = 1
             g.gruvbox_material_disable_italic_comment = 1
             g.gruvbox_material_enable_bold = 1
             g.gruvbox_material_float_style = "dim"
@@ -119,39 +120,44 @@ return {
                 local overrides = {
                     WinSeparator = { fg = palette.fg1 },
 
-                    Pmenu = { bg = palette.bg2 },
-                    PmenuSel = { fg = "NONE", bg = palette.bg4 },
+                    Pmenu = { fg = palette.fg1, bg = "none" },
+                    PmenuSel = { fg = "none", bg = palette.bg4 },
 
                     GitSignsChange = { fg = palette.yellow, link = "" },
 
-                    BlinkCmpItemKindKeyword = { fg = palette.blue },
-                    BlinkCmpItemKindVariable = { fg = palette.purple },
-                    BlinkCmpItemKindConstant = { fg = palette.purple },
-                    BlinkCmpItemKindReference = { fg = palette.purple },
-                    BlinkCmpItemKindCopilot = {
-                        fg = palette.bg_visual_green,
-                    },
-                    BlinkCmpItemKindFunction = { fg = palette.blue },
-                    BlinkCmpItemKindMethod = { fg = palette.blue },
-                    BlinkCmpItemKindConstructor = {},
-                    BlinkCmpItemKindClass = { fg = palette.orange },
-                    BlinkCmpItemKindInterface = { fg = palette.orange },
-                    BlinkCmpItemKindStruct = { fg = palette.orange },
-                    BlinkCmpItemKindEvent = { fg = palette.orange },
-                    BlinkCmpItemKindEnum = { fg = palette.orange },
-                    BlinkCmpItemKindUnit = { fg = palette.orange },
-                    BlinkCmpItemKindModule = { fg = palette.yellow },
-                    BlinkCmpItemKindProperty = { fg = palette.aqua },
-                    BlinkCmpItemKindField = { fg = palette.aqua },
-                    BlinkCmpItemKindTypeParameter = { fg = palette.aqua },
-                    BlinkCmpItemKindEnumMember = { fg = palette.green },
-                    BlinkCmpItemKindOperator = { fg = palette.aqua },
-                    BlinkCmpItemKindSnippet = { fg = palette.grey2 },
+                    BlinkCmpMenu = { bg = "none" },
+                    BlinkCmpMenuBorder = { bg = "none" },
+                    BlinkCmpKindClass = { fg = palette.orange },
+                    BlinkCmpKindConstant = { fg = palette.purple },
+                    BlinkCmpKindConstructor = {},
+                    BlinkCmpKindCopilot = { fg = palette.bg_visual_green },
+                    BlinkCmpKindEnum = { fg = palette.orange },
+                    BlinkCmpKindEnumMember = { fg = palette.green },
+                    BlinkCmpKindEvent = { fg = palette.orange },
+                    BlinkCmpKindField = { fg = palette.aqua },
+                    BlinkCmpKindFunction = { fg = palette.blue },
+                    BlinkCmpKindInterface = { fg = palette.orange },
+                    BlinkCmpKindKeyword = { fg = palette.red },
+                    BlinkCmpKindMethod = { fg = palette.blue },
+                    BlinkCmpKindModule = { fg = palette.yellow },
+                    BlinkCmpKindOperator = { fg = palette.aqua },
+                    BlinkCmpKindProperty = { fg = palette.aqua },
+                    BlinkCmpKindReference = { fg = palette.purple },
+                    BlinkCmpKindSnippet = { fg = palette.blue },
+                    BlinkCmpKindStruct = { fg = palette.orange },
+                    BlinkCmpKindTypeParameter = { fg = palette.aqua },
+                    BlinkCmpKindUnit = { fg = palette.orange },
+                    BlinkCmpKindVariable = { fg = palette.purple },
                 }
 
                 for hl, spec in pairs(overrides) do
                     local current = vim.api.nvim_get_hl(0, { name = hl })
                     spec = vim.tbl_extend("keep", spec, current)
+
+                    -- idk if this is necessary but it fixed some issues
+                    spec.link = spec.link and nil
+                    spec.default = spec.default and nil
+
                     vim.api.nvim_set_hl(0, hl, spec)
                 end
             end
