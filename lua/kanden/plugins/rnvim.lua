@@ -2,6 +2,7 @@ local buf_map = vim.api.nvim_buf_set_keymap
 
 return {
     "R-nvim/R.nvim",
+    enabled = false,
     ft = { "r", "rmd" },
     opts = {
         hook = {
