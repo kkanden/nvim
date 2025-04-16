@@ -2,6 +2,11 @@
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
   "R.nvim": { "branch": "main", "commit": "70a3f8dc1b7bd5713fea0f787a4cc322ff11ad0e" },
+<<<<<<< HEAD
+=======
+  "ark.nvim": { "branch": "main", "commit": "a8a94c0bc6aae6e542df5ce41c304e3cd100849c" },
+  "autoclose.nvim": { "branch": "main", "commit": "b2077aa2c83df7ebc19b2a20a3a0654b24ae9c8f" },
+>>>>>>> d4e4679 (experimental: add ark)
   "blink-cmp-conventional-commits": { "branch": "main", "commit": "e7ce3ddcc6d4044067d6d77ab41d480202e814ad" },
   "blink-cmp-git": { "branch": "master", "commit": "863e0670217d0dffb9edc6ab41b676a4128f813b" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "602740b283d672a87407eee07e8c313533a84990" },
