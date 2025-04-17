@@ -125,8 +125,8 @@ return {
                     name = "snippets",
                     module = "blink.cmp.sources.snippets",
                     score_offset = 10e3,
-                    should_show_items = trigger(";"),
-                    transform_items = transform_trigger(";"),
+                    -- should_show_items = trigger(";"),
+                    -- transform_items = transform_trigger(";"),
                 },
                 lazydev = {
                     name = "LazyDev",
