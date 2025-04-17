@@ -17,7 +17,7 @@ return {
             markdown = { "prettier", "injected" },
             rmd = { "prettier", "injected" },
             tex = { "tex-fmt" },
-            plaintex = { "tex-fmt" },
+            bib = { "tex-fmt" },
         },
         formatters = {
             isort = {
