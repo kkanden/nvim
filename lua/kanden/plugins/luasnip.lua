@@ -11,10 +11,14 @@ return {
     config = function()
         local ls = require("luasnip")
 
+<<<<<<< HEAD
         ls.setup({
             enable_autosnippets = true,
             store_selection_keys = "<Tab>",
         })
+=======
+        ls.setup({ enable_autosnippets = true })
+>>>>>>> 5e3925e (luasnip: enable autosnippets)
 
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_lua").lazy_load({
