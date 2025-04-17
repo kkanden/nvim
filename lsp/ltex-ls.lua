@@ -22,7 +22,6 @@ return {
         ltex = {
             enabled = true,
             language = "en-US",
-            completionEnabled = true,
         },
     },
 }
