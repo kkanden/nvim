@@ -8,7 +8,4 @@ return {
                 "-reuse-instance -forward-search @tex @line @pdf"
         end,
     },
-    {
-        "let-def/texpresso.vim",
-    },
 }
