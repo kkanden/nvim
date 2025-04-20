@@ -1,5 +1,6 @@
 return {
     "m4xshen/autoclose.nvim",
+    enabled = false,
     event = "InsertEnter",
     opts = {
         options = {
