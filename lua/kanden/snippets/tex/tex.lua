@@ -64,7 +64,7 @@ local generate_matrix = function(args, snip)
 end
 local matrix_nxn = s(
     {
-        trig = "([%sbBpvV]?)Mat(%d+)x(%d+)",
+        trig = "([%sbBpvV]?)mat(%d+)x(%d+)",
         snippetType = "autosnippet",
         regTrig = true,
         wordTrig = false,
@@ -358,6 +358,13 @@ local postfix_math_specs = {
     },
 }
 
+local hat = postfix({
+    trig = "hat",
+    snippetType = "autosnippet",
+    match_pattern = [[[\\%w%.%_%-%"%']+$]],
+    desc = "postfix hat when in math mode",
+}, { l("\\hat{" .. l.POSTFIX_MATCH .. "}") }, { condition = tex.in_math })
+
 local postfix_math_snippets = {}
 for k, v in pairs(postfix_math_specs) do
     table.insert(
@@ -374,5 +381,6 @@ for k, v in pairs(postfix_math_specs) do
     )
 end
 vim.list_extend(M, postfix_math_snippets)
+vim.list_extend(M, hat)
 
 return M

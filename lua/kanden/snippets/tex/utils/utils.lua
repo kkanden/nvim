@@ -74,9 +74,6 @@ M.postfix_snippet = function(context, command, opts)
     if not context.trig then
         error("context doesn't include a `trig` key which is mandatory", 2)
     end
-    if not context.trig then
-        error("context doesn't include a `trig` key which is mandatory", 2)
-    end
     context.dscr = context.dscr
     context.name = context.name or context.dscr
     context.docstring = command.pre
