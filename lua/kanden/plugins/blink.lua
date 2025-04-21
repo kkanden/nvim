@@ -140,6 +140,7 @@ return {
                 path = {
                     name = "path",
                     module = "blink.cmp.sources.path",
+                    score_offset = 10e3 + 1,
                     opts = {
                         get_cwd = function(_) return vim.fn.getcwd() end,
                         show_hidden_files_by_default = true,
