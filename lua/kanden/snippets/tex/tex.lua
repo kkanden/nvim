@@ -69,6 +69,7 @@ local matrix_nxn = s(
         regTrig = true,
         wordTrig = false,
         desc = "[bBpvV]matrix of A x B size",
+        hidden = true,
     },
     fmta(
         [[
@@ -204,7 +205,7 @@ local begin_end = s(
     ]],
         { i(1), i(0), rep(1) }
     ),
-    { condition = tex.in_text, show_condition = tex.in_text }
+    {}
 )
 
 local draft = s(
@@ -325,16 +326,6 @@ local postfix_math_specs = {
             post = [[}]],
         },
     },
-    hat = {
-        context = {
-            name = "hat",
-            dscr = "hat",
-        },
-        command = {
-            pre = [[\hat{]],
-            post = [[}]],
-        },
-    },
     bar = {
         context = {
             name = "bar",
@@ -360,10 +351,11 @@ local postfix_math_specs = {
 
 local hat = postfix({
     trig = "hat",
-    snippetType = "autosnippet",
     match_pattern = [[[\\%w%.%_%-%"%']+$]],
-    desc = "postfix hat when in math mode",
+    snippetType = "autosnippet",
+    dscr = "postfix hat when in math mode",
 }, { l("\\hat{" .. l.POSTFIX_MATCH .. "}") }, { condition = tex.in_math })
+vim.list_extend(M, { hat })
 
 local postfix_math_snippets = {}
 for k, v in pairs(postfix_math_specs) do
@@ -381,6 +373,5 @@ for k, v in pairs(postfix_math_specs) do
     )
 end
 vim.list_extend(M, postfix_math_snippets)
-vim.list_extend(M, hat)
 
 return M
