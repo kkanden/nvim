@@ -5,15 +5,10 @@ return {
         "lervag/vimtex",
         init = function()
             vim.g.vimtex_imaps_enabled = 0
-            if vim.fn.has("win32") then
-                vim.g.vimtex_view_general_viewer = "sumatrapdf"
-                vim.g.vimtex_view_general_options =
-                    "-reuse-instance -forward-search @tex @line @pdf"
-            else
-                vim.g.vimtex_view_general_viewer = "okular"
-                vim.g.vimtex_view_general_options =
-                    "--unique file:@pdf#src:@line@tex"
-            end
+            vim.g.vimtex_view_method = "sioyek"
+            vim.g.vimtex_callback_progpath = "wsl nvim"
+            vim.g.vimtex_view_sioyek_options = "--nofocus"
+
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "tex",
                 group = augroup("vimtex-mappings"),
