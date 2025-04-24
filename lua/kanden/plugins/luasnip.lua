@@ -1,6 +1,6 @@
 local augroup = require("kanden.lib").augroup
 local map = require("kanden.lib").map
-local snippet_path = vim.fn.stdpath("config") .. "/snippets"
+local snippet_path = vim.fn.stdpath("config") .. "/lua/kanden/snippets"
 
 return {
     "L3MON4D3/LuaSnip",
@@ -10,6 +10,11 @@ return {
     build = "make install_jsregexp",
     config = function()
         local ls = require("luasnip")
+
+        ls.setup({
+            enable_autosnippets = true,
+            store_selection_keys = "<Tab>",
+        })
 
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_lua").lazy_load({
@@ -29,6 +34,8 @@ return {
             if ls.choice_active() then ls.change_choice(1) end
         end, { silent = true })
 
+        ls.filetype_extend("markdown", { "tex" })
+        ls.filetype_extend("rmd", { "tex" })
         -- load custom markdown snippets to rmd
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "rmd",
