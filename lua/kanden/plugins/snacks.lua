@@ -20,6 +20,7 @@ return {
             },
         },
     },
+    event = "LspAttach",
     keys = function()
         local opts = {
             hidden = true,
