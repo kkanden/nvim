@@ -1,30 +1,23 @@
-local system_output = require("kanden.lib").system_output
-
-local function git_branch_marks()
-    local stdout, code, stderr = system_output({
-        "git",
-        "rev-parse",
-        "--abbrev-ref",
-        "HEAD",
-    })
-
-    if code ~= 1 then
-        return vim.fn.getcwd() .. "-" .. stdout
-    else
-        return vim.fn.getcwd()
+-- solution from https://github.com/ThePrimeagen/harpoon/issues/565#issuecomment-2378921076
+local git_branch = function()
+    local pipe = io.popen("git branch --show-current")
+    if pipe then
+        local c = pipe:read("*l"):match("^%s*(.-)%s*$")
+        pipe:close()
+        return c
     end
+    return "default"
 end
 
 return {
     "theprimeagen/harpoon",
     lazy = false,
     branch = "harpoon2",
-    commit = "e76cb03", -- latest doesn't really work for me, this is good enough
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
         settings = {
             save_on_toggle = true,
-            key = git_branch_marks,
+            save_on_ui_close = true,
         },
         default = {
             ---@param config HarpoonPartialConfigItem
@@ -59,18 +52,18 @@ return {
             ui_width_ratio = 0.4,
         }
 
+        local list = function() return harpoon:list(git_branch()) end
+
         return {
             {
                 "<leader>a",
-                function() harpoon:list():add() end,
+                function() list():add() end,
                 desc = "Harpoon: add file",
             },
 
             {
                 "<C-e>",
-                function()
-                    harpoon.ui:toggle_quick_menu(harpoon:list(), toggle_opts)
-                end,
+                function() harpoon.ui:toggle_quick_menu(list(), toggle_opts) end,
                 desc = "Harpoon: toggle window",
             },
 
@@ -82,25 +75,25 @@ return {
 
             {
                 "<Tab>1",
-                function() harpoon:list():select(1) end,
+                function() list():select(1) end,
                 desc = "Harpoon: select file 1",
             },
 
             {
                 "<Tab>2",
-                function() harpoon:list():select(2) end,
+                function() list():select(2) end,
                 desc = "Harpoon: select file 2",
             },
 
             {
                 "<Tab>3",
-                function() harpoon:list():select(3) end,
+                function() list():select(3) end,
                 desc = "Harpoon: select file 3",
             },
 
             {
                 "<Tab>4",
-                function() harpoon:list():select(4) end,
+                function() list():select(4) end,
                 { desc = "Harpoon: select file 4" },
             },
         }
