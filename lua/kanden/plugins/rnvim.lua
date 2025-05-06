@@ -26,7 +26,7 @@ return {
                 buf_map(
                     0,
                     "n",
-                    "<localleader><F5>",
+                    "<localleader>sa",
                     table.concat({
                         "<C-l>i<C-c><CR><C-z>", -- quit current session and go back to main window
                         "<Cmd>wa<CR><BAR>", -- save all files
@@ -43,7 +43,7 @@ return {
         nvimpager = "split_h",
         min_editor_width = 0,
         rconsole_width = math.floor(vim.o.columns * 0.3),
-        pdfviewer = "chrome",
+        pdfviewer = "zen",
         open_html = "no",
         open_pdf = "no",
     },
