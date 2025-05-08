@@ -223,6 +223,34 @@ local draft = s(
     { condition = tex.not_math, show_condition = tex.not_math }
 )
 
+local report = s(
+    { trig = "report", name = "report", dscr = "report skeleton" },
+    fmta(
+        [[ 
+        \documentclass{article}
+
+        \usepackage{amsmath}
+        \usepackage{float}
+        \usepackage{caption}
+        \usepackage{mathtools}
+
+        \captionsetup[figure]{font=small,labelfont=bf}
+
+        \title{<>}
+        \author{<>}
+        \date{}
+
+        \begin{document}
+        \maketitle
+        <>
+
+        \end{document}
+        ]],
+        { i(1), i(2), i(0) }
+    ),
+    { condition = tex.not_math, show_condition = tex.not_math }
+)
+
 vim.list_extend(M, {
     matrix_nxn,
     infty,
@@ -234,6 +262,7 @@ vim.list_extend(M, {
     set,
     begin_end,
     draft,
+    report,
 })
 
 local auto_backslash_snippet = function(trig)
