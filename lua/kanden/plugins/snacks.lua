@@ -3,6 +3,7 @@ local merge_table = function(...) return vim.tbl_extend("keep", ...) end
 return {
     "folke/snacks.nvim",
     priority = 1000,
+    lazy = false,
     opts = {
         picker = {
             matcher = {
@@ -19,8 +20,10 @@ return {
                 },
             },
         },
+        input = {
+            enabled = true,
+        },
     },
-    event = "LspAttach",
     keys = function()
         local opts = {
             hidden = true,
