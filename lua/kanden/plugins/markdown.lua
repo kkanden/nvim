@@ -59,4 +59,9 @@ return {
             vim.g.mkdp_browser = "zen"
         end,
     },
+
+    {
+        "bullets-vim/bullets.vim",
+        ft = fts,
+    },
 }
