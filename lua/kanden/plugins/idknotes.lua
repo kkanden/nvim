@@ -1,6 +1,5 @@
 return {
-    url = "kkanden/idknotes.nvim",
-    dir = "~/code/idknotes.nvim",
+    "kkanden/idknotes.nvim",
     dev = false,
     config = function()
         local idknotes = require("idknotes")
