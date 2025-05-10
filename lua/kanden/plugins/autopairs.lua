@@ -17,7 +17,7 @@ return {
         local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
         npairs.add_rules({
             -- Rule for a pair with left-side ' ' and right side ' '
-            Rule(" ", " ")
+            Rule(" ", " ", "-markdown")
                 -- Pair will only occur if the conditional function returns true
                 :with_pair(
                     function(opts)
