@@ -74,25 +74,25 @@ return {
             },
 
             {
-                "<Tab>1",
+                "<localleader>1",
                 function() list():select(1) end,
                 desc = "Harpoon: select file 1",
             },
 
             {
-                "<Tab>2",
+                "<localleader>2",
                 function() list():select(2) end,
                 desc = "Harpoon: select file 2",
             },
 
             {
-                "<Tab>3",
+                "<localleader>3",
                 function() list():select(3) end,
                 desc = "Harpoon: select file 3",
             },
 
             {
-                "<Tab>4",
+                "<localleader>4",
                 function() list():select(4) end,
                 { desc = "Harpoon: select file 4" },
             },
