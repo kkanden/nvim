@@ -1,17 +1,20 @@
 return {
     "kkanden/idknotes.nvim",
     dev = false,
-    config = function()
+    ---@type idknotes.Config
+    opts = {
+        win_config = {
+            width = 0.5,
+            height = 0.6,
+        },
+    },
+    config = function(_, opts)
         local idknotes = require("idknotes")
 
-        idknotes.setup()
+        idknotes.setup(opts)
 
-        vim.keymap.set("n", "<leader>n", idknotes.toggle_notes)
+        vim.keymap.set("n", "<leader>n", "<Cmd>IDKnotes<CR>")
 
-        vim.keymap.set(
-            "n",
-            "<leader>m",
-            function() idknotes.toggle_notes(false) end
-        )
+        vim.keymap.set("n", "<leader>m", "<Cmd>IDKnotes!<CR>")
     end,
 }
