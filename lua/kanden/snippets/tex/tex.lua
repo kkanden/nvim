@@ -214,6 +214,9 @@ local draft = s(
         [[ 
     \documentclass{article}
 
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
     \begin{document}
     <>
     \end{document}
@@ -223,17 +226,21 @@ local draft = s(
     { condition = tex.not_math, show_condition = tex.not_math }
 )
 
-local report = s(
-    { trig = "report", name = "report", dscr = "report skeleton" },
+local homework = s(
+    { trig = "homework", name = "homework", dscr = "homework skeleton" },
     fmta(
         [[ 
-        \documentclass{article}
+        \documentclass[12pt]{article}
 
+        \usepackage[margin=1in]{geometry}
         \usepackage{amsmath}
+        \usepackage{amssymb}
         \usepackage{float}
         \usepackage{caption}
         \usepackage{mathtools}
+        \usepackage{enumitem}
 
+        \renewcommand{\thesection}{\arabic{section}.}
         \captionsetup[figure]{font=small,labelfont=bf}
 
         \title{<>}
@@ -251,6 +258,21 @@ local report = s(
     { condition = tex.not_math, show_condition = tex.not_math }
 )
 
+local paired_delims = s(
+    { trig = "delims", name = "delims", dscr = "Add paired delimiters" },
+
+    fmta(
+        [[ 
+    \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+    \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+    \DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1,#2}
+    <>
+    ]],
+        { i(0) }
+    ),
+    { condition = tex.not_math, show_condition = tex.not_math }
+)
+
 vim.list_extend(M, {
     matrix_nxn,
     infty,
@@ -262,7 +284,8 @@ vim.list_extend(M, {
     set,
     begin_end,
     draft,
-    report,
+    homework,
+    paired_delims,
 })
 
 local auto_backslash_snippet = function(trig)
