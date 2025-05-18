@@ -23,6 +23,16 @@ return {
         input = {
             enabled = true,
         },
+        zen = {
+            toggles = {
+                dim = false,
+            },
+        },
+        styles = {
+            zen = {
+                minimal = true,
+            },
+        },
     },
     keys = function()
         local opts = {
