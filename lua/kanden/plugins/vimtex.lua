@@ -6,11 +6,12 @@ return {
         init = function()
             vim.g.vimtex_imaps_enabled = 0
             vim.g.vimtex_view_method = "sioyek"
-            vim.g.vimtex_callback_progpath = "wsl nvim"
-            vim.g.vimtex_view_sioyek_options = "--nofocus"
+            if vim.fn.has("wsl") == 1 then
+                vim.g.vimtex_callback_progpath = "wsl nvim"
+            end
 
             vim.g.vimtex_compiler_latexmk = {
-                aux_dir = "./tex/",
+                aux_dir = "./aux/",
             }
 
             vim.api.nvim_create_autocmd("FileType", {
