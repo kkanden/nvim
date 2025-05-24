@@ -11,7 +11,7 @@ autocmd("TextYankPost", {
 -- easier quit in filetypes
 autocmd("FileType", {
     group = augroup("close_with_q"),
-    pattern = { "help", "fugitive", "git", "gitcommit", "checkhealth" },
+    pattern = { "help", "fugitive", "git", "gitcommit", "checkhealth", "qf" },
     callback = function()
         vim.keymap.set("n", "q", "<Cmd>q<CR>", { buffer = true })
     end,
