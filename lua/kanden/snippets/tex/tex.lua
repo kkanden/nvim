@@ -239,9 +239,30 @@ local homework = s(
         \usepackage{caption}
         \usepackage{mathtools}
         \usepackage{enumitem}
+        \usepackage[english]{babel}
+        \usepackage{minted}
+        \usepackage{fontspec}
+        \usepackage{xcolor}
+        \usepackage[autostyle, english=american]{csquotes}
+
+        \MakeOuterQuote{"}
+        \captionsetup[figure]{font=small,labelfont=bf}
+        \floatplacement{figure}{H}
+        \setmonofont{JetBrains Mono}[
+          Contextuals=Alternate,
+          Numbers=SlashedZero,
+          Scale=MatchLowercase
+        ]
+        \definecolor{lightgray}{gray}{0.9}
+        \setminted{
+          bgcolor=lightgray,
+          breaklines=true,
+        }
 
         \renewcommand{\thesection}{\arabic{section}.}
-        \captionsetup[figure]{font=small,labelfont=bf}
+        \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+        \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+        \DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1,#2}
 
         \title{<>}
         \author{<>}
