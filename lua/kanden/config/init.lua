@@ -5,4 +5,4 @@ require("kanden.config.usercmd")
 require("kanden.config.lazy")
 require("kanden.config.lsp")
 
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd("colorscheme vague")

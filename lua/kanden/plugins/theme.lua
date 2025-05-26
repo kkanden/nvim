@@ -168,4 +168,23 @@ return {
             })
         end,
     },
+    -- Lazy
+    {
+        "vague2k/vague.nvim",
+        lazy = false,
+        opts = {
+            transparent = true,
+            style = {
+                boolean = "none",
+                error = "none",
+                comments = "none",
+                strings = "none",
+
+                keywords_return = "none",
+
+                builtin_constants = "none",
+                builtin_types = "none",
+            },
+        },
+    },
 }
