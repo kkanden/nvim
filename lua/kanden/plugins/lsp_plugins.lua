@@ -7,23 +7,6 @@ return {
     },
 
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        opts = {
-            ensure_installed = {
-                "lua-language-server",
-                "r-languageserver",
-                "basedpyright",
-                "ltex-ls",
-                "texlab",
-                "rust-analyzer",
-                "json-lsp",
-                "yaml-language-server",
-                "css-lsp",
-            },
-        },
-    },
-
-    {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
         opts = {
