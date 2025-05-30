@@ -1,6 +1,5 @@
 return {
     "kkanden/idknotes.nvim",
-    dev = true,
     ---@type idknotes.Config
     opts = {
         win_config = {
