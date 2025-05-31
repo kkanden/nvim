@@ -11,6 +11,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
             mode = mode or "n"
             map(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
         end
+
+        map_lsp(
+            "K",
+            function() vim.lsp.buf.hover({ border = "rounded" }) end,
+            "Hover Documentation"
+        )
+
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
