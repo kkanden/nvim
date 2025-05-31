@@ -50,30 +50,32 @@ return {
             },
             {
                 "<leader>pf",
-                function() Snacks.picker.files(opts) end,
+                function() require("snacks").picker.files(opts) end,
                 desc = "Snacks picker: find files",
             },
             {
                 "<leader>ff",
                 function()
-                    Snacks.picker.files(merge_table(opts, { cwd = "~" })) -- search files in the home directory
+                    require("snacks").picker.files(
+                        merge_table(opts, { cwd = "~" })
+                    ) -- search files in the home directory
                 end,
                 desc = "Snacks picker: find files",
             },
             {
                 "<leader>ps",
-                function() Snacks.picker.grep(opts) end,
+                function() require("snacks").picker.grep(opts) end,
                 desc = "Snacks picker: grep",
             },
             {
                 "<leader>pb",
-                function() Snacks.picker.buffers() end,
+                function() require("snacks").picker.buffers() end,
                 desc = "Snacks picker: buffers",
             },
             {
                 "<leader>pn",
                 function()
-                    Snacks.picker.files(
+                    require("snacks").picker.files(
                         merge_table(opts, { cwd = vim.fn.stdpath("config") })
                     )
                 end,
@@ -81,17 +83,17 @@ return {
             },
             {
                 "<leader>/",
-                function() Snacks.picker.lines() end,
+                function() require("snacks").picker.lines() end,
                 desc = "[/] Fuzzily search in current buffer",
             },
             {
                 "<leader>pk",
-                function() Snacks.picker.keymaps() end,
+                function() require("snacks").picker.keymaps() end,
                 desc = "Snacks picker: browser keymaps",
             },
             {
                 "<leader>ph",
-                function() Snacks.picker.help() end,
+                function() require("snacks").picker.help() end,
                 desc = "Snacks picker: browser help",
             },
         }

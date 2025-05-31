@@ -23,14 +23,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  To jump back, press <C-t>.
         map_lsp(
             "gd",
-            function() Snacks.picker.lsp_definitions() end,
+            function() require("snacks").picker.lsp_definitions() end,
             "[G]oto [D]efinition"
         )
 
         -- Find references for the word under your cursor.
         map_lsp(
             "grr",
-            function() Snacks.picker.lsp_references() end,
+            function() require("snacks").picker.lsp_references() end,
             "[G]oto [R]eferences"
         )
 
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Useful when your language has ways of declaring types without an actual implementation.
         map_lsp(
             "gri",
-            function() Snacks.picker.lsp_implementations() end,
+            function() require("snacks").picker.lsp_implementations() end,
             "[G]oto [I]mplementation"
         )
 
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  the definition of its *type*, not where it was *defined*.
         map_lsp(
             "gD",
-            function() Snacks.picker.lsp_type_definitions() end,
+            function() require("snacks").picker.lsp_type_definitions() end,
             "Type [D]efinition"
         )
 
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Symbols are things like variables, functions, types, etc.
         map_lsp(
             "gs",
-            function() Snacks.picker.lsp_symbols() end,
+            function() require("snacks").picker.lsp_symbols() end,
             "Document [S]ymbols"
         )
 
@@ -63,13 +63,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Similar to document symbols, except searches over your entire project.
         map_lsp(
             "gws",
-            function() Snacks.picker.lsp_workspace_symbols() end,
+            function() require("snacks").picker.lsp_workspace_symbols() end,
             "[W]orkspace [S]ymbols"
         )
 
         map_lsp(
             "gD",
-            function() Snacks.picker.diagnostics_buffer() end,
+            function() require("snacks").picker.diagnostics_buffer() end,
             "Diagnostics"
         )
 
