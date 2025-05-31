@@ -7,7 +7,7 @@ return {
             vim.g.vimtex_imaps_enabled = 0
             vim.g.vimtex_view_method = "sioyek"
             if vim.fn.has("wsl") == 1 then
-                vim.g.vimtex_callback_progpath = "wsl nvim"
+                vim.g.vimtex_callback_progpath = "wsl --shell-type login nvim"
             end
 
             vim.g.vimtex_compiler_latexmk = {
