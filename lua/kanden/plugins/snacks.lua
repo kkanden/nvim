@@ -27,10 +27,11 @@ return {
             toggles = {
                 dim = false,
             },
-        },
-        styles = {
-            zen = {
+            win = {
                 minimal = true,
+                width = math.floor(vim.o.columns * 0.7),
+                backdrop = { transparent = false },
+                keys = { q = "close" },
             },
         },
     },
@@ -42,6 +43,11 @@ return {
             },
         }
         return {
+            {
+                "<leader>zz",
+                function() require("snacks").zen() end,
+                desc = "Open zen mode",
+            },
             {
                 "<leader>pf",
                 function() Snacks.picker.files(opts) end,
