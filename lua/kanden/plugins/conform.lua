@@ -30,6 +30,22 @@ return {
                 command = "black",
                 append_args = { "--preview" },
             },
+            prettier = {
+                append_args = function(_, ctx)
+                    if vim.bo[ctx.buf].filetype == "toml" then
+                        return {
+                            "--parser=toml",
+                            "--plugin=prettier-plugin-toml",
+                        }
+                    end
+                    return {}
+                end,
+                options = {
+                    ext_parsers = {
+                        rmd = "markdown",
+                    },
+                },
+            },
             injected = {
                 options = {
                     ignore_erros = true,
