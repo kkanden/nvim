@@ -3,8 +3,10 @@ local ls = require("luasnip")
 local autosnippet =
     ls.extend_decorator.apply(s, { snippetType = "autosnippet" })
 local line_begin = require("luasnip.extras.conditions.expand").line_begin
+local make_condition = require("luasnip.extras.conditions").make_condition
 
 local tex = require("kanden.snippets.tex.utils").utils
+local in_list = make_condition(tex.in_list)
 
 -- object shortcuts
 local character_shortcut = function(trig, command, desc)
@@ -336,6 +338,12 @@ local paired_delims = s(
     { condition = tex.in_preamble, show_condition = tex.in_preamble }
 )
 
+local insert_item = autosnippet(
+    { trig = "--", name = "\\item", dscr = "\\item" },
+    fmta([[\item <>]], { i(0) }),
+    { condition = in_list * line_begin, show_condition = tex.in_math }
+)
+
 vim.list_extend(M, {
     matrix_nxn,
     cases,
@@ -350,6 +358,7 @@ vim.list_extend(M, {
     draft,
     homework,
     paired_delims,
+    insert_item,
 })
 
 local auto_backslash_specs = {

@@ -33,6 +33,8 @@ M.comment = function() return vim.fn["vimtex#syntax#in_comment"]() == 1 end
 
 M.in_preamble = function() return not M.in_env("document") end
 
+M.in_list = function() return M.in_env("itemize") or M.in_env("enumerate") end
+
 M.get_visual = function(args, parent)
     if #parent.snippet.env.SELECT_RAW > 0 then
         return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
