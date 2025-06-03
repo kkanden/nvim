@@ -136,6 +136,7 @@ return {
                 dadbod = {
                     name = "Dadbod",
                     module = "vim_dadbod_completion.blink",
+                    score_offset = 10e3 + 1,
                 },
                 path = {
                     name = "path",
