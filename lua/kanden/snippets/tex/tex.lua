@@ -407,8 +407,7 @@ local greek_specs = {
     gam = { context = { name = "γ" }, command = [[\gamma]] },
     Gam = { context = { name = "Γ" }, command = [[\Gamma]] },
     delta = { context = { name = "δ" }, command = [[\delta]] },
-
-    DD = { context = { name = "Δ" }, command = [[\Delta]] },
+    Delta = { context = { name = "Δ" }, command = [[\Delta]] },
     eps = { context = { name = "ε", priority = 500 }, command = [[\epsilon]] },
     veps = { context = { name = "ε" }, command = [[\varepsilon]] },
     zeta = { context = { name = "ζ" }, command = [[\zeta]] },
@@ -417,8 +416,8 @@ local greek_specs = {
     Theta = { context = { name = "Θ" }, command = [[\Theta]] },
     iota = { context = { name = "ι" }, command = [[\iota]] },
     kappa = { context = { name = "κ" }, command = [[\kappa]] },
-    lmbd = { context = { name = "λ" }, command = [[\lambda]] },
-    Lmbd = { context = { name = "Λ" }, command = [[\Lambda]] },
+    lambda = { context = { name = "λ" }, command = [[\lambda]] },
+    Lambda = { context = { name = "Λ" }, command = [[\Lambda]] },
     mu = { context = { name = "μ" }, command = [[\mu]] },
     nu = { context = { name = "ν" }, command = [[\nu]] },
     xi = { context = { name = "ξ" }, command = [[\xi]] },
@@ -529,7 +528,7 @@ local symbol_specs = {
         context = { name = "↔", priority = 500 },
         command = [[\xleftrightarrow]],
     },
-    ["2>"] = {
+    ["->>"] = {
         context = { name = "⇉", priority = 400 },
         command = [[\rightrightarrows]],
     },
