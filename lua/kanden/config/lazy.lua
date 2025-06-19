@@ -26,4 +26,8 @@ require("lazy").setup({
     dev = {
         path = "~/code",
     },
+    -- required for treesitter parsers on nixos
+    performance = {
+        reset_packpath = false,
+    },
 })
