@@ -18,7 +18,6 @@ return {
             ["<C-t>"] = false,
             ["<C-l>"] = false,
         },
-        delete_to_trash = true,
     },
     keys = function()
         local path_modify = ":gs?\\?/?"
