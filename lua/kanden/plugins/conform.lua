@@ -18,6 +18,8 @@ return {
             rmd = { "prettier", "injected" },
             tex = { "tex-fmt" },
             bib = { "tex-fmt" },
+            bash = { "shfmt" },
+            sh = { "shfmt" },
         },
         formatters = {
             isort = {
