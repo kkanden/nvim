@@ -11,6 +11,10 @@ return {
                 chainingHints = {
                     enable = true,
                 },
+                closingBraceHints = {
+                    enable = false,
+                    minLines = 25,
+                },
                 closureReturnTypeHints = {
                     enable = "never",
                 },
@@ -29,7 +33,7 @@ return {
                 typeHints = {
                     enable = true,
                     hideClosureInitialization = false,
-                    hideNamedConstructor = false,
+                    hideNamedConstructor = true,
                 },
             },
         },
