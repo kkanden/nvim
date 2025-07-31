@@ -82,6 +82,10 @@ return {
         },
         signature = {
             enabled = true,
+            trigger = {
+                show_on_keyword = true,
+                show_on_insert = true,
+            },
             window = {
                 border = "rounded",
             },
@@ -108,7 +112,6 @@ return {
                 "buffer",
                 "lazydev",
                 "dadbod",
-                "conventional_commits",
                 "ripgrep",
             },
             providers = {
@@ -147,21 +150,17 @@ return {
                         show_hidden_files_by_default = true,
                     },
                 },
-                conventional_commits = {
-                    name = "conv commit",
-                    module = "blink-cmp-conventional-commits",
-                    should_show_items = trigger("-"),
-                    transform_items = transform_trigger("-"),
-                    enabled = function() return vim.bo.filetype == "gitcommit" end,
-                    score_offset = function()
-                        return vim.bo.filetype == "gitcommit" and 1000 or 0
-                    end,
-                },
                 ripgrep = {
                     name = "rg",
                     module = "blink-ripgrep",
                     fallbacks = { "buffer" },
                     score_offset = -10e4,
+                    transform_items = function(_, items)
+                        for _, item in ipairs(items) do
+                            item.kind_name = nil
+                        end
+                        return items
+                    end,
                 },
             },
         },
