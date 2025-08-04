@@ -17,6 +17,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             function() vim.lsp.buf.hover({ border = "rounded" }) end,
             "Hover Documentation"
         )
+        map_lsp(
+            "<C-k>",
+            function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
+            "Signature Help",
+            "i"
+        )
 
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
@@ -40,15 +46,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "gri",
             function() require("snacks").picker.lsp_implementations() end,
             "[G]oto [I]mplementation"
-        )
-
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map_lsp(
-            "gD",
-            function() require("snacks").picker.lsp_type_definitions() end,
-            "Type [D]efinition"
         )
 
         -- Fuzzy find all the symbols in your current document.
