@@ -83,3 +83,21 @@ autocmd({ "QuitPre" }, {
         end
     end,
 })
+
+-- R code folding
+
+function RFoldComment(lnum)
+    local line = vim.fn.getline(lnum)
+    -- if string.match(line, "^#%s*-*%s*.*%s*-+%s*#*$") then return ">1" end
+    if string.match(line, "^#%s*.*%s*-+%s*#*$") then return ">1" end
+    return "="
+end
+
+autocmd("BufEnter", {
+    group = augroup("r_code_folding"),
+    callback = function()
+        if not vim.tbl_contains({ "r", "rmd" }, vim.bo.filetype) then return end
+        vim.opt_local.foldexpr = "v:lua.RFoldComment(v:lnum)"
+        vim.opt_local.foldmethod = "expr"
+    end,
+})

@@ -25,6 +25,22 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
+-- folds
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldenable = false
+opt.foldcolumn = "0"
+function MyFoldText(lnum_start, lnum_end, foldlevel)
+    local nlines = lnum_end - lnum_start
+    local line = vim.fn.getline(lnum_start)
+    local format_string = string.format(
+        "%s %%s ...... %%d more lines",
+        string.rep("+", foldlevel)
+    )
+    return string.format(format_string, line, nlines)
+end
+opt.foldtext = "v:lua.MyFoldText(v:foldstart, v:foldend, v:foldlevel)"
+
 -- keep cursor centered as much as possible
 opt.scrolloff = 999
 
@@ -32,7 +48,6 @@ opt.signcolumn = "auto"
 opt.isfname:append("@-@")
 
 opt.updatetime = 50
-
 opt.colorcolumn = "80"
 
 -- netrw options
