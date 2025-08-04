@@ -49,11 +49,6 @@ return {
                 desc = "Open zen mode",
             },
             {
-                "<leader>pf",
-                function() require("snacks").picker.files(opts) end,
-                desc = "Snacks picker: find files",
-            },
-            {
                 "<leader>ff",
                 function()
                     require("snacks").picker.files(
