@@ -55,6 +55,7 @@ return {
             },
         },
         init = function()
+            vim.ui.select = require("mini.pick").ui_select
             -- no rust at work :)
             if not pcall(require, "fff") then
                 vim.keymap.set(
