@@ -29,14 +29,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  To jump back, press <C-t>.
         map_lsp(
             "gd",
-            function() require("snacks").picker.lsp_definitions() end,
+            function()
+                require("mini.extra").pickers.lsp({ scope = "definition" })
+            end,
             "[G]oto [D]efinition"
         )
 
         -- Find references for the word under your cursor.
         map_lsp(
             "grr",
-            function() require("snacks").picker.lsp_references() end,
+            function()
+                require("mini.extra").pickers.lsp({ scope = "references" })
+            end,
             "[G]oto [R]eferences"
         )
 
@@ -44,7 +48,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Useful when your language has ways of declaring types without an actual implementation.
         map_lsp(
             "gri",
-            function() require("snacks").picker.lsp_implementations() end,
+            function()
+                require("mini.extra").pickers.lsp({ scope = "implementation" })
+            end,
             "[G]oto [I]mplementation"
         )
 
@@ -52,7 +58,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Symbols are things like variables, functions, types, etc.
         map_lsp(
             "gs",
-            function() require("snacks").picker.lsp_symbols() end,
+            function()
+                require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+            end,
             "Document [S]ymbols"
         )
 
@@ -60,13 +68,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         --  Similar to document symbols, except searches over your entire project.
         map_lsp(
             "gws",
-            function() require("snacks").picker.lsp_workspace_symbols() end,
+            function()
+                require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+            end,
             "[W]orkspace [S]ymbols"
         )
 
         map_lsp(
             "gD",
-            function() require("snacks").picker.diagnostics_buffer() end,
+            function() require("mini.extra").pickers.diagnostic() end,
             "Diagnostics"
         )
 
