@@ -5,21 +5,22 @@ return {
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
+            bash = { "shfmt" },
+            bib = { "tex-fmt" },
+            json = { "prettier" },
             lua = { "stylua" },
+            markdown = { "prettier", "injected" },
+            nix = { "nixfmt" },
             python = { "isort", "black" },
             r = { "air" },
+            rmd = { "prettier", "injected" },
             rust = { "rustfmt" },
-            json = { "prettier" },
+            sh = { "shfmt" },
+            tex = { "tex-fmt" },
+            toml = { "prettier" },
+            typst = { "typstyle" },
             yaml = { "prettier" },
             yml = { "prettier" },
-            toml = { "prettier" },
-            nix = { "nixfmt" },
-            markdown = { "prettier", "injected" },
-            rmd = { "prettier", "injected" },
-            tex = { "tex-fmt" },
-            bib = { "tex-fmt" },
-            bash = { "shfmt" },
-            sh = { "shfmt" },
         },
         formatters = {
             isort = {
