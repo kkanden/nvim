@@ -82,3 +82,5 @@ if vim.fn.has("wsl") == 1 then
         cache_enabled = 0,
     }
 end
+
+vim.keymap.set({ "n", "v" }, "<leader>c", "1z=")
