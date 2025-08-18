@@ -21,18 +21,22 @@ return {
             paths = { snippet_path },
         })
 
-        map({ "i", "s" }, "<Tab>", function()
-            if ls.expand_or_jumpable() then ls.expand_or_jump() end
-        end, { silent = true })
+        map(
+            { "i", "s" },
+            "<C-s>",
+            function() ls.expand_or_jump() end,
+            { silent = true }
+        )
+        map({ "i", "s" }, "<Tab>", function() ls.jump(1) end, { silent = true })
         map(
             { "i", "s" },
             "<S-Tab>",
             function() ls.jump(-1) end,
             { silent = true }
         )
-        map({ "i", "s" }, "<C-s>", function()
-            if ls.choice_active() then ls.change_choice(1) end
-        end, { silent = true })
+        -- map({ "i", "s" }, "<C-s>", function()
+        --     if ls.choice_active() then ls.change_choice(1) end
+        -- end, { silent = true })
 
         ls.filetype_extend("markdown", { "tex" })
         ls.filetype_extend("rmd", { "tex" })
