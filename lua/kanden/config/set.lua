@@ -83,4 +83,4 @@ if vim.fn.has("wsl") == 1 then
     }
 end
 
-vim.keymap.set({ "n", "v" }, "<leader>c", "1z=")
+vim.keymap.set({ "n", "v" }, "<leader>cc", "1z=")
