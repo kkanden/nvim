@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = { import = "kanden.plugins" },
     dev = {
-        path = "~/code",
+        path = "~/projects",
     },
     -- required for treesitter parsers on nixos
     performance = {
