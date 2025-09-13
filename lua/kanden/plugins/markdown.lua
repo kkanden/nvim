@@ -51,7 +51,7 @@ return {
             "MarkdownPreview",
             "MarkdownPreviewStop",
         },
-        build = function() vim.fn["mkdp#util#install"]() end,
+        build = "cd app && yarn install",
         init = function()
             vim.g.mkdp_command_for_global = 1
             vim.g.mkdp_filetypes = fts
