@@ -1,12 +1,5 @@
 return {
     {
-        "williamboman/mason.nvim",
-        opts = {
-            PATH = "append",
-        },
-    },
-
-    {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
         opts = {
