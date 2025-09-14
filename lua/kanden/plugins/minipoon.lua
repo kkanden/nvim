@@ -1,7 +1,6 @@
 local map = require("kanden.lib").map
 return {
     "kkanden/minipoon.nvim",
-    dev = true,
     init = function()
         local minipoon = require("minipoon")
         map("n", "<leader>a", function() minipoon:add_mark() end)
