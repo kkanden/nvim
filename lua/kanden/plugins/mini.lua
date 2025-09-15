@@ -53,6 +53,11 @@ return {
             options = {
                 use_cache = true,
             },
+            mappings = {
+                delete_left = "",
+                scroll_down = "<C-d>",
+                scroll_up = "<C-u>",
+            },
         },
         init = function()
             vim.ui.select = require("mini.pick").ui_select
