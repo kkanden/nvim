@@ -2,6 +2,8 @@ local augroup = require("kanden.lib").augroup
 local map = require("kanden.lib").map
 local system_output = require("kanden.lib").system_output
 
+local ns = vim.api.nvim_create_namespace("RunPython")
+
 ---Returns terminal command output `stdout, status, stderr`
 ---@param filename string
 ---@return string?
@@ -29,7 +31,7 @@ local insert_command_output = function(output, status, buf)
     if status ~= 0 then -- color the output red on error
         for i = 1, #output do
             -- stylua: ignore
-            vim.api.nvim_buf_add_highlight(buf, 0, "Error", i - 1, 0, #output[i])
+            vim.hl.range(buf, ns, "Error", {i - 1, 0}, {i-1, #output[i]})
         end
     end
 end
