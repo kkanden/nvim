@@ -13,7 +13,6 @@ return {
                 },
                 closingBraceHints = {
                     enable = false,
-                    minLines = 25,
                 },
                 closureReturnTypeHints = {
                     enable = "never",
@@ -24,7 +23,7 @@ return {
                 },
                 maxLength = 25,
                 parameterHints = {
-                    enable = true,
+                    enable = false,
                 },
                 reborrowHints = {
                     enable = "never",
@@ -32,8 +31,6 @@ return {
                 renderColons = true,
                 typeHints = {
                     enable = true,
-                    hideClosureInitialization = false,
-                    hideNamedConstructor = true,
                 },
             },
         },
