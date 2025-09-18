@@ -1,6 +1,6 @@
 return {
     "dmtrKovalenko/fff.nvim",
-    enabled = vim.fn.has("win32") == 0,
+    enabled = false,
     build = "cargo build --release",
     opts = {
         prompt = " ",

@@ -59,43 +59,24 @@ return {
                 scroll_up = "<C-u>",
             },
         },
-        init = function()
-            vim.ui.select = require("mini.pick").ui_select
-            -- no rust at work :)
-            if not pcall(require, "fff") then
-                vim.keymap.set(
-                    "n",
-                    "<leader>pf",
-                    function() require("mini.pick").builtin.files() end
-                )
-                vim.keymap.set(
-                    "n",
-                    "<leader>pn",
-                    function()
-                        require("mini.pick").builtin.files(
-                            nil,
-                            { source = { cwd = vim.fn.stdpath("config") } }
-                        )
-                    end
-                )
-            else
-                vim.keymap.set(
-                    "n",
-                    "<leader>pf",
-                    function() require("fff").find_files() end
-                )
-                vim.keymap.set(
-                    "n",
-                    "<leader>pn",
-                    function()
-                        require("fff").find_files_in_dir(
-                            vim.fn.stdpath("config")
-                        )
-                    end
-                )
-            end
-        end,
+        init = function() vim.ui.select = require("mini.pick").ui_select end,
         keys = {
+            {
+
+                "<leader>pf",
+                function() require("mini.pick").builtin.files() end,
+                desc = "mini.pick: files",
+            },
+            {
+                "<leader>pn",
+                function()
+                    require("mini.pick").builtin.files(
+                        nil,
+                        { source = { cwd = vim.fn.stdpath("config") } }
+                    )
+                end,
+                desc = "mini,pick: nvim config files",
+            },
             {
                 "<leader>ps",
                 function() require("mini.pick").builtin.grep_live() end,
