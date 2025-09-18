@@ -31,18 +31,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "i"
         )
 
-        -- Jump to the definition of the word under your cursor.
-        --  This is where a variable was first declared, or where a function is defined, etc.
-        --  To jump back, press <C-t>.
-        map_lsp(
-            "gd",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "definition" })
-            end,
-            "[G]oto [D]efinition"
-        )
+        map_lsp("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 
-        -- Find references for the word under your cursor.
         map_lsp(
             "grr",
             function()
@@ -51,8 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "[G]oto [R]eferences"
         )
 
-        -- Jump to the implementation of the word under your cursor.
-        --  Useful when your language has ways of declaring types without an actual implementation.
         map_lsp(
             "gri",
             function()
@@ -61,8 +49,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "[G]oto [I]mplementation"
         )
 
-        -- Fuzzy find all the symbols in your current document.
-        --  Symbols are things like variables, functions, types, etc.
         map_lsp(
             "gs",
             function()
@@ -71,8 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "Document [S]ymbols"
         )
 
-        -- Fuzzy find all the symbols in your current workspace.
-        --  Similar to document symbols, except searches over your entire project.
         map_lsp(
             "gws",
             function()
@@ -92,7 +76,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 and vim.diagnostic.severity.ERROR
             or vim.diagnostic.severity.WARN
         map_lsp(
-            "g]",
+            "]d",
             function()
                 vim.diagnostic.jump({
                     severity = min_severity,
@@ -103,7 +87,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         )
 
         map_lsp(
-            "g[",
+            "[d",
             function()
                 vim.diagnostic.jump({
                     severity = min_severity,
