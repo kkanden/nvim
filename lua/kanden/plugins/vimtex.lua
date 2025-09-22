@@ -3,6 +3,7 @@ local map = require("kanden.lib").map
 return {
     {
         "lervag/vimtex",
+        event = "VeryLazy",
         init = function()
             vim.g.vimtex_imaps_enabled = 0
             vim.g.vimtex_view_method = "sioyek"

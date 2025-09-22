@@ -1,5 +1,6 @@
 return {
     "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
     opts = {
         -- show virtual text only on current line
         override_lens = function(render, posList, nearest, idx, relIdx)

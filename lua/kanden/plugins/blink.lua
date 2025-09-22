@@ -46,6 +46,7 @@ end
 
 return {
     "saghen/blink.cmp",
+    event = "VeryLazy",
     version = "*",
     dependencies = {
         -- community sources
@@ -59,8 +60,6 @@ return {
     opts = {
         keymap = {
             ["<C-b>"] = { "select_and_accept" },
-            ["<C-s>"] = { "scroll_documentation_up", "fallback" },
-            ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         },
         completion = {
             menu = {
