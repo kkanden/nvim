@@ -1,6 +1,6 @@
 return {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "VeryLazy",
     opts = {
         fast_wrap = {},
     },

@@ -26,6 +26,9 @@ require("lazy").setup({
     dev = {
         path = "~/projects",
     },
+    change_detection = {
+        notify = false,
+    },
     -- required for treesitter parsers on nixos
     performance = {
         reset_packpath = false,

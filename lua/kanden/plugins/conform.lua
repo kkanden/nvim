@@ -2,6 +2,7 @@ local map = require("kanden.lib").map
 
 return {
     "stevearc/conform.nvim",
+    event = "VeryLazy",
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {

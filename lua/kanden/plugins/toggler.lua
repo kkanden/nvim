@@ -1,5 +1,6 @@
 return {
     "nguyenvukhang/nvim-toggler",
+    event = "VeryLazy",
     opts = {
         inverses = {
             ["true"] = "false",

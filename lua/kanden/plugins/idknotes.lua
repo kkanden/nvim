@@ -1,5 +1,6 @@
 return {
     "kkanden/idknotes.nvim",
+    event = "VeryLazy",
     ---@type idknotes.Config
     opts = {
         win_config = {

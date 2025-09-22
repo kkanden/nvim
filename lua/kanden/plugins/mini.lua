@@ -1,6 +1,7 @@
 return {
     {
         "echasnovski/mini.ai",
+        event = "VeryLazy",
         version = "*",
         opts = function()
             local gen_spec = require("mini.ai").gen_spec
@@ -34,6 +35,7 @@ return {
     },
     {
         "echasnovski/mini.move",
+        event = "VeryLazy",
         version = "*",
         opts = {
             mappings = {
@@ -46,6 +48,7 @@ return {
     },
     {
         "echasnovski/mini.pick",
+        event = "VeryLazy",
         dependencies = {
             "echasnovski/mini.extra",
         },
