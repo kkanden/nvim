@@ -5,8 +5,8 @@ return {
         transparent = false,
         bold = false,
         italic = false,
-        on_highlights = function(_, colors)
-            local highlights = {
+        on_highlights = function(highlights, colors)
+            local hl = {
                 BlinkCmpKindClass = { fg = colors.number },
                 BlinkCmpKindConstant = { fg = colors.parameter },
                 BlinkCmpKindConstructor = {},
@@ -27,18 +27,12 @@ return {
                 BlinkCmpKindTypeParameter = { fg = colors.hint },
                 BlinkCmpKindUnit = { fg = colors.number },
                 BlinkCmpKindVariable = { fg = colors.parameter },
+                MiniStatuslineFilename = { fg = colors.floatBorder },
             }
-            for name, setting in pairs(highlights) do
-                vim.api.nvim_command(
-                    string.format(
-                        "highlight %s guifg=%s guibg=%s guisp=%s gui=%s",
-                        name,
-                        setting.fg or "none",
-                        setting.bg or "none",
-                        setting.sp or "none",
-                        setting.gui or "none"
-                    )
-                )
+
+            for k, v in pairs(hl) do
+                highlights[k] =
+                    vim.tbl_deep_extend("force", highlights[k] or {}, v)
             end
         end,
     },
