@@ -62,7 +62,10 @@ return {
                 scroll_up = "<C-u>",
             },
         },
-        init = function() vim.ui.select = require("mini.pick").ui_select end,
+        config = function(opts)
+            vim.ui.select = require("mini.pick").ui_select
+            require("mini.pick").setup(opts)
+        end,
         keys = {
             {
 
