@@ -31,8 +31,7 @@ return {
             }
 
             for k, v in pairs(hl) do
-                highlights[k] =
-                    vim.tbl_deep_extend("force", highlights[k] or {}, v)
+                highlights[k] = vim.tbl_extend("force", highlights[k] or {}, v)
             end
         end,
     },
