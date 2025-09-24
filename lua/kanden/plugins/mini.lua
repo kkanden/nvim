@@ -60,9 +60,18 @@ return {
                 delete_left = "",
                 scroll_down = "<C-d>",
                 scroll_up = "<C-u>",
+                choose_2 = {
+                    char = "<C-b>",
+                    func = function()
+                        local cur_item = MiniPick.get_picker_matches().current
+                        local choose = MiniPick.get_picker_opts().source.choose
+                        choose(cur_item)
+                        return true
+                    end,
+                },
             },
         },
-        config = function(opts)
+        config = function(_, opts)
             vim.ui.select = require("mini.pick").ui_select
             require("mini.pick").setup(opts)
         end,
