@@ -112,4 +112,6 @@ map("n", "gK", function()
         virtual_lines = new_lines,
     })
 end, { desc = "Toggle virtual text/lines" })
+
 map({ "n", "v" }, "<leader>cc", "1z=")
+map("i", "<C-t>", "<C-v><Tab>", { desc = "Insert tab" })
