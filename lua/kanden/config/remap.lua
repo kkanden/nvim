@@ -78,7 +78,7 @@ map({ "i", "n" }, "<C-a>", function()
     local col = #line -- get length of line
     local char_under_cursor = line:sub(col, col) -- get last character
 
-    if char_under_cursor == "," then col = col - 1 end
+    if vim.tbl_contains({ ",", ";" }, char_under_cursor) then col = col - 1 end
 
     vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], col }) -- put cursor in right poisition
 end, { desc = "Move to end of line in insert mode" })
