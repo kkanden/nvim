@@ -1,5 +1,5 @@
 return {
-    cmd = { "ltex-ls" },
+    cmd = { "harper-ls", "--stdio" },
     filetypes = {
         "bib",
         "gitcommit",
@@ -9,6 +9,7 @@ return {
         "rst",
         "rnoweb",
         "tex",
+        "typst",
         "pandoc",
         "quarto",
         "rmd",
@@ -17,12 +18,5 @@ return {
         "xhtml",
         "mail",
         "text",
-    },
-    settings = {
-        ltex = {
-            enabled = true,
-            language = "en-US",
-            checkFrequency = "save",
-        },
     },
 }
