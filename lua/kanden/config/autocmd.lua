@@ -106,3 +106,16 @@ autocmd("BufEnter", {
         vim.opt_local.foldmethod = "expr"
     end,
 })
+
+autocmd("FileType", {
+    group = augroup("text_linebreak"),
+    pattern = { "markdown", "tex", "text", "typst" },
+    callback = function()
+        vim.cmd([[
+            setlocal textwidth=80
+            setlocal formatoptions+=t
+            setlocal linebreak
+            setlocal spell
+        ]])
+    end,
+})

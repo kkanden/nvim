@@ -1,11 +1,3 @@
-vim.cmd([[
-	setlocal wrapmargin=0
-	setlocal formatoptions+=t
-	setlocal linebreak
-	setlocal spell
-	setlocal wrap
-]])
-
 local function toggle_math()
     local location = vim.api.nvim_win_get_cursor(0)
     local line = vim.api.nvim_get_current_line()
