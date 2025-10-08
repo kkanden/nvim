@@ -88,8 +88,13 @@ autocmd({ "QuitPre" }, {
 
 function RFoldComment(lnum)
     local line = vim.fn.getline(lnum)
-    -- if string.match(line, "^#%s*-*%s*.*%s*-+%s*#*$") then return ">1" end
-    if string.match(line, "^#%s*.*%s*-+%s*#*$") then return ">1" end
+    if string.match(line, "^```{?%w+") then
+        return ">1"
+    elseif string.match(line, "^```") then
+        return "<1"
+    elseif string.match(line, "^#%s*.*%s*-+%s*#*$") then
+        return ">2"
+    end
     return "="
 end
 
