@@ -114,4 +114,3 @@ map("n", "gK", function()
 end, { desc = "Toggle virtual text/lines" })
 
 map({ "n", "v" }, "<leader>cc", "1z=")
-map("i", "<C-t>", "<C-v><Tab>", { desc = "Insert tab" })
