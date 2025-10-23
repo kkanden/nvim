@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd("FileType", {
     group = augroup("python_run"),
     pattern = { "python" },
     callback = function()
-        map("n", "<localleader><F5>", function()
+        map("n", "<localleader>sa", function()
             vim.cmd("w")
             run_python()
             vim.cmd("wincmd t")
