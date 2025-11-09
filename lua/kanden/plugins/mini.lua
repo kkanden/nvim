@@ -78,7 +78,7 @@ return {
         keys = {
             {
 
-                "<leader>pf",
+                "ff",
                 function() require("mini.pick").builtin.files() end,
                 desc = "mini.pick: files",
             },
