@@ -32,5 +32,8 @@ require("lazy").setup({
     -- required for treesitter parsers on nixos
     performance = {
         reset_packpath = false,
+        rtp = {
+            reset = false,
+        },
     },
 })
