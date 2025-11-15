@@ -1,5 +1,5 @@
 return {
-    cmd = { "ty", "server" },
+    cmd = { "basedpyright-langserver", "--stdio" },
     filetypes = { "python" },
     root_markers = {
         "pyproject.toml",
@@ -10,13 +10,11 @@ return {
         "pyrightconfig.json",
     },
     settings = {
-        ty = {
-            inlayHints = {
-                callArgumentNames = false,
-            },
-            experimental = {
-                rename = true,
-                autoImport = true,
+        basedpyright = {
+            analysis = {
+                inlayHints = {
+                    callArgumentNames = false,
+                },
             },
         },
     },
