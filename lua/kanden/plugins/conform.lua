@@ -22,6 +22,8 @@ return {
             typst = { "typstyle" },
             yaml = { "prettier" },
             yml = { "prettier" },
+            c = { "clang-format" },
+            cpp = { "clang-format" },
         },
         formatters = {
             isort = {
@@ -33,6 +35,9 @@ return {
             black = {
                 command = "black",
                 append_args = { "--preview" },
+            },
+            ["clang-format"] = {
+                prepend_args = { "--style={IndentWidth: 4}" },
             },
             prettier = {
                 append_args = function(_, ctx)
