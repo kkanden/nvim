@@ -50,8 +50,6 @@ return {
     version = "*",
     dependencies = {
         -- community sources
-        "Kaiser-Yang/blink-cmp-git",
-        "disrupted/blink-cmp-conventional-commits",
         "mikavilpas/blink-ripgrep.nvim",
 
         -- snippets
@@ -110,7 +108,6 @@ return {
                 "snippets",
                 "buffer",
                 "lazydev",
-                "dadbod",
                 "ripgrep",
             },
             providers = {
@@ -134,11 +131,6 @@ return {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
                     score_offset = 10e3,
-                },
-                dadbod = {
-                    name = "Dadbod",
-                    module = "vim_dadbod_completion.blink",
-                    score_offset = 10e3 + 1,
                 },
                 path = {
                     name = "path",
