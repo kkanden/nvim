@@ -119,3 +119,13 @@ autocmd("FileType", {
         ]])
     end,
 })
+
+-- turn off hlsearch after vim.opt.updatetime or entering insert mode
+autocmd({ "CursorHold", "InsertEnter" }, {
+    group = augroup("nohlsearch"),
+    callback = function()
+        if vim.v.hlsearch == 1 then
+            vim.api.nvim_input("<Cmd>nohlsearch<CR>")
+        end
+    end,
+})

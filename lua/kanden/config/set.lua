@@ -47,7 +47,7 @@ opt.scrolloff = 999
 opt.signcolumn = "auto"
 opt.isfname:append("@-@")
 
-opt.updatetime = 50
+opt.updatetime = 1000
 opt.colorcolumn = "80"
 
 -- netrw options

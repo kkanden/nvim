@@ -68,9 +68,6 @@ map({ "n", "t" }, "<M-.>", "<C-w>5>", { desc = "Resize split" })
 map({ "n", "t" }, "<M-t>", "<C-W>+", { desc = "Resize split" })
 map({ "n", "t" }, "<M-s>", "<C-W>-", { desc = "Resize split" })
 
--- hide hlsearch
-map("n", "<C-g>", "<cmd>nohlsearch<CR>", { desc = "Hide search highlight" })
-
 -- move to start/end of line in insert mode
 -- (if last character is comma, set cursor before the comma)
 map({ "i", "n" }, "<C-a>", function()
