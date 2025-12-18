@@ -29,7 +29,6 @@ map(
 -- copy/paste to/from clipboard shortcut
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard" })
 map({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy to clipboard" })
-map({ "n", "v" }, "<leader>cp", [["+p]], { desc = "Paste from clipboard" })
 
 map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void registry" })
 
@@ -110,4 +109,16 @@ map("n", "gK", function()
     })
 end, { desc = "Toggle virtual text/lines" })
 
-map({ "n", "v" }, "<leader>cc", "1z=")
+-- spell
+-- set keymaps to something good
+map({ "n", "v" }, "<leader>c", "1z=")
+map({ "n" }, "<leader>st", function()
+    local current = vim.opt.spelllang:get()[1]
+    if current == "en" then
+        vim.opt.spelllang = "pl"
+        vim.cmd("echo 'Spelllang set to pl'")
+    else
+        vim.opt.spelllang = "en"
+        vim.cmd("echo 'Spelllang set to en'")
+    end
+end, { desc = "Toggle polish/english spelllang" })
