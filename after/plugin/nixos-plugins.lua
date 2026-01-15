@@ -1,5 +1,5 @@
 if vim.uv.os_uname().version:lower():match("nixos") then
-    vim.cmd("packadd nvim-treesitter")
+    vim.cmd("packadd nvim-treesitter-legacy")
 
     require("nvim-treesitter.configs").setup({
         highlight = {
