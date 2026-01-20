@@ -1,3 +1,6 @@
+local hostname = vim.system({ "hostname" }):wait().stdout
+hostname = string.gsub(hostname, "\n", "")
+
 return {
     cmd = { "nixd" },
     filetypes = { "nix" },
@@ -6,10 +9,16 @@ return {
         nixd = {
             options = {
                 nixos = {
-                    expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.nixos.options",
+                    expr = string.format(
+                        "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.%s.options",
+                        hostname
+                    ),
                 },
                 ["home-manager"] = {
-                    expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.nixos.options.home-manager.users.type.getSubOptions []",
+                    expr = string.format(
+                        "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.%s.options.home-manager.users.type.getSubOptions []",
+                        hostname
+                    ),
                 },
             },
         },
