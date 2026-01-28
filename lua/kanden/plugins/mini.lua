@@ -1,58 +1,43 @@
 return {
-    {
-        "echasnovski/mini.ai",
-        event = "VeryLazy",
-        version = "*",
-        opts = function()
-            local gen_spec = require("mini.ai").gen_spec
-            return {
-                custom_textobjects = {
-                    -- Tweak function call to detect : (eg. `data.table::setDT()` in R)
-                    f = gen_spec.function_call({
-                        name_pattern = "[%w_%.:]",
-                    }),
+    "nvim-mini/mini.nvim",
+    init = function()
+        -- mini.ai
+        local gen_spec = require("mini.ai").gen_spec
+        require("mini.ai").setup({
+            custom_textobjects = {
+                -- Tweak function call to detect : (eg. `data.table::setDT()` in R)
+                f = gen_spec.function_call({
+                    name_pattern = "[%w_%.:]",
+                }),
 
-                    -- Function definition (needs treesitter queries with these captures)
-                    F = gen_spec.treesitter({
-                        a = "@function.outer",
-                        i = "@function.inner",
-                    }),
-                    c = gen_spec.treesitter({
-                        a = "@conditional.outer",
-                        i = "@conditional.inner",
-                    }),
-                },
-            }
-        end,
-    },
-    {
-        "echasnovski/mini.icons",
-        opts = {},
-        config = function(opts)
-            require("mini.icons").setup(opts)
-            MiniIcons.mock_nvim_web_devicons()
-        end,
-    },
-    {
-        "echasnovski/mini.move",
-        event = "VeryLazy",
-        version = "*",
-        opts = {
+                -- Function definition (needs treesitter queries with these captures)
+                F = gen_spec.treesitter({
+                    a = "@function.outer",
+                    i = "@function.inner",
+                }),
+                c = gen_spec.treesitter({
+                    a = "@conditional.outer",
+                    i = "@conditional.inner",
+                }),
+            },
+        })
+
+        -- mini.icons
+        require("mini.icons").setup()
+        require("mini.icons").mock_nvim_web_devicons()
+
+        -- mini.move
+        require("mini.move").setup({
             mappings = {
                 left = "H",
                 right = "L",
                 down = "J",
                 up = "K",
             },
-        },
-    },
-    {
-        "echasnovski/mini.pick",
-        event = "VeryLazy",
-        dependencies = {
-            "echasnovski/mini.extra",
-        },
-        opts = {
+        })
+
+        -- mini.pick
+        require("mini.pick").setup({
             options = {
                 use_cache = true,
             },
@@ -63,60 +48,20 @@ return {
                 choose_2 = {
                     char = "<C-b>",
                     func = function()
-                        local cur_item = MiniPick.get_picker_matches().current
-                        local choose = MiniPick.get_picker_opts().source.choose
+                        local cur_item =
+                            require("mini.pick").get_picker_matches().current
+                        local choose =
+                            require("mini.pick").get_picker_opts().source.choose
                         choose(cur_item)
                         return true
                     end,
                 },
             },
-        },
-        config = function(_, opts)
-            vim.ui.select = require("mini.pick").ui_select
-            require("mini.pick").setup(opts)
-        end,
-        keys = {
-            {
+        })
+        vim.ui.select = require("mini.pick").ui_select
 
-                "ff",
-                function() require("mini.pick").builtin.files() end,
-                desc = "mini.pick: files",
-            },
-            {
-                "<leader>pn",
-                function()
-                    require("mini.pick").builtin.files(
-                        nil,
-                        { source = { cwd = vim.fn.stdpath("config") } }
-                    )
-                end,
-                desc = "mini,pick: nvim config files",
-            },
-            {
-                "<leader>ps",
-                function() require("mini.pick").builtin.grep_live() end,
-                desc = "mini.pick: grep",
-            },
-            {
-                "<leader>pb",
-                function() require("mini.pick").builtin.buffers() end,
-                desc = "mini.pick: buffers",
-            },
-            {
-                "<leader>ph",
-                function() require("mini.pick").builtin.help() end,
-                desc = "mini.pick: help",
-            },
-            {
-                "<leader>pk",
-                function() require("mini.extra").pickers.keymaps() end,
-                desc = "mini.pick: keymaps",
-            },
-        },
-    },
-    {
-        "nvim-mini/mini.statusline",
-        opts = {
+        -- mini.statusline
+        require("mini.statusline").setup({
             content = {
                 active = function()
                     local mode, mode_hl =
@@ -129,7 +74,7 @@ return {
                     })
                     local filename =
                         require("mini.statusline").section_filename({
-                            trunc_width = 1e6,
+                            trunc_width = 0,
                         })
                     local fileinfo =
                         require("mini.statusline").section_fileinfo({
@@ -171,6 +116,44 @@ return {
                     })
                 end,
             },
+        })
+    end,
+    keys = {
+        {
+
+            "ff",
+            function() require("mini.pick").builtin.files() end,
+            desc = "mini.pick: files",
+        },
+        {
+            "<leader>pn",
+            function()
+                require("mini.pick").builtin.files(
+                    nil,
+                    { source = { cwd = vim.fn.stdpath("config") } }
+                )
+            end,
+            desc = "mini,pick: nvim config files",
+        },
+        {
+            "<leader>ps",
+            function() require("mini.pick").builtin.grep_live() end,
+            desc = "mini.pick: grep",
+        },
+        {
+            "<leader>pb",
+            function() require("mini.pick").builtin.buffers() end,
+            desc = "mini.pick: buffers",
+        },
+        {
+            "<leader>ph",
+            function() require("mini.pick").builtin.help() end,
+            desc = "mini.pick: help",
+        },
+        {
+            "<leader>pk",
+            function() require("mini.extra").pickers.keymaps() end,
+            desc = "mini.pick: keymaps",
         },
     },
 }
