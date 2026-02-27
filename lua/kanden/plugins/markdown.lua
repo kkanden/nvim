@@ -2,19 +2,16 @@ local fts = { "markdown", "rmd" }
 
 return {
     {
-        "iamcco/markdown-preview.nvim",
+        "selimacerbas/markdown-preview.nvim",
         ft = fts,
-        cmd = {
-            "MarkdownPreviewToggle",
-            "MarkdownPreview",
-            "MarkdownPreviewStop",
-        },
-        build = "cd app && yarn install",
-        init = function()
-            vim.g.mkdp_command_for_global = 1
-            vim.g.mkdp_filetypes = fts
-            vim.g.mkdp_echo_preview_url = 1
-            vim.g.mkdp_browser = "zen"
+        dependencies = { "selimacerbas/live-server.nvim" },
+        config = function()
+            require("markdown_preview").setup({
+                -- all optional; sane defaults shown
+                port = 8421,
+                open_browser = true,
+                debounce_ms = 300,
+            })
         end,
     },
 
