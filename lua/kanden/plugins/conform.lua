@@ -18,7 +18,6 @@ return {
             rust = { "rustfmt" },
             sh = { "shfmt" },
             tex = { "tex-fmt" },
-            toml = { "prettier" },
             typst = { "typstyle" },
             yaml = { "prettier" },
             yml = { "prettier" },
@@ -40,15 +39,6 @@ return {
                 prepend_args = { "--style={IndentWidth: 4}" },
             },
             prettier = {
-                append_args = function(_, ctx)
-                    if vim.bo[ctx.buf].filetype == "toml" then
-                        return {
-                            "--parser=toml",
-                            "--plugin=prettier-plugin-toml",
-                        }
-                    end
-                    return {}
-                end,
                 options = {
                     ext_parsers = {
                         rmd = "markdown",
