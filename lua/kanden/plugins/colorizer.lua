@@ -1,14 +1,13 @@
-return {
-    "catgoose/nvim-colorizer.lua",
-    event = "VeryLazy",
-    opts = {
-        filetypes = { "*" },
-        user_default_options = {
-            names_opts = {
+require("colorizer").setup({
+    filetypes = { "*" },
+    lazy_load = true,
+    options = {
+        parsers = {
+            names = {
                 uppercase = true,
             },
             css = true,
-            tailwind = true,
+            tailwind = { enable = true },
         },
     },
-}
+})

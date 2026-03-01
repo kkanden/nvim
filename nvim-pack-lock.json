@@ -1,0 +1,118 @@
+{
+  "plugins": {
+    "LuaSnip": {
+      "rev": "5a1e39223db9a0498024a77b8441169d260c8c25",
+      "src": "https://github.com/L3MON4D3/LuaSnip",
+      "version": ">=0.0.0"
+    },
+    "R.nvim": {
+      "rev": "b5e2b36450c89a670f30b4a1f2c9eed1deac9c8a",
+      "src": "https://github.com/R-nvim/R.nvim"
+    },
+    "blink-ripgrep.nvim": {
+      "rev": "58322000566da0113dff728e33e38ef9856c3304",
+      "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
+    },
+    "blink.cmp": {
+      "rev": "4b18c32adef2898f95cdef6192cbd5796c1a332d",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": ">=0.0.0"
+    },
+    "bullets.vim": {
+      "rev": "89294b8930e660936374fb763ac48a1ac51dd29c",
+      "src": "https://github.com/bullets-vim/bullets.vim"
+    },
+    "conform.nvim": {
+      "rev": "e969e302bced7ffb9a0a0323629f31feb0ca35a6",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "gitsigns.nvim": {
+      "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "idknotes.nvim": {
+      "rev": "365ed9afc48aea1df4733636c67e1f35938a0af4",
+      "src": "https://github.com/kkanden/idknotes.nvim"
+    },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "lazydev.nvim": {
+      "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
+    "live-server.nvim": {
+      "rev": "6897c94950e05d5b22440c6db8fa24c5c51d8d12",
+      "src": "https://github.com/selimacerbas/live-server.nvim"
+    },
+    "markdown-preview.nvim": {
+      "rev": "858391a1d01dc0daa5233184b4600e1cc0d8d9fc",
+      "src": "https://github.com/selimacerbas/markdown-preview.nvim"
+    },
+    "mini.nvim": {
+      "rev": "0098de999048af0539183d625c52d733318a441b",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "minipoon.nvim": {
+      "rev": "5ac2d345ee95b7e6be329a95847bb869cd6ecbe9",
+      "src": "https://github.com/kkanden/minipoon.nvim"
+    },
+    "nvim-colorizer.lua": {
+      "rev": "773f9ea44e832fbf74f69d20bb85ce7805eae677",
+      "src": "https://github.com/catgoose/nvim-colorizer.lua"
+    },
+    "nvim-hlslens": {
+      "rev": "be2d7b2be01860b5445a007ff2bc72b29896db6b",
+      "src": "https://github.com/kevinhwang91/nvim-hlslens"
+    },
+    "nvim-surround": {
+      "rev": "ce4ad4a8909d7f4537803c8f09b79e78c49a6cc4",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "nvim-toggler": {
+      "rev": "467808600882fd6c9e33b9dbc4889b1b80cfd917",
+      "src": "https://github.com/nguyenvukhang/nvim-toggler"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "nvim-ts-autotag": {
+      "rev": "8e1c0a389f20bf7f5b0dd0e00306c1247bda2595",
+      "src": "https://github.com/windwp/nvim-ts-autotag"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "vague.nvim": {
+      "rev": "4abd79d6fbaca57bf437763d0b5bed364e4512bd",
+      "src": "https://github.com/vague2k/vague.nvim"
+    },
+    "vim-fugitive": {
+      "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-startuptime": {
+      "rev": "c12649b2458e34ec6dde8f1bdfe830661a613a6b",
+      "src": "https://github.com/dstein64/vim-startuptime"
+    },
+    "vimtex": {
+      "rev": "fcd1533862cc3153c203399964065bc835f6919a",
+      "src": "https://github.com/lervag/vimtex"
+    }
+  }
+}
