@@ -95,6 +95,8 @@ local on_filetype = function(ft, f) misc.safely("filetype:" .. ft, f) end
 for name, _ in vim.fs.dir(plugins_dir) do
     local setup = function() dofile(vim.fs.joinpath(plugins_dir, name)) end
 
+    if name:match("_now") then now(setup) end
+
     local basename = name:gsub("%.lua", "")
     local spec = vim.iter(plugins)
         :filter(function(x) return x.name == basename end)
