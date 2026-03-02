@@ -54,7 +54,7 @@ local plugins = {
 
 vim.list_extend(
     plugins,
-    not vim.g.on_nixos and gh("nvim-treesitter/nvim-treesitter") or {}
+    not vim.g.on_nixos and { gh("nvim-treesitter/nvim-treesitter") } or {}
 )
 
 vim.pack.add(plugins)
