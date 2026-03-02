@@ -16,8 +16,6 @@ local plugins = {
 
     gh("tpope/vim-fugitive"),
 
-    gh("sindrets/diffview.nvim"),
-
     gh("lewis6991/gitsigns.nvim"),
 
     gh("kevinhwang91/nvim-hlslens"),
@@ -30,8 +28,6 @@ local plugins = {
 
     gh("selimacerbas/markdown-preview.nvim"),
     gh("selimacerbas/live-server.nvim"),
-
-    gh("bullets-vim/bullets.vim"),
 
     gh("nvim-mini/mini.nvim"),
 
@@ -48,8 +44,6 @@ local plugins = {
     gh("nguyenvukhang/nvim-toggler"),
 
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
-
-    gh("lervag/vimtex"),
 }
 
 vim.list_extend(
