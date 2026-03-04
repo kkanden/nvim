@@ -5,10 +5,6 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": ">=0.0.0"
     },
-    "blink-ripgrep": {
-      "rev": "9da32a88e611df82afbfd4671f3205483c372772",
-      "src": "https://github.com/mikavilpas/blink-ripgrep.nvim"
-    },
     "colorizer": {
       "rev": "4770635b4903d849fb30a9e45ac5da5eb5c36a16",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
@@ -73,14 +69,6 @@
     "r": {
       "rev": "1e93501e233731087db3b29d7633446688ce0d07",
       "src": "https://github.com/R-nvim/R.nvim"
-    },
-    "surround": {
-      "rev": "ce4ad4a8909d7f4537803c8f09b79e78c49a6cc4",
-      "src": "https://github.com/kylechui/nvim-surround"
-    },
-    "toggler": {
-      "rev": "467808600882fd6c9e33b9dbc4889b1b80cfd917",
-      "src": "https://github.com/nguyenvukhang/nvim-toggler"
     },
     "treesitter-textobjects": {
       "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
