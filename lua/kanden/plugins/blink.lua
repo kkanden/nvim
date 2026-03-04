@@ -50,7 +50,6 @@ require("blink-cmp").setup({
             "path",
             "snippets",
             "buffer",
-            "lazydev",
             "ripgrep",
         },
         providers = {
@@ -69,11 +68,6 @@ require("blink-cmp").setup({
                 score_offset = 10e3,
                 -- should_show_items = trigger(";"),
                 -- transform_items = transform_trigger(";"),
-            },
-            lazydev = {
-                name = "LazyDev",
-                module = "lazydev.integrations.blink",
-                score_offset = 10e3,
             },
             path = {
                 name = "path",
