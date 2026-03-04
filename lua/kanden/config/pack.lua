@@ -1,5 +1,6 @@
 local function gh(x) return "https://github.com/" .. x end
 
+---@type vim.pack.Spec
 local plugins = {
     { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
     gh("mikavilpas/blink-ripgrep.nvim"),
@@ -25,7 +26,6 @@ local plugins = {
     gh("kkanden/minipoon.nvim"),
     { src = gh("stevearc/oil.nvim"), data = { now = true } },
     { src = gh("R-nvim/R.nvim"), data = { ft = { "r", "rmd" } } },
-    gh("nguyenvukhang/nvim-toggler"),
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
     gh("windwp/nvim-ts-autotag"),
     { src = gh("vague2k/vague.nvim"), data = { now = true } },
