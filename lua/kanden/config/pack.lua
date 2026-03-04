@@ -31,10 +31,12 @@ local plugins = {
     { src = gh("vague2k/vague.nvim"), data = { now = true } },
 }
 
-vim.list_extend(
-    plugins,
-    not vim.g.on_nixos and { gh("nvim-treesitter/nvim-treesitter") } or {}
-)
+vim.list_extend(plugins, not vim.g.on_nixos and {
+    {
+        src = gh("nvim-treesitter/nvim-treesitter"),
+        version = "master",
+    },
+} or {})
 
 ---@param plugin string
 local function normalize_name(plugin)
