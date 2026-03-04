@@ -88,3 +88,22 @@ for name, _ in vim.fs.dir(plugins_dir) do
         lazy(setup)
     end
 end
+
+-- user cmds
+vim.api.nvim_create_user_command("PackDelete", function()
+    local to_delete = vim.iter(vim.pack.get())
+        :filter(function(x) return not x.active end)
+        :map(function(x) return x.spec.name end)
+        :totable()
+    if #to_delete > 0 then
+        vim.pack.del(to_delete)
+    else
+        vim.notify("vim.pack: nothing to delete")
+    end
+end, { desc = "vim.pack: delete unused plugins from disk" })
+
+vim.api.nvim_create_user_command(
+    "PackRevert",
+    function() vim.pack.update(nil, { offline = true, target = "lockfile" }) end,
+    { desc = "vim.pack: revert to lockfile" }
+)
