@@ -1,58 +1,35 @@
 local function gh(x) return "https://github.com/" .. x end
 
 local plugins = {
-    gh("windwp/nvim-ts-autotag"),
-
-    {
-        src = gh("saghen/blink.cmp"),
-        version = vim.version.range("*"),
-    },
-    {
-        src = gh("L3MON4D3/LuaSnip"),
-        version = vim.version.range("*"),
-    },
-    gh("rafamadriz/friendly-snippets"),
+    { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
     gh("mikavilpas/blink-ripgrep.nvim"),
-
-    -- gh("catgoose/nvim-colorizer.lua"),
-
+    gh("catgoose/nvim-colorizer.lua"),
     gh("stevearc/conform.nvim"),
-
     { src = gh("j-hui/fidget.nvim"), data = { now = true } },
-
+    gh("rafamadriz/friendly-snippets"),
     gh("tpope/vim-fugitive"),
-
     gh("lewis6991/gitsigns.nvim"),
-
     gh("kevinhwang91/nvim-hlslens"),
-
     gh("kkanden/idknotes.nvim"),
-
     gh("lukas-reineke/indent-blankline.nvim"),
-
-    { src = gh("folke/lazydev.nvim"), data = { ft = { "lua" } } },
-
     {
         src = gh("selimacerbas/markdown-preview.nvim"),
-        data = { ft = { "markdown" } },
+        data = { ft = { "markdown", "rmd" } },
     },
-    gh("selimacerbas/live-server.nvim"),
-
+    {
+        src = gh("selimacerbas/live-server.nvim"),
+        data = { ft = { "markdown", "rmd" } },
+    },
+    { src = gh("L3MON4D3/LuaSnip"), version = vim.version.range("*") },
     gh("nvim-mini/mini.nvim"),
-
     gh("kkanden/minipoon.nvim"),
-
     { src = gh("stevearc/oil.nvim"), data = { now = true } },
-
     { src = gh("R-nvim/R.nvim"), data = { ft = { "r", "rmd" } } },
-
     gh("kylechui/nvim-surround"),
-
-    { src = gh("vague2k/vague.nvim"), data = { now = true } },
-
     gh("nguyenvukhang/nvim-toggler"),
-
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
+    gh("windwp/nvim-ts-autotag"),
+    { src = gh("vague2k/vague.nvim"), data = { now = true } },
 }
 
 vim.list_extend(
@@ -67,7 +44,7 @@ local function normalize_name(plugin)
         :match("https://.+/.+/([%w_%-%.]+)")
         :gsub("%.%w+$", "")
         :gsub("n?vim%-", "")
-    return basename
+    return basename or plugin
 end
 
 plugins = vim.iter(plugins)
