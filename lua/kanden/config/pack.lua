@@ -1,6 +1,6 @@
 local function gh(x) return "https://github.com/" .. x end
 
----@type vim.pack.Spec
+---@type (string|vim.pack.Spec)[]
 local plugins = {
     { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
     gh("catgoose/nvim-colorizer.lua"),
