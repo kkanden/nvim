@@ -25,7 +25,6 @@ local plugins = {
     gh("kkanden/minipoon.nvim"),
     { src = gh("stevearc/oil.nvim"), data = { now = true } },
     { src = gh("R-nvim/R.nvim"), data = { ft = { "r", "rmd" } } },
-    gh("kylechui/nvim-surround"),
     gh("nguyenvukhang/nvim-toggler"),
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
     gh("windwp/nvim-ts-autotag"),

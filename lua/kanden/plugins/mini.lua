@@ -1,20 +1,21 @@
 local map = require("kanden.lib").map
 
 -- mini.ai
-local gen_spec = require("mini.ai").gen_spec
+local ts_input = require("mini.ai").gen_spec.treesitter
 require("mini.ai").setup({
     custom_textobjects = {
         -- Tweak function call to detect : (eg. `data.table::setDT()` in R)
-        f = gen_spec.function_call({
-            name_pattern = "[%w_%.:]",
+        f = ts_input({
+            a = "@call.outer",
+            i = "@call.inner",
         }),
 
         -- Function definition (needs treesitter queries with these captures)
-        F = gen_spec.treesitter({
+        F = ts_input({
             a = "@function.outer",
             i = "@function.inner",
         }),
-        c = gen_spec.treesitter({
+        c = ts_input({
             a = "@conditional.outer",
             i = "@conditional.inner",
         }),
@@ -30,6 +31,37 @@ require("mini.move").setup({
         up = "K",
     },
 })
+
+-- mini.surround
+local ts_input = require("mini.surround").gen_spec.input.treesitter
+require("mini.surround").setup({
+    custom_surroundings = {
+        f = {
+            input = ts_input({ outer = "@call.outer", inner = "@call.inner" }),
+        },
+        F = {
+            input = ts_input({
+                outer = "@function.outer",
+                inner = "@function.inner",
+            }),
+        },
+    },
+    mappings = {
+        add = "ys",
+        delete = "ds",
+        replace = "cs",
+        find = "",
+        find_left = "",
+        highlight = "",
+        suffix_last = "",
+        suffix_next = "",
+    },
+    search_method = "cover_or_next",
+})
+
+vim.keymap.del("x", "ys")
+map("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+map("n", "yss", "ys_", { remap = true })
 
 -- mini.pick
 require("mini.pick").setup({
