@@ -25,6 +25,9 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
+-- search recursively for :find
+opt.path:append("**")
+
 -- folds
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
