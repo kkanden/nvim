@@ -50,7 +50,6 @@ require("blink-cmp").setup({
             "path",
             "snippets",
             "buffer",
-            "ripgrep",
         },
         providers = {
             lsp = {
@@ -77,18 +76,6 @@ require("blink-cmp").setup({
                     get_cwd = function(_) return vim.fn.getcwd() end,
                     show_hidden_files_by_default = true,
                 },
-            },
-            ripgrep = {
-                name = "rg",
-                module = "blink-ripgrep",
-                fallbacks = { "buffer" },
-                score_offset = -10e4,
-                transform_items = function(_, items)
-                    for _, item in ipairs(items) do
-                        item.kind_name = nil
-                    end
-                    return items
-                end,
             },
         },
     },

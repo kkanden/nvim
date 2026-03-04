@@ -3,7 +3,6 @@ local function gh(x) return "https://github.com/" .. x end
 ---@type vim.pack.Spec
 local plugins = {
     { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
-    gh("mikavilpas/blink-ripgrep.nvim"),
     gh("catgoose/nvim-colorizer.lua"),
     gh("stevearc/conform.nvim"),
     { src = gh("j-hui/fidget.nvim"), data = { now = true } },
