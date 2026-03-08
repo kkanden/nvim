@@ -1,6 +1,5 @@
 local augroup = require("kanden.lib").augroup
 local map = require("kanden.lib").map
-local complete_fun = require("kanden.lib").user_cmd_complete
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroup("lsp_attach"),
@@ -114,29 +113,6 @@ for name, type in vim.fs.dir(vim.fn.stdpath("config") .. "/lsp") do
     end
 end
 
-local load_lsps = function()
-    for _, name in pairs(lsps) do
-        if name == "nixd" and vim.fn.has("win32") == 1 then goto continue end
-        vim.lsp.enable(name)
-        ::continue::
-    end
+for _, name in pairs(lsps) do
+    vim.lsp.enable(name)
 end
-
-load_lsps()
-
-vim.api.nvim_create_user_command("LspRestart", function()
-    vim.lsp.stop_client(vim.lsp.get_clients())
-    vim.wait(500)
-    load_lsps()
-    vim.cmd("wa")
-    vim.cmd("edit")
-    vim.api.nvim_feedkeys("zz", "n", false)
-end, {})
-
-vim.api.nvim_create_user_command(
-    "LspEnable",
-    function(opts) vim.lsp.enable(opts.fargs) end,
-    { nargs = "+", complete = complete_fun(lsps) }
-)
-
-map("n", "<leader>zig", "<Cmd>LspRestart<CR>", { desc = "Restart LSP" })

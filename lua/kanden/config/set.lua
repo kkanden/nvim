@@ -25,6 +25,9 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
+-- search recursively for :find
+opt.path:append("**")
+
 -- folds
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -57,7 +60,7 @@ vim.g.netrw_sizestyle = "H"
 
 opt.swapfile = false
 opt.backup = false
-opt.undodir = vim.fn.stdpath("data") .. "/undo"
+opt.undodir = vim.fn.stdpath("state") .. "/undo"
 opt.undofile = true
 
 -- diagnostics

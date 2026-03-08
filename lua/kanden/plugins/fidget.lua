@@ -1,11 +1,9 @@
-return {
-    "j-hui/fidget.nvim",
-    opts = {
-        notification = {
-            window = {
-                winblend = 0,
-            },
+require("fidget").setup({
+    notification = {
+        window = {
+            winblend = 0,
         },
     },
-    init = function() vim.notify = require("fidget").notify end,
-}
+})
+
+vim.notify = require("fidget").notify
