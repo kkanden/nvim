@@ -34,7 +34,7 @@
       "src": "https://github.com/kevinhwang91/nvim-hlslens"
     },
     "idknotes": {
-      "rev": "365ed9afc48aea1df4733636c67e1f35938a0af4",
+      "rev": "1e691c7c79af18c0c78ec20867eafce207bacc74",
       "src": "https://github.com/kkanden/idknotes.nvim"
     },
     "indent-blankline": {
@@ -59,7 +59,7 @@
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "minipoon": {
-      "rev": "5ac2d345ee95b7e6be329a95847bb869cd6ecbe9",
+      "rev": "c2d9a1aff42aa58450d4dac9dae22e7c0b3a5c84",
       "src": "https://github.com/kkanden/minipoon.nvim"
     },
     "oil": {
