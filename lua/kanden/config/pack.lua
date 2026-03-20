@@ -84,20 +84,59 @@ for name, _ in vim.fs.dir(plugins_dir) do
 end
 
 -- user cmds
-vim.api.nvim_create_user_command("PackDelete", function()
-    local to_delete = vim.iter(vim.pack.get())
-        :filter(function(x) return not x.active end)
-        :map(function(x) return x.spec.name end)
-        :totable()
-    if #to_delete > 0 then
-        vim.pack.del(to_delete)
-    else
-        vim.notify("vim.pack: nothing to delete")
-    end
-end, { desc = "vim.pack: delete unused plugins from disk" })
+local subcmds = {
+    delete = {
+        exec = function()
+            local to_delete = vim.iter(vim.pack.get())
+                :filter(function(x) return not x.active end)
+                :map(function(x) return x.spec.name end)
+                :totable()
+            if #to_delete > 0 then
+                vim.pack.del(to_delete)
+            else
+                vim.notify("vim.pack: nothing to delete")
+            end
+        end,
+    },
+    update = {
+        exec = function(args)
+            local plugs = vim.list_slice(args.fargs, 2)
+            if #plugs == 0 then
+                vim.pack.update()
+                return
+            end
+            vim.pack.update(plugs)
+        end,
+        complete = function(lead) return vim.fn.getcompletion(lead, "packadd") end,
+    },
+    revert = {
+        exec = function()
+            vim.pack.update(nil, { offline = true, target = "lockfile" })
+        end,
+    },
+}
 
-vim.api.nvim_create_user_command(
-    "PackRevert",
-    function() vim.pack.update(nil, { offline = true, target = "lockfile" }) end,
-    { desc = "vim.pack: revert to lockfile" }
-)
+vim.api.nvim_create_user_command("Pack", function(args)
+    local subcmd = args.fargs[1]
+    local defn = subcmds[subcmd]
+    if not defn then
+        vim.notify("Pack: unknown subcommand " .. subcmd, vim.log.levels.ERROR)
+        return
+    end
+    defn.exec(args)
+end, {
+    nargs = "+",
+    complete = function(lead, line, _pos)
+        local parts = vim.split(line, "%s+")
+        if #parts <= 2 then
+            return vim.tbl_filter(
+                function(x) return x:find(lead) == 1 end,
+                vim.tbl_keys(subcmds)
+            )
+        end
+
+        local subcmd = parts[2]
+        local defn = subcmds[subcmd]
+        if defn and defn.complete then return defn.complete(lead) end
+    end,
+})
