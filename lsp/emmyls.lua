@@ -2,9 +2,11 @@
 local plugin_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site/pack/core/opt")
 local plugin_libs = { "$VIMRUNTIME" }
 
-for name, type in vim.fs.dir(plugin_dir) do
-    if type == "directory" then
-        table.insert(plugin_libs, vim.fs.joinpath(plugin_dir, name))
+if vim.fs.root(vim.uv.cwd(), ".git") == vim.fn.stdpath("config") then
+    for name, type in vim.fs.dir(plugin_dir) do
+        if type == "directory" then
+            table.insert(plugin_libs, vim.fs.joinpath(plugin_dir, name))
+        end
     end
 end
 
