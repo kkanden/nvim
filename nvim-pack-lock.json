@@ -1,16 +1,16 @@
 {
   "plugins": {
     "blink": {
-      "rev": "4b18c32adef2898f95cdef6192cbd5796c1a332d",
+      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
       "src": "https://github.com/saghen/blink.cmp",
       "version": ">=0.0.0"
     },
     "colorizer": {
-      "rev": "4770635b4903d849fb30a9e45ac5da5eb5c36a16",
+      "rev": "ef211089af881bea206c7aa3f2693a81feee7e90",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "conform": {
-      "rev": "40dcec5555f960b0a04340d76eabdf4efe78599d",
+      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fidget": {
@@ -22,11 +22,11 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fugitive": {
-      "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "gitsigns": {
-      "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
+      "rev": "7c4faa3540d0781a28588cafbd4dd187a28ac6e3",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "hlslens": {
@@ -42,7 +42,7 @@
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "live-server": {
-      "rev": "6897c94950e05d5b22440c6db8fa24c5c51d8d12",
+      "rev": "446b2211de3819f67e807b768ebd200054e1cf06",
       "src": "https://github.com/selimacerbas/live-server.nvim"
     },
     "luasnip": {
@@ -51,11 +51,11 @@
       "version": ">=0.0.0"
     },
     "markdown-preview": {
-      "rev": "858391a1d01dc0daa5233184b4600e1cc0d8d9fc",
+      "rev": "d211d554e1e7f57088419b2d9349cf02eb311271",
       "src": "https://github.com/selimacerbas/markdown-preview.nvim"
     },
     "mini": {
-      "rev": "0098de999048af0539183d625c52d733318a441b",
+      "rev": "59f09943573c5348ca6c88393fa09ce3b66a7818",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "minipoon": {
@@ -67,11 +67,15 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "r": {
-      "rev": "1e93501e233731087db3b29d7633446688ce0d07",
+      "rev": "5b5e60912a7ffa9444ff38c3186b3652b11397b4",
       "src": "https://github.com/R-nvim/R.nvim"
     },
+    "treesitter": {
+      "rev": "877f724846f2202a16e311bd19efb954bd1c430e",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
     "treesitter-textobjects": {
-      "rev": "a0e182ae21fda68c59d1f36c9ed45600aef50311",
+      "rev": "7359dfcefa38db632541e1f9b5b5f291626a1d47",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "ts-autotag": {
@@ -79,7 +83,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "vague": {
-      "rev": "4abd79d6fbaca57bf437763d0b5bed364e4512bd",
+      "rev": "8c4643f8a5106dbc492918f86ff6b5c81111ce9a",
       "src": "https://github.com/vague2k/vague.nvim"
     }
   }
