@@ -25,17 +25,11 @@ local plugins = {
     gh("kkanden/minipoon.nvim"),
     { src = gh("stevearc/oil.nvim"), data = { now = true } },
     { src = gh("R-nvim/R.nvim"), data = { ft = { "r", "rmd" } } },
+    gh("nvim-treesitter/nvim-treesitter"),
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
     gh("windwp/nvim-ts-autotag"),
     { src = gh("vague2k/vague.nvim"), data = { now = true } },
 }
-
-vim.list_extend(plugins, not vim.g.on_nixos and {
-    {
-        src = gh("nvim-treesitter/nvim-treesitter"),
-        version = "master",
-    },
-} or {})
 
 ---@param plugin string
 local function normalize_name(plugin)

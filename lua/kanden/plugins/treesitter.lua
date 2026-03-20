@@ -1,13 +1,23 @@
-if vim.g.on_nixos then
-    require("nvim-treesitter.configs").setup({
-        highlight = {
-            enable = true,
-            additional_vim_regex_highlighting = false,
-        },
-        sync_install = false,
-        auto_install = false,
-        indent = {
-            enable = true,
-        },
-    })
-end
+local augroup = require("kanden.lib").augroup
+
+local parsers = require("nvim-treesitter").get_available()
+
+-- install all parses, idc
+-- once they're installed, this is no-op
+require("nvim-treesitter").install(parsers)
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("treesitter"),
+    pattern = "*",
+    callback = function()
+        local ft = vim.bo.filetype or ""
+
+        -- run treesitter if we have the parser
+        if vim.list_contains(parsers, vim.treesitter.language.get_lang(ft)) then
+            vim.treesitter.start()
+            vim.opt.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.opt.foldmethod = "expr"
+        end
+    end,
+})

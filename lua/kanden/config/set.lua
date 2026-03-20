@@ -29,8 +29,6 @@ opt.cursorlineopt = "number"
 opt.path:append("**")
 
 -- folds
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldenable = false
 opt.foldcolumn = "0"
 function MyFoldText(lnum_start, lnum_end, foldlevel)
