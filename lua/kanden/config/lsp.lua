@@ -33,38 +33,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map_lsp("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 
         map_lsp(
-            "grr",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "references" })
-            end,
-            "[G]oto [R]eferences"
-        )
-
-        map_lsp(
-            "gri",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "implementation" })
-            end,
-            "[G]oto [I]mplementation"
-        )
-
-        map_lsp(
-            "gs",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-            end,
-            "Document [S]ymbols"
-        )
-
-        map_lsp(
-            "gws",
-            function()
-                require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
-            end,
-            "[W]orkspace [S]ymbols"
-        )
-
-        map_lsp(
             "gD",
             function() require("mini.extra").pickers.diagnostic() end,
             "Diagnostics"

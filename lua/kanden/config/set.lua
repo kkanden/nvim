@@ -25,8 +25,11 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
--- search recursively for :find
+-- find/grep/make
 opt.path:append("**")
+vim.o.grepprg = "rg --vimgrep --hidden --smart-case --glob=!.git"
+vim.keymap.set("ca", "grep", "sil gr")
+vim.keymap.set("ca", "gr", "sil gr")
 
 -- folds
 opt.foldenable = false
