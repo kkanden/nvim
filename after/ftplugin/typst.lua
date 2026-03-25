@@ -22,3 +22,16 @@ local function toggle_math()
 end
 
 vim.keymap.set("n", "<leader>tm", toggle_math, { buffer = 0 })
+
+-- compile on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.typ",
+    callback = function()
+        vim.cmd("silent make")
+        if #vim.fn.getqflist() > 0 then
+            vim.api.nvim_echo({
+                { "compilation failed", "ErrorMsg" },
+            }, false, {})
+        end
+    end,
+})
