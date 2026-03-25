@@ -14,12 +14,6 @@ return {
                         hostname
                     ),
                 },
-                ["home-manager"] = {
-                    expr = string.format(
-                        "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.%s.options.home-manager.users.type.getSubOptions []",
-                        hostname
-                    ),
-                },
             },
         },
     },
