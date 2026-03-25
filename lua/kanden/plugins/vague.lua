@@ -24,7 +24,7 @@ require("vague").setup({
             BlinkCmpKindTypeParameter = { fg = colors.hint },
             BlinkCmpKindUnit = { fg = colors.number },
             BlinkCmpKindVariable = { fg = colors.parameter },
-            MiniStatuslineFilename = { fg = colors.floatBorder },
+            StatusLineNC = { fg = colors.floatBorder, bg = colors.bg },
         }
 
         for k, v in pairs(hl) do
