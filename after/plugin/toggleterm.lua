@@ -30,7 +30,7 @@ local function create_floating_windows(opts)
         col = col,
         row = row,
         style = "minimal",
-        border = "rounded",
+        border = "single",
         title = " Terminal ",
         title_pos = "center",
     }

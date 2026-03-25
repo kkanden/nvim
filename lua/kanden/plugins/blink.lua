@@ -4,7 +4,7 @@ require("blink-cmp").setup({
     },
     completion = {
         menu = {
-            border = "rounded",
+            border = "single",
             draw = {
                 columns = {
                     { "kind_icon", "label", "label_description", gap = 1 },
@@ -16,7 +16,7 @@ require("blink-cmp").setup({
         documentation = {
             auto_show = true,
             window = {
-                border = "rounded",
+                border = "single",
             },
         },
     },
@@ -27,7 +27,7 @@ require("blink-cmp").setup({
             show_on_insert = true,
         },
         window = {
-            border = "rounded",
+            border = "single",
         },
     },
     cmdline = {

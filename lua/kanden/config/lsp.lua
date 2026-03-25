@@ -20,12 +20,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         map_lsp(
             "K",
-            function() vim.lsp.buf.hover({ border = "rounded" }) end,
+            function() vim.lsp.buf.hover({ border = "single" }) end,
             "Hover Documentation"
         )
         map_lsp(
             "<C-k>",
-            function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
+            function() vim.lsp.buf.signature_help({ border = "single" }) end,
             "Signature Help",
             "i"
         )
