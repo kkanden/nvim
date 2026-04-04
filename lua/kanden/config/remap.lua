@@ -30,24 +30,11 @@ map(
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard" })
 map({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy to clipboard" })
 
-map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void registry" })
-
 -- useful for visual block insert
 map("i", "<C-c>", "<Esc>", { desc = "Exit visual block mode" })
 
 -- unbind default mappings
 map("n", "Q", "<nop>", { desc = "Unbind Q" })
-
--- start replace on word under cursor
-map(
-    "n",
-    "<leader>s",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Replace word under cursor" }
-)
-
--- start search for word under cursor
-map("n", "<leader>h", "/<C-r><C-w>", { desc = "Search word under cursor" })
 
 -- Easily exit terminal mode.
 map({ "n", "t" }, "<C-z>", function()
@@ -98,16 +85,6 @@ map(
     function() vim.diagnostic.open_float(nil, { focusable = true }) end,
     { desc = "Show diagnostic float" }
 )
-
--- toggle diagnostic virtual lines/text
-map("n", "gK", function()
-    local new_text = not vim.diagnostic.config().virtual_text
-    local new_lines = not vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({
-        virtual_text = new_text,
-        virtual_lines = new_lines,
-    })
-end, { desc = "Toggle virtual text/lines" })
 
 -- spell
 -- set keymaps to something good
