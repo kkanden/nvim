@@ -103,3 +103,8 @@ map({ "n" }, "<leader>st", function()
         vim.cmd("echo 'Spelllang set to en'")
     end
 end, { desc = "Toggle polish/english spelllang" })
+
+map("n", "mk", function()
+    vim.cmd("wall")
+    vim.cmd("make")
+end, { desc = "make" })
