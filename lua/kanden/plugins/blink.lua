@@ -1,3 +1,4 @@
+if true then return end
 require("blink-cmp").setup({
     keymap = {
         ["<C-b>"] = { "select_and_accept" },

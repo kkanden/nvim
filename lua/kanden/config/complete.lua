@@ -1,9 +1,18 @@
 local map = require("kanden.lib").map
 local augroup = require("kanden.lib").augroup
+
+vim.o.complete = ".,w,b,F,o"
+vim.o.completeopt = "popup,menuone,noinsert,fuzzy"
+
 map({ "i", "c" }, "<C-b>", "pumvisible() ? '<C-y>' : '<C-b>'", { expr = true })
 
--- cmdline autocomplete
-vim.cmd([[autocmd CmdlineChanged [:\/\?] call wildtrigger()]])
+vim.o.wildmode = "full"
+vim.o.wildoptions = "fuzzy"
+
+vim.o.pumborder = "single"
+vim.o.pumheight = 10
+vim.o.pumwidth = 15
+vim.o.pummaxwidth = 30
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroup("lsp_complete"),
@@ -15,7 +24,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 true,
                 client.id,
                 args.buf,
-                { autotrigger = true }
+                { autotrigger = false }
             )
         end
     end,
