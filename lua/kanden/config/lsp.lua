@@ -6,13 +6,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-        if
-            client:supports_method("textDocument/inlayHint")
-            or client.server_capabilities.inlayHintProvider
-        then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
-
         local map_lsp = function(keys, func, desc, mode)
             mode = mode or "n"
             map(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
@@ -36,32 +29,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "gD",
             function() require("mini.extra").pickers.diagnostic() end,
             "Diagnostics"
-        )
-
-        -- Move to next/prev diagnostic
-        local min_severity = vim.bo.filetype == "r"
-                and vim.diagnostic.severity.ERROR
-            or vim.diagnostic.severity.WARN
-        map_lsp(
-            "]d",
-            function()
-                vim.diagnostic.jump({
-                    severity = min_severity,
-                    count = 1,
-                })
-            end,
-            "Go to next diagnostic"
-        )
-
-        map_lsp(
-            "[d",
-            function()
-                vim.diagnostic.jump({
-                    severity = min_severity,
-                    count = -1,
-                })
-            end,
-            "Go to previous diagnostic"
         )
     end,
 })
