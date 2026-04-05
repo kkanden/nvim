@@ -41,6 +41,18 @@ require("mini.move").setup({
 local ts_input = require("mini.surround").gen_spec.input.treesitter
 require("mini.surround").setup({
     custom_surroundings = {
+        b = {
+            input = { "%b()", "^.().*().$" },
+            output = { left = "(", right = ")" },
+        },
+        B = {
+            input = { "%b{}", "^.().*().$" },
+            output = { left = "{", right = "}" },
+        },
+        r = {
+            input = { "%b[]", "^.().*().$" },
+            output = { left = "[", right = "]" },
+        },
         f = {
             input = ts_input({ outer = "@call.outer", inner = "@call.inner" }),
         },
