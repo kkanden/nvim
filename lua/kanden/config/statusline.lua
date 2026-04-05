@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd("LspProgress", {
+    callback = function(ev)
+        local value = ev.data.params.value
+        vim.b[ev.buf].lspstatus = value.kind ~= "end" and " " or ""
+        vim.cmd("redrawstatus")
+    end,
+})
+
 local function lsp()
     local lsps = table.concat(
         vim.iter(vim.lsp.get_clients({ bufnr = 0 }))
@@ -5,7 +13,7 @@ local function lsp()
             :totable(),
         ", "
     )
-    return lsps
+    return (vim.b.lspstatus or "") .. lsps
 end
 local function git()
     return vim.b.gitsigns_head ~= nil and vim.b.gitsigns_head or ""
