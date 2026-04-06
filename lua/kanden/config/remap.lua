@@ -105,6 +105,6 @@ map({ "n" }, "<leader>st", function()
 end, { desc = "Toggle polish/english spelllang" })
 
 map("n", "mk", function()
-    vim.cmd("wall")
+    vim.cmd("silent wall")
     vim.cmd("make")
 end, { desc = "make" })
