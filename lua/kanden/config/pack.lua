@@ -109,9 +109,16 @@ local subcmds = {
         end,
         complete = function(lead) return vim.fn.getcompletion(lead, "packadd") end,
     },
+    -- revert to lockfile
     revert = {
         exec = function()
             vim.pack.update(nil, { offline = true, target = "lockfile" })
+        end,
+    },
+    -- e.g. update rev/version
+    refresh = {
+        exec = function()
+            vim.pack.update(nil, { offline = true, target = "version" })
         end,
     },
 }
