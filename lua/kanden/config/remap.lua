@@ -108,3 +108,18 @@ map("n", "mk", function()
     vim.cmd("silent wall")
     vim.cmd("make")
 end, { desc = "make" })
+
+vim.keymap.set(
+    "n",
+    "gk",
+    function()
+        vim.cmd(
+            string.format(
+                "%s %s",
+                vim.bo.keywordprg ~= "" and vim.bo.keywordprg
+                    or vim.o.keywordprg,
+                vim.fn.expand("<cword>")
+            )
+        )
+    end
+)
