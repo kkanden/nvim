@@ -11,11 +11,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             map(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
         end
 
-        map_lsp(
-            "K",
-            function() vim.lsp.buf.hover({ border = "single" }) end,
-            "Hover Documentation"
-        )
+        map_lsp("K", function() vim.lsp.buf.hover() end, "Hover Documentation")
         map_lsp(
             "<C-k>",
             function() vim.lsp.buf.signature_help({ border = "single" }) end,

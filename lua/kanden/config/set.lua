@@ -25,6 +25,8 @@ opt.incsearch = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
+vim.o.winborder = "single"
+
 -- find/grep/make
 opt.path:append("**")
 vim.o.grepprg = "rg --vimgrep --hidden --smart-case --glob=!.git"
