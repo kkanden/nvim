@@ -3,12 +3,14 @@ local augroup = require("kanden.lib").augroup
 
 vim.o.complete = "F,o"
 vim.o.completeitemalign = "kind,abbr,menu"
-vim.o.completeopt = "popup,menuone,fuzzy"
+vim.o.completeopt = "noinsert,popup,menuone,fuzzy"
+vim.o.autocomplete = true
 
 map({ "i", "c" }, "<C-b>", "pumvisible() ? '<C-y>' : '<C-b>'", { expr = true })
 
-vim.o.wildmode = "full"
+vim.o.wildmode = "noselect:full"
 vim.o.wildoptions = "fuzzy"
+vim.cmd("autocmd CmdlineChanged [:/?] call wildtrigger()")
 
 vim.o.pumborder = "single"
 vim.o.pumheight = 10
@@ -55,7 +57,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         if client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, args.buf, {
-                autotrigger = false,
+                autotrigger = true,
                 convert = function(item)
                     local kind = kind_map[item.kind]
                     local icon = kind_icons[kind]
