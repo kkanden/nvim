@@ -5,10 +5,6 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": ">=0.0.0"
     },
-    "colorizer": {
-      "rev": "ef211089af881bea206c7aa3f2693a81feee7e90",
-      "src": "https://github.com/catgoose/nvim-colorizer.lua"
-    },
     "conform": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
