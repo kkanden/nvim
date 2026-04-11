@@ -106,38 +106,9 @@ vim.ui.select = require("mini.pick").ui_select
 
 map(
     "n",
-    "ff",
-    function() require("mini.pick").builtin.files() end,
-    { desc = "mini.pick: files" }
-)
-map(
-    "n",
-    "<leader>pn",
-    function()
-        require("mini.pick").builtin.files(
-            nil,
-            { source = { cwd = vim.fn.stdpath("config") } }
-        )
-    end,
-    { desc = "mini,pick: nvim config files" }
-)
-map(
-    "n",
     "<leader>ps",
     function() require("mini.pick").builtin.grep_live() end,
     { desc = "mini.pick: grep" }
-)
-map(
-    "n",
-    "<leader>pb",
-    function() require("mini.pick").builtin.buffers() end,
-    { desc = "mini.pick: buffers" }
-)
-map(
-    "n",
-    "<leader>ph",
-    function() require("mini.pick").builtin.help() end,
-    { desc = "mini.pick: help" }
 )
 map(
     "n",
