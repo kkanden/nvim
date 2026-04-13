@@ -6,6 +6,9 @@ vim.o.completeitemalign = "kind,abbr,menu"
 vim.o.completeopt = "noinsert,popup,menuone,fuzzy"
 vim.o.autocomplete = true
 
+-- <CR> accepts the completion for some reason, i don't want that
+map({ "i" }, "<CR>", "pumvisible() ? '<C-e><CR>' : '<CR>'", { expr = true })
+
 map({ "i", "c" }, "<C-b>", "pumvisible() ? '<C-y>' : '<C-b>'", { expr = true })
 
 vim.o.wildmode = "noselect:full"
