@@ -46,7 +46,8 @@ function FindComplete(arglead, cmdline, _)
 
     if not search_path then
         completecache =
-            vim.list_extend(vim.fn.getcompletion(arglead, "file"), fzf_matches)
+            vim.list_extend(fzf_matches, vim.fn.getcompletion(arglead, "file"))
+        vim.list.unique(completecache)
     else
         completecache = fzf_matches
     end
