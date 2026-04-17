@@ -8,7 +8,7 @@ map("n", "<C-d>", "<C-d>zzzv")
 map("n", "<C-u>", "<C-u>zzzv")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
-map( "x", "<leader>p", [["_dP]])
+map("x", "<leader>p", [["_dP]])
 map({ "n", "v" }, "<leader>y", [["+y]])
 map({ "n", "v" }, "<leader>Y", [["+Y]])
 map("i", "<C-c>", "<Esc>")
@@ -37,10 +37,11 @@ map("n", "Q", function()
     local qfopen = vim.iter(windows):any(function(x) return x.quickfix == 1 end)
     return qfopen and "<Cmd>cclose<CR>" or "<Cmd>copen<CR>"
 end, { expr = true })
+
 map({ "i", "n" }, "<C-a>", function()
     local line = vim.api.nvim_get_current_line()
     local col = #line
-    local char_under_cursor = line:sub(col, col) 
+    local char_under_cursor = line:sub(col, col)
 
     if vim.tbl_contains({ ",", ";" }, char_under_cursor) then col = col - 1 end
 
