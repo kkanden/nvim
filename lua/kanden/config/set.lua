@@ -26,6 +26,7 @@ o.undodir = vim.fn.stdpath("state") .. "/undo"
 o.undofile = true
 o.updatetime = 1000
 o.winborder = "single"
+vim.g.tex_flavor = "latex"
 vim.cmd("set isfname+=@-@")
 vim.cmd("set path+=**")
 
