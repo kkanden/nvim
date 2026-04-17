@@ -1,41 +1,37 @@
-local opt = vim.opt
+local o = vim.o
 
-opt.number = true
-opt.relativenumber = true
-
-opt.ignorecase = true -- ignore case as default search
-opt.smartcase = true -- case sensitive search if input contains uppercase
-
--- global statusline
-opt.laststatus = 3
-
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-
-opt.smartindent = true
-
-opt.termguicolors = true
-
-opt.hlsearch = true
-opt.incsearch = true
-
--- highlight current line number
-opt.cursorline = true
-opt.cursorlineopt = "number"
-
-vim.o.winborder = "single"
-
--- find/grep/make
-opt.path:append("**")
-vim.o.grepprg = "rg --vimgrep --hidden --smart-case --glob=!.git"
-vim.keymap.set("ca", "grep", "sil gr")
-vim.keymap.set("ca", "gr", "sil gr")
+o.backup = false
+o.colorcolumn = "80"
+o.cursorline = true-- highlight current line number
+o.cursorlineopt = "number"
+o.expandtab = true
+o.formatoptions = "tqj"
+o.grepprg = "rg --vimgrep --hidden --smart-case --glob=!.git"
+o.hlsearch = true
+o.ignorecase = true -- ignore case as default search
+o.incsearch = true
+o.laststatus = 3-- global statusline
+o.number = true
+o.relativenumber = true
+o.scrolloff = 999
+o.shiftwidth = 4
+o.signcolumn = "auto"
+o.smartcase = true -- case sensitive search if input contains uppercase
+o.smartindent = true
+o.softtabstop = 4
+o.swapfile = false
+o.tabstop = 4
+o.termguicolors = true
+o.undodir = vim.fn.stdpath("state") .. "/undo"
+o.undofile = true
+o.updatetime = 1000
+o.winborder = "single"
+vim.cmd("set isfname+=@-@")
+vim.cmd("set path+=**")
 
 -- folds
-opt.foldenable = false
-opt.foldcolumn = "0"
+o.foldenable = false
+o.foldcolumn = "0"
 function MyFoldText(lnum_start, lnum_end, foldlevel)
     local nlines = lnum_end - lnum_start
     local line = vim.fn.getline(lnum_start)
@@ -45,47 +41,11 @@ function MyFoldText(lnum_start, lnum_end, foldlevel)
     )
     return string.format(format_string, line, nlines)
 end
-opt.foldtext = "v:lua.MyFoldText(v:foldstart, v:foldend, v:foldlevel)"
+o.foldtext = "v:lua.MyFoldText(v:foldstart, v:foldend, v:foldlevel)"
 
--- keep cursor centered as much as possible
-opt.scrolloff = 999
-
-opt.signcolumn = "auto"
-opt.isfname:append("@-@")
-
-opt.updatetime = 1000
-opt.colorcolumn = "80"
-
--- netrw options
-vim.g.netrw_liststyle = 1
-vim.g.netrw_sort_by = "name"
-vim.g.netrw_sizestyle = "H"
-
-opt.swapfile = false
-opt.backup = false
-opt.undodir = vim.fn.stdpath("state") .. "/undo"
-opt.undofile = true
-
--- diagnostics
 vim.diagnostic.config({
     severity_sort = true,
     virtual_text = false,
     underline = false,
 })
 
--- WSL clipboard
-if vim.fn.has("wsl") == 1 then
-    vim.g.clipboard = {
-        name = "win32yank",
-        copy = {
-            ["+"] = "win32yank -i",
-            ["*"] = "win32yank -i",
-        },
-        paste = {
-
-            ["+"] = "win32yank -o",
-            ["*"] = "win32yank -o",
-        },
-        cache_enabled = 0,
-    }
-end
