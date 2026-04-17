@@ -1,5 +1,5 @@
 local augroup = require("kanden.lib").augroup
-local snippet_path = vim.fn.stdpath("config") .. "/lua/kanden/snippets"
+local snippet_path = vim.fs.dirname(vim.env.MYVIMRC) .. "/snippets"
 
 require("luasnip").setup({
     enable_autosnippets = true,
@@ -7,9 +7,7 @@ require("luasnip").setup({
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").lazy_load({
-    paths = { snippet_path },
-})
+require("luasnip.loaders.from_lua").lazy_load({ paths = { snippet_path } })
 
 vim.keymap.set(
     { "i", "s" },

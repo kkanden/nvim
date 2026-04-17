@@ -1,12 +1,225 @@
-local M = {}
 local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local d = ls.dynamic_node
+local f = ls.function_node
+local fmta = require("luasnip.extras.fmt").fmta
+local postfix = require("luasnip.extras.postfix").postfix
 local autosnippet =
     ls.extend_decorator.apply(s, { snippetType = "autosnippet" })
+
+-- ## treesiter utils ##
+local ts = vim.treesitter
+
+local MATH_NODES = {
+    displayed_equation = true,
+    inline_formula = true,
+    math_environment = true,
+}
+
+local CODE_BLOCK_NODES = { -- Add this to define code block node types
+    fenced_code_block = true,
+    indented_code_block = true, -- Optional: include indented code blocks as well if needed
+}
+
+-- taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1184#issuecomment-1079844699
+local function get_node_at_cursor()
+    local buf = vim.api.nvim_get_current_buf()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    row = row - 1
+    col = col - 1
+
+    local ok, parser = pcall(ts.get_parser, buf, "latex")
+    if not ok or not parser then return end
+
+    local root_tree = parser:parse()[1]
+    local root = root_tree and root_tree:root()
+
+    if not root then return end
+
+    return root:named_descendant_for_range(row, col, row, col)
+end
+
+function in_text(check_parent)
+    local node = vim.treesitter.get_node({ ignore_injections = false })
+
+    -- Check for code blocks in any filetype
+    local block_node = node
+    while block_node do
+        if CODE_BLOCK_NODES[block_node:type()] then
+            return true -- If in a code block, always consider it text
+        end
+        block_node = block_node:parent()
+    end
+
+    while node do
+        if node:type() == "text_mode" then
+            if check_parent then
+                -- For \text{}
+                local parent = node:parent()
+                if parent and MATH_NODES[parent:type()] then return false end
+            end
+            return true
+        elseif MATH_NODES[node:type()] then
+            return false
+        end
+        node = node:parent()
+    end
+    return true
+end
+
+function in_mathzone()
+    local node = get_node_at_cursor()
+    while node do
+        if node:type() == "text_mode" then
+            return false
+        elseif MATH_NODES[node:type()] then
+            return true
+        end
+        node = node:parent()
+    end
+    return false
+end
+-- ## end treesiter utils
+
+-- ## helpers ##
+in_env = function(name)
+    local is_inside = vim.fn["vimtex#env#is_inside"](name)
+    return (is_inside[1] > 0 and is_inside[2] > 0)
+end
+
+no_backslash = function(line_to_cursor, matched_trigger)
+    return not line_to_cursor:find("\\%a+$", -#line_to_cursor)
+end
+
+in_math = function() return in_mathzone() end
+
+not_math = function() return not in_math() end
+
+in_text = function() return in_env("document") and not_math end
+
+comment = function() return vim.fn["vimtex#syntax#in_comment"]() == 1 end
+
+in_preamble = function() return not in_env("document") end
+
+in_list = function() return in_env("itemize") or in_env("enumerate") end
+
+get_visual = function(args, parent)
+    if #parent.snippet.env.SELECT_RAW > 0 then
+        return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+    else -- If SELECT_RAW is empty, return a blank insert node
+        return sn(nil, i(1))
+    end
+end
+
+local generate_postfix_dynamicnode = function(
+    _,
+    parent,
+    _,
+    user_arg1,
+    user_arg2
+)
+    local capture = parent.snippet.env.POSTFIX_MATCH
+    if #capture > 0 then
+        return sn(
+            nil,
+            fmta(
+                [[
+        <><><><>
+        ]],
+                { t(user_arg1), t(capture), t(user_arg2), i(0) }
+            )
+        )
+    else
+        local visual_placeholder = parent.snippet.env.SELECT_RAW
+        return sn(
+            nil,
+            fmta(
+                [[
+        <><><><>
+        ]],
+                { t(user_arg1), i(1, visual_placeholder), t(user_arg2), i(0) }
+            )
+        )
+    end
+end
+
+postfix_snippet = function(context, command, opts)
+    opts = opts or {}
+    if not context.trig then
+        error("context doesn't include a `trig` key which is mandatory", 2)
+    end
+    context.dscr = context.dscr
+    context.name = context.name or context.dscr
+    context.docstring = command.pre
+        .. [[(POSTFIX_MATCH|VISUAL|<1>)]]
+        .. command.post
+    context.match_pattern = [[[%w%.%_%-%"%'\\]*$]]
+    context.trigEngine = "ecma"
+    context.trig = string.format("(?<!\\\\)(%s)", context.trig)
+    context.hidden = true
+    return postfix(context, {
+        d(
+            1,
+            generate_postfix_dynamicnode,
+            {},
+            { user_args = { command.pre, command.post } }
+        ),
+    }, opts)
+end
+
+auto_backslash = function(context, opts)
+    opts = opts or {}
+    if not context.trig then
+        error("context doesn't include a `trig` key which is mandatory", 2)
+    end
+    context.dscr = context.dscr or (context.trig .. "with automatic backslash")
+    context.name = context.name or context.trig
+    context.docstring = context.docstring or ([[\]] .. context.trig)
+    context.trigEngine = "ecma"
+    context.trig = string.format("(?<!\\\\)(%s)", context.trig)
+    return autosnippet(
+        context,
+        fmta(
+            [[\<><>]],
+            { f(function(_, snip) return snip.captures[1] end), i(0) }
+        ),
+        opts
+    )
+end
+
+symbol_snippet = function(context, command, opts)
+    opts = opts or {}
+    if not context.trig then
+        error("context doesn't include a `trig` key which is mandatory", 2)
+    end
+    context.name = context.name or command:gsub([[\]], "")
+    context.dscr = context.dscr or context.name
+    context.docstring = context.docstring or context.name
+    context.wordTrig = context.wordTrig or false
+    local exec = command
+    if type(command) == "string" then -- if it's string, take it literally
+        local j, _ = string.find(command, context.trig)
+        if j == 2 then -- command always starts with backslash
+            context.trigEngine = "ecma"
+            context.trig = string.format("(?<!\\\\)(%s)", context.trig)
+            context.hidden = true
+        end
+        exec = t(command)
+    end
+    return autosnippet(context, exec, opts)
+end
+
+-- ## end helpers ##
+
+local M = {}
+
 local line_begin = require("luasnip.extras.conditions.expand").line_begin
 local make_condition = require("luasnip.extras.conditions").make_condition
 
-local tex = require("kanden.snippets.tex.utils").utils
-local in_list = make_condition(tex.in_list)
+local in_list = make_condition(in_list)
 
 -- object shortcuts
 local character_shortcut = function(trig, command, desc)
@@ -120,7 +333,7 @@ local matrix_nxn = s(
             end),
         }
     ),
-    { condition = tex.in_math }
+    { condition = in_math }
 )
 local cases = autosnippet(
     {
@@ -139,7 +352,7 @@ local cases = autosnippet(
         { d(1, generate_cases) }
     ),
 
-    { condition = tex.in_math, show_condition = tex.in_math }
+    { condition = in_math, show_condition = in_math }
 )
 
 -- delimiters
@@ -169,7 +382,7 @@ local lr = autosnippet(
                 local cap = snip.captures[1] or "p"
                 return delims[cap][1]
             end),
-            d(1, tex.get_visual),
+            d(1, get_visual),
             f(function(_, snip)
                 local cap = snip.captures[1] or "p"
                 return delims[cap][2]
@@ -177,7 +390,7 @@ local lr = autosnippet(
             i(0),
         }
     ),
-    { condition = tex.in_math, show_condition = tex.in_math }
+    { condition = in_math, show_condition = in_math }
 )
 
 -- math commands
@@ -196,7 +409,7 @@ local lim = autosnippet(
             i(0),
         }
     ),
-    { condition = tex.in_math, show_condition = tex.in_math }
+    { condition = in_math, show_condition = in_math }
 )
 
 local sum = autosnippet(
@@ -213,7 +426,7 @@ local sum = autosnippet(
             i(0),
         }
     ),
-    { condition = tex.in_math, show_condition = tex.in_math }
+    { condition = in_math, show_condition = in_math }
 )
 
 local set = autosnippet(
@@ -231,7 +444,7 @@ local set = autosnippet(
             i(0),
         }
     ),
-    { condition = tex.in_math, show_condition = tex.in_math }
+    { condition = in_math, show_condition = in_math }
 )
 
 -- environments
@@ -267,7 +480,7 @@ local draft = s(
     ]],
         { i(0) }
     ),
-    { condition = tex.in_preamble, show_condition = tex.in_preamble }
+    { condition = in_preamble, show_condition = in_preamble }
 )
 
 local homework = s(
@@ -320,7 +533,7 @@ local homework = s(
         ]],
         { i(1), i(2), i(0) }
     ),
-    { condition = tex.in_preamble, show_condition = tex.in_preamble }
+    { condition = in_preamble, show_condition = in_preamble }
 )
 
 local paired_delims = s(
@@ -335,13 +548,13 @@ local paired_delims = s(
     ]],
         { i(0) }
     ),
-    { condition = tex.in_preamble, show_condition = tex.in_preamble }
+    { condition = in_preamble, show_condition = in_preamble }
 )
 
 local insert_item = autosnippet(
     { trig = "--", name = "\\item", dscr = "\\item" },
     fmta([[\item <>]], { i(0) }),
-    { condition = in_list * line_begin, show_condition = tex.in_math }
+    { condition = in_list * line_begin, show_condition = in_math }
 )
 
 vim.list_extend(M, {
@@ -392,9 +605,9 @@ local auto_backslash_snippets = {}
 for _, v in ipairs(auto_backslash_specs) do
     table.insert(
         auto_backslash_snippets,
-        tex.auto_backslash(
+        auto_backslash(
             { trig = v },
-            { condition = tex.in_math, show_condition = tex.in_math }
+            { condition = in_math, show_condition = in_math }
         )
     )
 end
@@ -439,12 +652,12 @@ local greek_snippets = {}
 for k, v in pairs(greek_specs) do
     table.insert(
         greek_snippets,
-        tex.symbol_snippet(
+        symbol_snippet(
             vim.tbl_deep_extend("keep", { trig = k }, v.context),
             v.command,
             {
-                condition = tex.in_math,
-                show_condition = tex.in_math,
+                condition = in_math,
+                show_condition = in_math,
                 backslash = true,
             }
         )
@@ -546,10 +759,10 @@ local symbol_snippets = {}
 for k, v in pairs(symbol_specs) do
     table.insert(
         symbol_snippets,
-        tex.symbol_snippet(
+        symbol_snippet(
             vim.tbl_deep_extend("keep", { trig = k }, v.context),
             v.command,
-            { condition = tex.in_math, show_condition = tex.in_math }
+            { condition = in_math, show_condition = in_math }
         )
     )
 end
@@ -634,14 +847,14 @@ local postfix_math_snippets = {}
 for k, v in pairs(postfix_math_specs) do
     table.insert(
         postfix_math_snippets,
-        tex.postfix_snippet(
+        postfix_snippet(
             vim.tbl_deep_extend(
                 "keep",
                 { trig = k, snippetType = "autosnippet" },
                 v.context
             ),
             v.command,
-            { condition = tex.in_math, show_condition = tex.in_math }
+            { condition = in_math, show_condition = in_math }
         )
     )
 end
