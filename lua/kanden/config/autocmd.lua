@@ -29,11 +29,9 @@ autocmd("FileType", {
 autocmd("TermOpen", {
     group = augroup("custom_term_open"),
     callback = function()
-        local set = vim.opt_local
-        set.number = false
-        set.relativenumber = false
-        set.scrolloff = 0
-
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+        vim.wo.scrolloff = 0
         vim.bo.filetype = "terminal"
     end,
 })
@@ -50,14 +48,6 @@ autocmd("FileType", {
             signs = { severity = { min = vim.diagnostic.severity.WARN } },
             underline = { severity = { min = vim.diagnostic.severity.ERROR } },
         })
-    end,
-})
-
--- formatting options
-autocmd("BufEnter", {
-    group = augroup("no_comment_continue"),
-    callback = function()
-        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } -- disable comment continuation on new line
     end,
 })
 
