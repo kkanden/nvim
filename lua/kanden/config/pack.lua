@@ -2,7 +2,6 @@ local function gh(x) return "https://github.com/" .. x end
 
 ---@type (string|vim.pack.Spec)[]
 local plugins = {
-    { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
     gh("stevearc/conform.nvim"),
     gh("rafamadriz/friendly-snippets"),
     gh("tpope/vim-fugitive"),
