@@ -1,5 +1,4 @@
 local augroup = require("kanden.lib").augroup
-local map = require("kanden.lib").map
 local snippet_path = vim.fn.stdpath("config") .. "/lua/kanden/snippets"
 
 require("luasnip").setup({
@@ -12,19 +11,19 @@ require("luasnip.loaders.from_lua").lazy_load({
     paths = { snippet_path },
 })
 
-map(
+vim.keymap.set(
     { "i", "s" },
     "<C-s>",
     function() require("luasnip").expand_or_jump() end,
     { silent = true }
 )
-map(
+vim.keymap.set(
     { "i", "s" },
     "<Tab>",
     function() require("luasnip").jump(1) end,
     { silent = true }
 )
-map(
+vim.keymap.set(
     { "i", "s" },
     "<S-Tab>",
     function() require("luasnip").jump(-1) end,

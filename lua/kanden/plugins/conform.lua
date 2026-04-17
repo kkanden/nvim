@@ -1,5 +1,3 @@
-local map = require("kanden.lib").map
-
 require("conform").setup(
     ---@type conform.setupOpts
     {
@@ -58,7 +56,7 @@ require("conform").setup(
     }
 )
 
-map("n", "<leader>fm", function(bufnr)
+vim.keymap.set("n", "<leader>fm", function(bufnr)
     require("conform").format({
         bufnr = bufnr,
         timeout_ms = 10000,

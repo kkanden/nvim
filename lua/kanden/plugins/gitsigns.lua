@@ -1,12 +1,10 @@
-local map = require("kanden.lib").map
-
 require("gitsigns").setup({
     on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
         local map = function(mode, key, command, opts)
             opts = opts or {}
             opts.buffer = bufnr
-            map(mode, key, command, opts)
+            vim.keymap.set(mode, key, command, opts)
         end
 
         -- Navigation

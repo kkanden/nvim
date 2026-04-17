@@ -1,5 +1,4 @@
 local augroup = require("kanden.lib").augroup
-local map = require("kanden.lib").map
 local system_output = require("kanden.lib").system_output
 
 local ns = vim.api.nvim_create_namespace("RunPython")
@@ -89,7 +88,7 @@ vim.api.nvim_create_autocmd("FileType", {
     group = augroup("python_run"),
     pattern = { "python" },
     callback = function()
-        map("n", "<localleader>sa", function()
+        vim.keymap.set("n", "<localleader>sa", function()
             vim.cmd("w")
             run_python()
             vim.cmd("wincmd t")

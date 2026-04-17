@@ -1,5 +1,3 @@
-local map = require("kanden.lib").map
-
 local state = {
     floating = {
         buf = -1,
@@ -64,4 +62,4 @@ local toggle_terminal = function()
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
-map({ "n", "t" }, "c\\", toggle_terminal, { desc = "Toggle terminal" })
+vim.keymap.set({ "n", "t" }, "c\\", toggle_terminal, { desc = "Toggle terminal" })

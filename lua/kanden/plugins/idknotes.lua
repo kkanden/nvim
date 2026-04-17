@@ -1,5 +1,3 @@
-local map = require("kanden.lib").map
-
 require("idknotes").setup(
     ---@type idknotes.Config
     {
@@ -10,5 +8,5 @@ require("idknotes").setup(
     }
 )
 
-map("n", "<leader>n", "<Cmd>IDKnotes<CR>")
-map("n", "<leader>m", "<Cmd>IDKnotes!<CR>")
+vim.keymap.set("n", "<leader>n", "<Cmd>IDKnotes<CR>")
+vim.keymap.set("n", "<leader>m", "<Cmd>IDKnotes!<CR>")

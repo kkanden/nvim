@@ -1,5 +1,4 @@
 local augroup = require("kanden.lib").augroup
-local map = require("kanden.lib").map
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroup("lsp_attach"),
@@ -8,7 +7,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         local map_lsp = function(keys, func, desc, mode)
             mode = mode or "n"
-            map(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
+            vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
         end
 
         map_lsp("K", function() vim.lsp.buf.hover() end, "Hover Documentation")

@@ -1,5 +1,3 @@
-local map = require("kanden.lib").map
-
 -- mini.ai
 local ts_input = require("mini.ai").gen_spec.treesitter
 require("mini.ai").setup({
@@ -77,8 +75,8 @@ require("mini.surround").setup({
 })
 
 vim.keymap.del("x", "ys")
-map("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-map("n", "yss", "ys_", { remap = true })
+vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+vim.keymap.set("n", "yss", "ys_", { remap = true })
 
 -- mini.pick
 require("mini.pick").setup({
@@ -104,13 +102,13 @@ require("mini.pick").setup({
 })
 vim.ui.select = require("mini.pick").ui_select
 
-map(
+vim.keymap.set(
     "n",
     "<leader>ps",
     function() require("mini.pick").builtin.grep_live() end,
     { desc = "mini.pick: grep" }
 )
-map(
+vim.keymap.set(
     "n",
     "<leader>pk",
     function() require("mini.extra").pickers.keymaps() end,

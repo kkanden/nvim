@@ -1,5 +1,3 @@
-local map = require("kanden.lib").map
-
 local invs = {
     TRUE = "FALSE",
     ["true"] = "false",
@@ -26,4 +24,4 @@ local function replace_word()
     vim.api.nvim_buf_set_lines(0, crow - 1, crow, false, { newline })
 end
 
-map("n", "<leader>i", function() replace_word() end, { desc = "Toggle" })
+vim.keymap.set("n", "<leader>i", function() replace_word() end, { desc = "Toggle" })
