@@ -56,15 +56,15 @@ map(
 )
 
 map({ "n" }, "<leader>st", function()
-    local current = vim.opt.spelllang:get()[1]
+    local current = vim.o.spelllang
     if current == "en" then
-        vim.opt.spelllang = "pl"
-        vim.opt.spellfile = os.getenv("HOME")
+        vim.o.spelllang = "pl"
+        vim.o.spellfile = os.getenv("HOME")
             .. "/.local/state/nvim/spell/pl.utf-8.add"
         vim.cmd("echo 'Spelllang set to pl'")
     else
-        vim.opt.spelllang = "en"
-        vim.opt.spellfile = os.getenv("HOME")
+        vim.o.spelllang = "en"
+        vim.o.spellfile = os.getenv("HOME")
             .. "/.local/state/nvim/spell/en.utf-8.add"
         vim.cmd("echo 'Spelllang set to en'")
     end
