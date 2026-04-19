@@ -1,14 +1,11 @@
 local augroup = require("kanden.lib").augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Highlight when yanking (copying) text -- from kickstart
 autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
-    desc = "Highlight when yanking (copying) text",
     callback = function() vim.highlight.on_yank() end,
 })
 
--- easier quit in filetypes
 autocmd("FileType", {
     group = augroup("close_with_q"),
     pattern = {
@@ -25,7 +22,6 @@ autocmd("FileType", {
     end,
 })
 
--- Set local settings for terminal buffers
 autocmd("TermOpen", {
     group = augroup("custom_term_open"),
     callback = function()
@@ -36,28 +32,11 @@ autocmd("TermOpen", {
     end,
 })
 
--- Show only WARN and ERROR diagnostics in R
-autocmd("FileType", {
-    group = augroup("r_diagnostics"),
-    pattern = { "r" },
-    callback = function()
-        vim.diagnostic.config({
-            virtual_text = {
-                severity = { min = vim.diagnostic.severity.ERROR },
-            },
-            signs = { severity = { min = vim.diagnostic.severity.WARN } },
-            underline = { severity = { min = vim.diagnostic.severity.ERROR } },
-        })
-    end,
-})
-
--- resize splits if window got resized
 autocmd({ "VimResized" }, {
     group = augroup("resize_splits"),
     callback = function() vim.cmd("tabdo wincmd =") end,
 })
 
--- go to last loc when opening a buffer
 autocmd("BufReadPost", {
     group = augroup("last_loc"),
     callback = function()
@@ -69,7 +48,6 @@ autocmd("BufReadPost", {
     end,
 })
 
--- fix E948/E676 on `:wqa` with open terminal buffers
 autocmd({ "QuitPre" }, {
     callback = function()
         for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -79,29 +57,6 @@ autocmd({ "QuitPre" }, {
                 vim.api.nvim_buf_delete(buf, { force = true })
             end
         end
-    end,
-})
-
--- R code folding
-
-function RFoldComment(lnum)
-    local line = vim.fn.getline(lnum)
-    if string.match(line, "^```{?%w+") then
-        return ">1"
-    elseif string.match(line, "^```") then
-        return "<1"
-    elseif string.match(line, "^#%s*.*%s*-+%s*#*$") then
-        return ">2"
-    end
-    return "="
-end
-
-autocmd("BufEnter", {
-    group = augroup("r_code_folding"),
-    callback = function()
-        if not vim.tbl_contains({ "r", "rmd" }, vim.bo.filetype) then return end
-        vim.opt_local.foldexpr = "v:lua.RFoldComment(v:lnum)"
-        vim.opt_local.foldmethod = "expr"
     end,
 })
 
@@ -118,7 +73,6 @@ autocmd("FileType", {
     end,
 })
 
--- turn off hlsearch after vim.opt.updatetime or entering insert mode
 autocmd({ "CursorHold", "InsertEnter" }, {
     group = augroup("nohlsearch"),
     callback = function()

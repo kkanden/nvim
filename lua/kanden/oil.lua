@@ -16,9 +16,13 @@ require("oil").setup({
 local path_modify = ":gs?\\?/?"
 local yank = require("oil.actions").yank_entry.callback
 
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Oil: Open parent directory" })
+vim.keymap.set(
+    "n",
+    "-",
+    "<CMD>Oil<CR>",
+    { desc = "Oil: Open parent directory" }
+)
 
-vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Oil: Open parent directory" })
 vim.keymap.set(
     "n",
     "yP",

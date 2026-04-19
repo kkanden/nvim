@@ -5,7 +5,6 @@ o.colorcolumn = "80"
 o.cursorline = true -- highlight current line number
 o.cursorlineopt = "number"
 o.expandtab = true
-o.formatoptions = "tqj"
 o.grepprg = "rg --vimgrep --hidden --smart-case --glob=!.git"
 o.hlsearch = true
 o.ignorecase = true -- ignore case as default search
@@ -29,6 +28,7 @@ o.winborder = "single"
 vim.g.tex_flavor = "latex"
 vim.cmd("set isfname+=@-@")
 vim.cmd("set path+=**")
+vim.cmd("set formatoptions-=cr")
 
 -- folds
 o.foldenable = false

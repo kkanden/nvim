@@ -70,7 +70,7 @@ map({ "n" }, "<leader>st", function()
     end
 end)
 
-vim.keymap.set(
+map(
     "n",
     "gk",
     function()
