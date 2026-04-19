@@ -23,7 +23,7 @@ function FindComplete(arglead, cmdline, _)
     if rest:match("%s$") or #tokens > 1 then search_path = tokens[1] end
 
     if #filescache == 0 or search_path ~= pathcache then
-        local cmd = { "fd", "-t", "file" }
+        local cmd = { "fd", "-H", "--exclude", ".git" }
         if search_path then
             table.insert(cmd, "--base-directory") -- print relative to search_path
             table.insert(cmd, vim.fn.expand(search_path))
