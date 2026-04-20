@@ -12,7 +12,7 @@ local plugins = {
     gh("nvim-mini/mini.nvim"),
     gh("kkanden/minipoon.nvim"),
     gh("stevearc/oil.nvim"),
-    gh("R-nvim/R.nvim"),
+    { src = gh("R-nvim/R.nvim"), version = vim.version.range("*") },
     gh("nvim-treesitter/nvim-treesitter"),
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
     gh("windwp/nvim-ts-autotag"),

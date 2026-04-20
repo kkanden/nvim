@@ -6,8 +6,9 @@
       "version": ">=0.0.0"
     },
     "R.nvim": {
-      "rev": "50eedd3d600b983cc277d14463aa7092e51d3954",
-      "src": "https://github.com/R-nvim/R.nvim"
+      "rev": "958b472d763cb258927c7ef69af4fd9945cc5469",
+      "src": "https://github.com/R-nvim/R.nvim",
+      "version": ">=0.0.0"
     },
     "conform.nvim": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
@@ -28,10 +29,6 @@
     "indent-blankline.nvim": {
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
-    },
-    "lake-dweller.nvim": {
-      "rev": "3a419a1de50c9d62292f73c56443e52b5d4c1ed2",
-      "src": "https://github.com/yonatanperel/lake-dweller.nvim"
     },
     "mini.nvim": {
       "rev": "418ef4930ddabe80f449c6f1323f8b6abb172d1c",
@@ -62,7 +59,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "vague.nvim": {
-      "rev": "4f52c75bce7411f64dacbd1bff2a2fce5bdd59e9",
+      "rev": "8751181a1aa431b4e8983b0a183afef5cbc08381",
       "src": "https://github.com/vague2k/vague.nvim"
     },
     "vim-fugitive": {
