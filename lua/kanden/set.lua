@@ -28,7 +28,7 @@ o.winborder = "single"
 vim.g.tex_flavor = "latex"
 vim.cmd("set isfname+=@-@")
 vim.cmd("set path+=**")
-vim.cmd("set formatoptions-=cr")
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 
 -- folds
 o.foldenable = false
