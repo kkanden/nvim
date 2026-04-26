@@ -34,7 +34,7 @@ local function filename()
     end
     return fname .. rest
 end
-local function loc() return "%l|%L" end
+local function loc() return "(%l,%c)" end
 local function lsp_ft()
     local lsps = lsp()
     local lsps_ft = lsps .. (lsps ~= "" and " | " or "") .. vim.bo.filetype
