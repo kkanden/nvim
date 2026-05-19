@@ -6,7 +6,7 @@ o.cursorline = true -- highlight current line number
 o.cursorlineopt = "number"
 o.expandtab = true
 o.grepprg =
-    'rg --vimgrep --hidden --smart-case -g "!.git" -g "!*.lock" -g "!*lock*.json"'
+    'rg --vimgrep --hidden --smart-case -g "!.git" -g "!*.lock" -g "!*lock*.json" -g "!LICENSE"'
 o.hlsearch = true
 o.ignorecase = true -- ignore case as default search
 o.incsearch = true
