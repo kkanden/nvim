@@ -48,7 +48,7 @@ autocmd("BufReadPost", {
     end,
 })
 
-autocmd({ "QuitPre" }, {
+autocmd({ "ExitPre" }, {
     callback = function()
         for _, buf in ipairs(vim.api.nvim_list_bufs()) do
             local filetype =
