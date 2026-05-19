@@ -39,6 +39,8 @@ require("r").setup({
     nvimpager = "split_h",
     min_editor_width = 0,
     rconsole_width = math.floor(vim.o.columns * 0.3),
-    open_html = "no",
-    open_pdf = "no",
+    r_ls = {
+        completion = false,
+        signature = false,
+    },
 })
