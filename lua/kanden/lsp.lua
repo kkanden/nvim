@@ -19,6 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         )
 
         map_lsp("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+        map_lsp("grl", vim.lsp.buf.declaration, "Goto declaration")
 
         map_lsp(
             "gD",
